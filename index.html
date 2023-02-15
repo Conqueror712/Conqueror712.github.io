@@ -1,7 +1,335 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>落雨乄天珀夜</title><meta name="author" content="落雨乄天珀夜"><meta name="copyright" content="落雨乄天珀夜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="落雨乄天珀夜">
+<meta property="og:url" content="https://conqueror712.github.io/index.html">
+<meta property="og:site_name" content="落雨乄天珀夜">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://conqueror712.github.io/img/head.jpg">
+<meta property="article:author" content="落雨乄天珀夜">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://conqueror712.github.io/img/head.jpg"><link rel="shortcut icon" href="/img/head.jpg"><link rel="canonical" href="https://conqueror712.github.io/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '落雨乄天珀夜',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-02-15 13:28:41'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  include ./includes/mixins/post-ui.pug
-  #recent-posts.recent-posts
-    +postUI
-    include includes/pagination.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="落雨乄天珀夜" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/1067994.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">落雨乄天珀夜</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">落雨乄天珀夜</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/post/Computer-Network.html" title="计算机网络 - 上丨学习记录"><img class="post_bg" src="/img/1266437.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络 - 上丨学习记录"></a></div><div class="recent-post-info"><a class="article-title" href="/post/Computer-Network.html" title="计算机网络 - 上丨学习记录">计算机网络 - 上丨学习记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-02-09T12:03:22.000Z" title="发表于 2023-02-09 20:03:22">2023-02-09</time></span></div><div class="content">Computer Networking A Top-Down Approach Learning Note Part 1
+前言的前言的前言：
+本文在笔者的博客内有流程图加载不出来的bug，烦请各位读者移步：计算机网络丨学习记录 - 上 - 掘金 (juejin.cn)
+后续会进行调整。
+
+前言的前言：
+本文是笔者初学计算机网络的笔记和一些心得，难免会有部分疏漏和错误，还请各位读者积极指出，不吝赐教。
+有一些内容是笔者认为对自己暂时没那么重要的部分，就没有放上去，具体的内容可以查看相关的书籍。
+还有要补充的就是，计算机网络的学习记录将会分为上中下三部分，这一部分，也就是上，主要是涵盖了《自顶向下计算机网络》的第一章部分，因为是初学，笔者对于很多概念还比较陌生，加之这一章节与其他章节的性质不同，是一个概览，所以单独把这一章节放在上这一部分。
+事不宜迟，我们开始吧！
+
+Unit 1 计算机网络概述0. 前言该课程的总体教学目标需要掌握计网的什么？
+
+基本概念
+工作原理
+常用技术
+
+计算机网络为什么比较难学？
+有很多的**”定性的、逻辑描述的推理”**；
+与数学物理不同，倒是有点像政治，有着比 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/RabbitMQ.html" title="RabbitMQ丨学习记录"><img class="post_bg" src="/img/NEW2/1300134.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RabbitMQ丨学习记录"></a></div><div class="recent-post-info"><a class="article-title" href="/post/RabbitMQ.html" title="RabbitMQ丨学习记录">RabbitMQ丨学习记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-02-01T02:42:42.000Z" title="发表于 2023-02-01 10:42:42">2023-02-01</time></span></div><div class="content">零、前言本文记录了笔者在学习消息队列和RabbitMQ的基础知识的过程，
+若笔者有任何疏忽纰漏之处，烦请不吝赐教。
+本文会不断的补充、修改和完善，期待您的宝贵意见。
+什么是中间件？为什么要使用它？中间件 Middleware 是处于操作系统和应用程序之间的软件。
+人们在使用中间件时，往往是一组中间件集成在一起，构成一个平台（包括开发平台和运行平台），
+但在这组中间件中必须要有一个通信中间件，即中间件 = 平台 + 通信，
+这个定义也限定了只有用于分布式系统中才能称为中间件，同时还可以把它与支撑软件和实用软件区分开来。
+中间件屏蔽了底层操作系统的复杂性，使程序开发人员面对一个简单而统一的开发环境，减少程序设计的复杂性，将注意力集中在自己的业务上，不必再为程序在不同系统软件上的移植而重复工作，从而大大减少了技术上的负担。
+中间件带给应用系统的，不只是开发的简便、开发周期的缩短，也减少了系统的维护、运行和管理的工作量，还减少了计算机总体费用的投入。
+中间件应该具有以下的特点：
+
+满足大量应用的需要
+运行于多种硬件和OS平台
+支持分布计算，提供跨网络、硬件和OS平台的透明性的应用或服务的交互
+ ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/post/Internet_All.html" title="Internet基础丨学习记录"><img class="post_bg" src="/img/NEW1/1298218.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Internet基础丨学习记录"></a></div><div class="recent-post-info"><a class="article-title" href="/post/Internet_All.html" title="Internet基础丨学习记录">Internet基础丨学习记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-30T01:24:31.000Z" title="发表于 2023-01-30 09:24:31">2023-01-30</time></span></div><div class="content">零、前言本文记录了笔者在学习Internet基础知识的过程，
+若笔者有任何疏忽纰漏之处，烦请不吝赐教。
+本文会不断的补充、修改和完善，期待您的宝贵意见。
+
+一、互联网是如何工作的？谁在运营互联网？没有人经营互联网。它被组织为一个分散的网络网络。
+数以千计的公司、大学、政府和其他实体运营自己的网络，并根据自愿互连协议相互交换流量。
+
+IETF（互联网工程任务组）组织管理了使互联网工作的共享技术标准。
+ICANN（互联网名称与数字地址分配机构）负责分发域名和IP地址（计算机用来在互联网上相互识别的数字），但是并不控制谁可以连接到互联网。
+
+
+什么是IPv6？目前的互联网标准，称为IPv4，只允许大约4亿个IP地址。这在1970年代被认为是一个很大的数字，但今天，IPv4地址的供应几乎耗尽。
+因此，互联网工程师开发了一种名为IPv6的新标准。IPv6允许数量惊人，确切的数字是39位数，确保几乎永远不会再耗尽。
+具体的结构等细节这里不展开叙述。
+无线互联网如何工作？无线互联网有两种基本类型：
+
+WIFI：任何人都可以购买WIFI网络设备，为了防止互相干扰，WIFI网络的功率和范围有严格的限制； ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/FFmpeg.html" title="Go + FFmpeg交互丨学习记录"><img class="post_bg" src="/img/NEW1/1296409.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Go + FFmpeg交互丨学习记录"></a></div><div class="recent-post-info"><a class="article-title" href="/post/FFmpeg.html" title="Go + FFmpeg交互丨学习记录">Go + FFmpeg交互丨学习记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-29T06:07:05.000Z" title="发表于 2023-01-29 14:07:05">2023-01-29</time></span></div><div class="content">零、前言另附我的掘金主页：Conqueror712 的个人主页 - 动态 - 掘金 (juejin.cn)
+主要思路：
+
+使用 Golang 和 FFmpeg 交互可以分为以下几个步骤：
+
+安装 FFmpeg: 首先需要安装 FFmpeg，可以在终端中输入命令来安装。
+创建一个Golang项目，并在其中创建一个接收上传视频文件的接口。
+在接口中接收上传的文件，并使用Golang中的 exec 包来执行 FFmpeg 命令来转码视频。
+转码后的文件可以保存在本地或上传到云存储服务器。
+将视频信息存储到 MySQL 数据库中。
+在Golang中使用GORM或其他ORM库来连接数据库并存储数据。
+在代码中使用 exec.Command 函数来执行 FFmpeg 命令。该函数需要 ffmpeg 的完整路径和命令行参数，并返回一个 *exec.Cmd 类型的对象。
+通过使用 .StdoutPipe() 和 .Start() 方法来执行 FFmpeg 命令并获取命令输出。
+使用 io.Copy() 函数将转码后的视频文件写入本地文件或上传到云存储服务器。
+使用GORM将上传视频文件的信息存储到数据 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/post/Docker.html" title="Docker + VSCode组合丨学习记录"><img class="post_bg" src="/img/820043.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Docker + VSCode组合丨学习记录"></a></div><div class="recent-post-info"><a class="article-title" href="/post/Docker.html" title="Docker + VSCode组合丨学习记录">Docker + VSCode组合丨学习记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-29T06:06:45.000Z" title="发表于 2023-01-29 14:06:45">2023-01-29</time></span></div><div class="content">零、前言：本文是笔者从零开始学习Docker的学习记录。
+若笔者有任何疏忽纰漏之处，烦请不吝赐教。
+另附我的掘金主页Conqueror712 的个人主页 - 动态 - 掘金 (juejin.cn)
+一、Docker简介：Docker 是一个应用打包、分发、部署的工具你也可以把它理解为一个轻量的虚拟机，它只虚拟你软件需要的运行环境，多余的一点都不要，而普通虚拟机则是一个完整而庞大的系统，包含各种不管你要不要的软件。
+Docker 的入门知识还有以下几点需要了解：
+
+镜像 (image) 和容器 (container) 的关系：镜像是容器的模板，容器是镜像运行时的实例。
+
+Docker Hub：Docker Hub 是一个公共镜像仓库，可以在这里搜索和下载镜像。
+
+Dockerfile: 一个Dockerfile 文件是一个文本文件，包含了一条条指令，它告诉Docker如何构建一个镜像.
+
+容器网络:Docker支持多种网络模式,包括host,bridge,overlay等.
+
+数据管理:Docker支持将容器中的数据挂载到宿主机上,或者将容器间共享数据.
+
+使用docker-compos ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/Redis.html" title="Redis丨学习记录"><img class="post_bg" src="/img/NEW1/1298095.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis丨学习记录"></a></div><div class="recent-post-info"><a class="article-title" href="/post/Redis.html" title="Redis丨学习记录">Redis丨学习记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-29T06:00:41.000Z" title="发表于 2023-01-29 14:00:41">2023-01-29</time></span></div><div class="content">零、前言本文是笔者从零开始学习Redis的学习记录。
+若笔者有任何疏忽纰漏之处，烦请不吝赐教。
+另附我的掘金主页：Conqueror712 的个人主页 - 动态 - 掘金 (juejin.cn)
+
+一、开门见山源码：https://github.com/redis/redis
+Redis是什么？
+基于内存的多模型数据库，毫秒级的延迟
+
+Remote Dictionary Server
+
+是一个由Salvatore Sanfilippo写的key-value存储系统；
+
+是跨平台的非关系型数据库；
+
+是一个开源的使用 ANSI C 语言编写、遵守 BSD 协议、支持网络、可基于内存、分布式、可选持久性的键值对(Key-Value)存储数据库，并提供多种语言的 API。
+
+
+Redis有什么特点？
+Redis 通常被称为数据结构服务器，因为值可以是字符串、哈希、列表、集合和有序集合等类型。
+Redis支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。
+Redis支持数据的备份，即master-slave模式的数据备份。
+
+
+Redis的优势有哪些？
+性能极高 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/post/go-crud-demo.html" title="Gin + Gorm实战CRUD丨学习记录"><img class="post_bg" src="/img/NEW1/1298102.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Gin + Gorm实战CRUD丨学习记录"></a></div><div class="recent-post-info"><a class="article-title" href="/post/go-crud-demo.html" title="Gin + Gorm实战CRUD丨学习记录">Gin + Gorm实战CRUD丨学习记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-24T03:11:50.000Z" title="发表于 2023-01-24 11:11:50">2023-01-24</time></span></div><div class="content">话不多说，先附上Github链接，欢迎star：Conqueror712&#x2F;Go_CRUD_demo: Gin + Gorm + MySQL + Navicat (github.com)
+再附上我的掘金文章链接，欢迎访问：Gin + Gorm实战CRUD丨学习记录 - 掘金 (juejin.cn)
+零、前言：简介：Q：Gin和Gorm都是干什么的？有什么区别？
+A：Gin 和 Gorm 是 Go 编程语言中流行的开源库。但是，它们服务于不同的目的，通常在 web 开发项目中一起使用。
+Gin 是一个用于构建 HTTP 服务器的 web 框架。它提供了一个简单易用的 API，用于处理 HTTP 请求和响应、路由、中间件和其他常见的 web 应用程序所需的功能。它以其高性能和简约为特点，提供了轻量级和灵活的解决方案来构建 web 服务器。
+Gorm 是 Go 的一个 ORM（对象关系映射）库。它提供了一个简单易用的 API，用于与数据库交互、处理数据库迁移和执行常见的数据库操作，如查询、插入、更新和删除记录。它支持多种数据库后端，包括 MySQL、PostgreSQL、SQLite ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/ServerLearningNote.html" title="CloudServer丨学习记录"><img class="post_bg" src="/img/NEW/0%5DV4D7564YZ_CCEKZFHYDWN.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CloudServer丨学习记录"></a></div><div class="recent-post-info"><a class="article-title" href="/post/ServerLearningNote.html" title="CloudServer丨学习记录">CloudServer丨学习记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-01T13:32:36.000Z" title="发表于 2023-01-01 21:32:36">2023-01-01</time></span></div><div class="content">前言部分：需要知道的：
+知道服务器的IP地址（最好是静态IP地址，不会变）
+账号密码的创建，如果是root用户就直接adduser xxx，创建完在&#x2F;home&#x2F;下查看
+
+使用SSH终端连接服务器：
+对于Windows，可以用Xmanager，也可以用Termius（界面不错）
+
+创建自己的虚拟环境：
+Anaconda &amp; pip
+
+文件上传下载：
+可以用xftp或FileZilla
+
+在服务器上部署代码：
+可以本地写好后传上去（Pycharm远程调试）
+也可以直接在服务器上写（Vim）
+还可以使用Windows自带的远程桌面，但是需要在服务器端装上Xrdp
+
+服务器间传输文件scp：​	scp -r &lt;filename&gt; user@&lt;target_ip&gt;:Desktop/&lt;filename1&gt;/...
+在外地如何连接：
+例如之前是用的校园网内网，那非校园网环境，没有vpn的情况下就没办法直接访问内网，那么就需要建立用户与内网之间的联系
+或者直接使用远程桌面的软件，ToDesk，TeamViewer，向日葵等等。
+
+
+深度学 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/post/DeepLearningNote.html" title="DeepLearning - Part1 - 深度学习基础丨学习记录"><img class="post_bg" src="/img/NEW/5AXIB$%5DU4@VZM5%60207WRQP2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DeepLearning - Part1 - 深度学习基础丨学习记录"></a></div><div class="recent-post-info"><a class="article-title" href="/post/DeepLearningNote.html" title="DeepLearning - Part1 - 深度学习基础丨学习记录">DeepLearning - Part1 - 深度学习基础丨学习记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-01T13:32:11.000Z" title="发表于 2023-01-01 21:32:11">2023-01-01</time></span></div><div class="content">00-Abstract本文介绍了笔者在学习《动手学深度学习》课程中的笔记。
+这一Part的内容是深度学习基础。
+后续将会补充更多的公式推导和原理部分。
+敬请期待！
+
+01-Guide TopicThe most import thing of deep learning is Neural Network.
+The Neural Network is a language, it is very flexible.
+AutoGluon⭐
+Book Version 1: https://zh/d2.ai/
+Book Version 2: https://zh-v2.d2l.ai/
+Source Code: https://github.com./d2l-ai/d2l-zh
+Course Web: https://courses.d2l.ai/zh-v2
+Discuss: https://discuss.pytorch.org/ https://discuss.d2l.ai/c/16
+Introduce DeepLearningThe target of this course: 
+
+in ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/MySQL.html" title="MySQL入门丨学习记录"><img class="post_bg" src="/img/705445.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL入门丨学习记录"></a></div><div class="recent-post-info"><a class="article-title" href="/post/MySQL.html" title="MySQL入门丨学习记录">MySQL入门丨学习记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-09-27T05:46:28.000Z" title="发表于 2022-09-27 13:46:28">2022-09-27</time></span></div><div class="content">零、MySQL安装与启动安装直接官网下.msi后安装，一路next即可…
+之后在安装路径处加一个my.ini内容和细节参考MySQL 安装 | 菜鸟教程 (runoob.com)
+启动方法一：首先cd进MySQL的bin目录
+net start mysql
+mysql -u root -p 键入密码即可
+当然，可以选择在my.ini内设置跳过密码输入…
+可以使用exit或quit来退出mysql
+方法二：直接启动MySQL Command Line Client
+
+一、MySQL管理添加用户CREATE USER &#39;用户名&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;用户密码&#39;;
+查看用户select user,host from mysql.user;
+查看所有数据库show DATABASES;
+锁定操作数据库use &lt;数据库名&gt;
+在此之后可进行
+
+显示指定数据库的所有表操作：SHOW TABLES;
+显示数据表的属性：SHOW COLUMNS FROM &lt;数据表名&gt;;
+显示数据表的详细索引信息：S ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">落雨乄天珀夜</div><div class="author-info__description">「落花人独立丨微雨燕双飞」</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Conqueror712"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog ~</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/Computer-Network.html" title="计算机网络 - 上丨学习记录"><img src="/img/1266437.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络 - 上丨学习记录"/></a><div class="content"><a class="title" href="/post/Computer-Network.html" title="计算机网络 - 上丨学习记录">计算机网络 - 上丨学习记录</a><time datetime="2023-02-09T12:03:22.000Z" title="发表于 2023-02-09 20:03:22">2023-02-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/RabbitMQ.html" title="RabbitMQ丨学习记录"><img src="/img/NEW2/1300134.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RabbitMQ丨学习记录"/></a><div class="content"><a class="title" href="/post/RabbitMQ.html" title="RabbitMQ丨学习记录">RabbitMQ丨学习记录</a><time datetime="2023-02-01T02:42:42.000Z" title="发表于 2023-02-01 10:42:42">2023-02-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/Internet_All.html" title="Internet基础丨学习记录"><img src="/img/NEW1/1298218.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Internet基础丨学习记录"/></a><div class="content"><a class="title" href="/post/Internet_All.html" title="Internet基础丨学习记录">Internet基础丨学习记录</a><time datetime="2023-01-30T01:24:31.000Z" title="发表于 2023-01-30 09:24:31">2023-01-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/FFmpeg.html" title="Go + FFmpeg交互丨学习记录"><img src="/img/NEW1/1296409.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Go + FFmpeg交互丨学习记录"/></a><div class="content"><a class="title" href="/post/FFmpeg.html" title="Go + FFmpeg交互丨学习记录">Go + FFmpeg交互丨学习记录</a><time datetime="2023-01-29T06:07:05.000Z" title="发表于 2023-01-29 14:07:05">2023-01-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/Docker.html" title="Docker + VSCode组合丨学习记录"><img src="/img/820043.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Docker + VSCode组合丨学习记录"/></a><div class="content"><a class="title" href="/post/Docker.html" title="Docker + VSCode组合丨学习记录">Docker + VSCode组合丨学习记录</a><time datetime="2023-01-29T06:06:45.000Z" title="发表于 2023-01-29 14:06:45">2023-01-29</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">一月 2023</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">九月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/08/"><span class="card-archive-list-date">八月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/07/"><span class="card-archive-list-date">七月 2022</span><span class="card-archive-list-count">8</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">20</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-02-15T05:28:41.643Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/1067994.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 落雨乄天珀夜</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>function subtitleType () {
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      if (true) {
+        const from = '出自 ' + data.from
+        const sub = []
+        sub.unshift(data.hitokoto, from)
+        window.typed = new Typed('#subtitle', {
+          strings: sub,
+          startDelay: 300,
+          typeSpeed: 150,
+          loop: true,
+          backSpeed: 50,
+        })
+      } else {
+        document.getElementById('subtitle').innerHTML = data.hitokoto
+      }
+    })
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}
+</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
