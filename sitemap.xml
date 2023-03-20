@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://conqueror712.github.io/post/Computer-Network-2.html</loc>
+    
+    <lastmod>2023-03-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://conqueror712.github.io/post/Computer-Network.html</loc>
+    
+    <lastmod>2023-03-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://conqueror712.github.io/post/Retired.html</loc>
     
     <lastmod>2023-03-18</lastmod>
@@ -39,15 +57,6 @@
   
   <url>
     <loc>https://conqueror712.github.io/post/MySQL.html</loc>
-    
-    <lastmod>2023-03-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://conqueror712.github.io/post/Computer-Network.html</loc>
     
     <lastmod>2023-03-18</lastmod>
     
@@ -166,7 +175,7 @@
 
   <url>
     <loc>https://conqueror712.github.io/</loc>
-    <lastmod>2023-03-18</lastmod>
+    <lastmod>2023-03-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
