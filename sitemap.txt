@@ -1,3 +1,4 @@
+https://conqueror712.github.io/post/Computer-Network-2.html
 https://conqueror712.github.io/post/Redis.html
 https://conqueror712.github.io/post/RabbitMQ.html
 https://conqueror712.github.io/post/MySQL.html
@@ -11,7 +12,6 @@ https://conqueror712.github.io/post/DeepLearningNote.html
 https://conqueror712.github.io/categories/index.html
 https://conqueror712.github.io/post/Principles-Of-Computer-Composition.html
 https://conqueror712.github.io/post/Computer-Network.html
-https://conqueror712.github.io/post/Computer-Network-2.html
 https://conqueror712.github.io/xcpc-memory/Data-Structure.html
 https://conqueror712.github.io/xcpc-memory/CalcGeo.html
 https://conqueror712.github.io/xcpc-memory/DP.html
