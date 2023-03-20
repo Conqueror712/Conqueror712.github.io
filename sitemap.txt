@@ -1,5 +1,6 @@
-https://conqueror712.github.io/post/Computer-Network-2.html
 https://conqueror712.github.io/post/Computer-Network.html
+https://conqueror712.github.io/categories/index.html
+https://conqueror712.github.io/post/Computer-Network-2.html
 https://conqueror712.github.io/post/Retired.html
 https://conqueror712.github.io/post/Redis.html
 https://conqueror712.github.io/post/RabbitMQ.html
@@ -18,3 +19,4 @@ https://conqueror712.github.io/xcpc-memory/Graph-Theory.html
 https://conqueror712.github.io/xcpc-memory/Number-Theory.html
 https://conqueror712.github.io/xcpc-memory/Other-Algorithm.html
 https://conqueror712.github.io/
+https://conqueror712.github.io/categories/408/
