@@ -2,7 +2,88 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://conqueror712.github.io/post/Computer-Network.html</loc>
+    <loc>https://conqueror712.github.io/post/Redis.html</loc>
+    
+    <lastmod>2023-03-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://conqueror712.github.io/post/RabbitMQ.html</loc>
+    
+    <lastmod>2023-03-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://conqueror712.github.io/post/MySQL.html</loc>
+    
+    <lastmod>2023-03-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://conqueror712.github.io/post/Linux.html</loc>
+    
+    <lastmod>2023-03-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://conqueror712.github.io/post/GoLang.html</loc>
+    
+    <lastmod>2023-03-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://conqueror712.github.io/post/Git.html</loc>
+    
+    <lastmod>2023-03-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://conqueror712.github.io/post/Docker.html</loc>
+    
+    <lastmod>2023-03-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://conqueror712.github.io/post/Retired.html</loc>
+    
+    <lastmod>2023-03-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://conqueror712.github.io/post/ICPC.html</loc>
+    
+    <lastmod>2023-03-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://conqueror712.github.io/post/DeepLearningNote.html</loc>
     
     <lastmod>2023-03-20</lastmod>
     
@@ -20,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://conqueror712.github.io/post/Computer-Network-2.html</loc>
+    <loc>https://conqueror712.github.io/post/Principles-Of-Computer-Composition.html</loc>
     
     <lastmod>2023-03-20</lastmod>
     
@@ -29,99 +110,18 @@
   </url>
   
   <url>
-    <loc>https://conqueror712.github.io/post/Retired.html</loc>
+    <loc>https://conqueror712.github.io/post/Computer-Network.html</loc>
     
-    <lastmod>2023-03-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://conqueror712.github.io/post/Redis.html</loc>
-    
-    <lastmod>2023-03-18</lastmod>
+    <lastmod>2023-03-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://conqueror712.github.io/post/RabbitMQ.html</loc>
+    <loc>https://conqueror712.github.io/post/Computer-Network-2.html</loc>
     
-    <lastmod>2023-03-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://conqueror712.github.io/post/Principles-Of-Computer-Composition.html</loc>
-    
-    <lastmod>2023-03-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://conqueror712.github.io/post/MySQL.html</loc>
-    
-    <lastmod>2023-03-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://conqueror712.github.io/post/Linux.html</loc>
-    
-    <lastmod>2023-03-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://conqueror712.github.io/post/DeepLearningNote.html</loc>
-    
-    <lastmod>2023-03-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://conqueror712.github.io/post/Docker.html</loc>
-    
-    <lastmod>2023-03-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://conqueror712.github.io/post/GoLang.html</loc>
-    
-    <lastmod>2023-03-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://conqueror712.github.io/post/Git.html</loc>
-    
-    <lastmod>2023-03-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://conqueror712.github.io/post/ICPC.html</loc>
-    
-    <lastmod>2023-03-18</lastmod>
+    <lastmod>2023-03-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -194,6 +194,27 @@
   
   <url>
     <loc>https://conqueror712.github.io/categories/408/</loc>
+    <lastmod>2023-03-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://conqueror712.github.io/categories/Devlopment-Tech/</loc>
+    <lastmod>2023-03-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://conqueror712.github.io/categories/AI/</loc>
+    <lastmod>2023-03-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://conqueror712.github.io/categories/XCPC/</loc>
     <lastmod>2023-03-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
