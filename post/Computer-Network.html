@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>计算机网络 - 上丨学习记录 | 落雨乄天珀夜</title><meta name="author" content="落雨乄天珀夜"><meta name="copyright" content="落雨乄天珀夜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Computer Networking A Top-Down Approach Learning Note Part 1 前言的前言的前言： 本文在笔者的博客内有流程图加载不出来的bug，烦请各位读者移步：计算机网络丨学习记录 - 上 - 掘金 (juejin.cn) 后续会进行调整。  前言的前言： 本文是笔者初学计算机网络的笔记和一些心得，难免会有部分疏漏和错误，还请各位读者积极指出，不吝赐教">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>计算机网络 - 上丨学习记录 | 落雨乄天珀夜</title><meta name="author" content="落雨乄天珀夜"><meta name="copyright" content="落雨乄天珀夜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Computer Networking A Top-Down Approach Learning Note Part 1 前言的前言的前言：  个人博客：https:&#x2F;&#x2F;conqueror712.github.io&#x2F; 知乎：https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;soeur712&#x2F;posts Bilibili：https:&#x2F;&#x2F;space.bilibili.com&#x2F;57089326">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机网络 - 上丨学习记录">
 <meta property="og:url" content="https://conqueror712.github.io/post/Computer-Network.html">
 <meta property="og:site_name" content="落雨乄天珀夜">
-<meta property="og:description" content="Computer Networking A Top-Down Approach Learning Note Part 1 前言的前言的前言： 本文在笔者的博客内有流程图加载不出来的bug，烦请各位读者移步：计算机网络丨学习记录 - 上 - 掘金 (juejin.cn) 后续会进行调整。  前言的前言： 本文是笔者初学计算机网络的笔记和一些心得，难免会有部分疏漏和错误，还请各位读者积极指出，不吝赐教">
+<meta property="og:description" content="Computer Networking A Top-Down Approach Learning Note Part 1 前言的前言的前言：  个人博客：https:&#x2F;&#x2F;conqueror712.github.io&#x2F; 知乎：https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;soeur712&#x2F;posts Bilibili：https:&#x2F;&#x2F;space.bilibili.com&#x2F;57089326">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdnjson.com/images/2023/03/18/1266437.jpg">
 <meta property="article:published_time" content="2023-02-09T12:03:22.000Z">
-<meta property="article:modified_time" content="2023-03-20T03:24:06.055Z">
+<meta property="article:modified_time" content="2023-03-23T01:35:18.929Z">
 <meta property="article:author" content="落雨乄天珀夜">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdnjson.com/images/2023/03/18/1266437.jpg"><link rel="shortcut icon" href="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg"><link rel="canonical" href="https://conqueror712.github.io/post/Computer-Network"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
@@ -52,7 +52,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2023-03-20 11:24:06'
+  postUpdate: '2023-03-23 09:35:18'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -142,10 +142,14 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="落雨乄天珀夜" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg" onerror="onerror=null;src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdnjson.com/images/2023/03/18/1266437.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">落雨乄天珀夜</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计算机网络 - 上丨学习记录</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-09T12:03:22.000Z" title="发表于 2023-02-09 20:03:22">2023-02-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-20T03:24:06.055Z" title="更新于 2023-03-20 11:24:06">2023-03-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/408/">408</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计算机网络 - 上丨学习记录"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><em>Computer Networking A Top-Down Approach Learning Note Part 1</em></p>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg" onerror="onerror=null;src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdnjson.com/images/2023/03/18/1266437.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">落雨乄天珀夜</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计算机网络 - 上丨学习记录</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-09T12:03:22.000Z" title="发表于 2023-02-09 20:03:22">2023-02-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-23T01:35:18.929Z" title="更新于 2023-03-23 09:35:18">2023-03-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/408/">408</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计算机网络 - 上丨学习记录"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><em>Computer Networking A Top-Down Approach Learning Note Part 1</em></p>
 <p><strong>前言的前言的前言</strong>：</p>
-<p>本文在笔者的博客内有流程图加载不出来的bug，烦请各位读者移步：<a target="_blank" rel="noopener" href="https://juejin.cn/post/7198159223203676219">计算机网络丨学习记录 - 上 - 掘金 (juejin.cn)</a></p>
-<p>后续会进行调整。</p>
+<blockquote>
+<p>个人博客：<a href="https://conqueror712.github.io/">https://conqueror712.github.io/</a></p>
+<p>知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/soeur712/posts">https://www.zhihu.com/people/soeur712/posts</a></p>
+<p>Bilibili：<a target="_blank" rel="noopener" href="https://space.bilibili.com/57089326">https://space.bilibili.com/57089326</a></p>
+<p>掘金：<a target="_blank" rel="noopener" href="https://juejin.cn/user/1297878069809725/posts">https://juejin.cn/user/1297878069809725/posts</a></p>
+</blockquote>
 <hr>
 <p><strong>前言的前言</strong>：</p>
 <p>本文是笔者初学计算机网络的笔记和一些心得，难免会有部分疏漏和错误，还请各位读者积极指出，不吝赐教。</p>
@@ -171,8 +175,7 @@
 <hr>
 <h2 id="什么是Internet"><a href="#什么是Internet" class="headerlink" title="什么是Internet?"></a>什么是Internet?</h2><p><img src="https://s2.loli.net/2023/02/05/ejtp8fUq4HBGIRO.png" alt="avatar"></p>
 <h3 id="从具体构成角度："><a href="#从具体构成角度：" class="headerlink" title="从具体构成角度："></a>从具体构成角度：</h3><p>互联网只是网络的一种，广义的网络就是<strong>节点 + 边</strong>，例如蜘蛛网、家族图谱等等。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">Internet --- 节点</span><br><span class="line">Internet --- 边:通信链路</span><br><span class="line">Internet --- 协议</span><br><span class="line">节点 --- 主机节点</span><br><span class="line">节点 --- 数据交换节点</span><br><span class="line">边:通信链路 --- 接入链路</span><br><span class="line">边:通信链路 --- 骨干链路</span><br><span class="line">数据交换节点 --- 中继器</span><br><span class="line">数据交换节点 --- 交换机</span><br><span class="line">数据交换节点 --- 路由器</span><br><span class="line">数据交换节点 --- 负载均衡设备</span><br></pre></td></tr></table></figure>
-
+<p><img src="https://cdnjson.com/images/2023/03/23/image5d8db9ed618aaa1b.png" alt="avatar"></p>
 <ul>
 <li>主机节点：主机<code>host</code> &#x3D; 端系统<code>end system</code>，图例是<code>□</code>，还包括运行的网络应用程序；</li>
 <li>数据交换节点：负责转发数据，图例是<code>○</code>；</li>
@@ -246,8 +249,7 @@
 <h3 id="何为网络边缘？"><a href="#何为网络边缘？" class="headerlink" title="何为网络边缘？"></a>何为网络边缘？</h3><p><strong>采用网络设施的面向连接的服务；</strong></p>
 <p>说白了，就是上文提到过的那些”方的”，也就是主机节点和应用程序<code>□</code>，它们是edge；</p>
 <p>网络边缘是计算机网络的部件，当然还有其他的部件，一起构成了网络结构：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">网络结构 --- 网络边缘</span><br><span class="line">网络结构 --- 网络核心</span><br><span class="line">网络结构 --- 接入网+物理媒介</span><br><span class="line">网络边缘 --- 主机</span><br><span class="line">网络边缘 --- 应用程序</span><br><span class="line">网络核心 --- 路由器</span><br><span class="line">网络核心 --- 交换机</span><br><span class="line">主机 --- 客户端Client</span><br><span class="line">主机 --- 服务器Server</span><br></pre></td></tr></table></figure>
-
+<p><img src="https://cdnjson.com/images/2023/03/23/image743f3bbf41c6554c.png" alt="avatar"></p>
 <hr>
 <h3 id="应用进程间的通讯方式："><a href="#应用进程间的通讯方式：" class="headerlink" title="应用进程间的通讯方式："></a>应用进程间的通讯方式：</h3><p>主要有两种模式</p>
 <h4 id="CS模式"><a href="#CS模式" class="headerlink" title="CS模式"></a>CS模式</h4><p>即客户端-服务器模式，这种模式是<strong>主从的</strong>，资源在服务器，客户端来请求之；</p>
@@ -264,8 +266,7 @@
 </blockquote>
 <hr>
 <h3 id="关于连接服务："><a href="#关于连接服务：" class="headerlink" title="关于连接服务："></a>关于连接服务：</h3><p>共同点：都是采用网络设施进行的。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">连接 --- 面向连接服务 --- 通信的状态只是在端系统维护 --- TCP</span><br><span class="line">连接 --- 有连接 --- 通信的状态由端系统和中间的节点共同维护</span><br><span class="line">无连接 --- 无连接服务 --- UDP</span><br></pre></td></tr></table></figure>
-
+<p><img src="https://cdnjson.com/images/2023/03/23/image30aa3f256f40a3aa.png" alt="avatar"></p>
 <h4 id="TCP服务"><a href="#TCP服务" class="headerlink" title="TCP服务"></a>TCP服务</h4><ul>
 <li>可靠：不出错、不乱序、不重复、不丢失；</li>
 <li>流量控制：维护一个Balance，协调发送方和接收方的速率；</li>
@@ -281,8 +282,7 @@
 <p><img src="https://s2.loli.net/2023/02/09/IFwhJQifvaKbPu3.png" alt="avatar"></p>
 <hr>
 <h2 id="网络核心"><a href="#网络核心" class="headerlink" title="网络核心"></a>网络核心</h2><p>网络分类：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">通信网络 --- 分组交换网络</span><br><span class="line">通信网络 --- 电路交换网络</span><br><span class="line">电路交换网络 --- FDM</span><br><span class="line">电路交换网络 --- TDM</span><br><span class="line">分组交换网络 --- 有网络层 --- 数据报网络</span><br><span class="line">分组交换网络 --- 无网络层 --- 虚电路网络</span><br></pre></td></tr></table></figure>
-
+<p><img src="https://cdnjson.com/images/2023/03/23/image7eaaa24dbd1b5bb1.png" alt="avatar"></p>
 <p>基本问题：<strong>数据怎样通过网络进行传输？</strong></p>
 <p>网络核心包括分组交换机以及网络链路，它们一起构成了<strong>网状网络</strong>；</p>
 <h3 id="分组交换："><a href="#分组交换：" class="headerlink" title="分组交换："></a>分组交换：</h3><p>关键功能：<strong>路由 + 转发</strong></p>
@@ -349,8 +349,7 @@
 <p><img src="https://s2.loli.net/2023/02/08/2eDUayYI1VsgCwX.png" alt="avatar"></p>
 <h4 id="电路交换-计算"><a href="#电路交换-计算" class="headerlink" title="电路交换-计算"></a>电路交换-计算</h4><p><img src="https://s2.loli.net/2023/02/08/Ep6Xf7Lhr2ayGPH.png" alt="avatar"></p>
 <hr>
-<h3 id="分组交换网中的时延、丢包和吞吐量详解："><a href="#分组交换网中的时延、丢包和吞吐量详解：" class="headerlink" title="分组交换网中的时延、丢包和吞吐量详解："></a>分组交换网中的时延、丢包和吞吐量详解：</h3><h4 id="四种时延："><a href="#四种时延：" class="headerlink" title="四种时延："></a>四种时延：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">节点总时延 --- 处理时延</span><br><span class="line">节点总时延 --- 排队时延</span><br><span class="line">节点总时延 --- 传输时延</span><br><span class="line">节点总时延 --- 传播时延</span><br></pre></td></tr></table></figure>
-
+<h3 id="分组交换网中的时延、丢包和吞吐量详解："><a href="#分组交换网中的时延、丢包和吞吐量详解：" class="headerlink" title="分组交换网中的时延、丢包和吞吐量详解："></a>分组交换网中的时延、丢包和吞吐量详解：</h3><h4 id="四种时延："><a href="#四种时延：" class="headerlink" title="四种时延："></a>四种时延：</h4><p><img src="https://cdnjson.com/images/2023/03/23/image238dd675d5273d52.png" alt="avatar"></p>
 <ul>
 <li>处理时延：检查分组首部和决定将该分组导向何处所需要的时间是处理时延的一部分；</li>
 <li>排队时延：在队列中，当分组在链路上等待传输时，它经受排队时延；</li>
@@ -447,8 +446,7 @@
 <h3 id="广域无线接入网络："><a href="#广域无线接入网络：" class="headerlink" title="广域无线接入网络："></a>广域无线接入网络：</h3><p>各无线端系统共享无线接入网络（端系统到无线路由器），通过基站（接入站）；</p>
 <p><img src="https://s2.loli.net/2023/02/08/oVwYQ3TDIbL1vMJ.png" alt="avatar"></p>
 <hr>
-<h3 id="物理媒体："><a href="#物理媒体：" class="headerlink" title="物理媒体："></a>物理媒体：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">物理媒体 --- 引导型媒体</span><br><span class="line">物理媒体 --- 非引导型媒体</span><br><span class="line">引导型媒体 --- 光缆</span><br><span class="line">引导型媒体 --- 双绞铜线TP</span><br><span class="line">双绞铜线TP --- 5类</span><br><span class="line">双绞铜线TP --- 6类</span><br><span class="line">引导型媒体 --- 同轴电缆</span><br><span class="line">非引导型媒体 --- 无线LAN</span><br><span class="line">非引导型媒体 --- 数字卫星频道</span><br><span class="line">无线LAN --- 几米</span><br><span class="line">无线LAN --- 百米</span><br><span class="line">无线LAN --- 万米</span><br><span class="line">数字卫星频道 --- 同步卫星36000km</span><br><span class="line">数字卫星频道 --- 近地轨道卫星LEO</span><br></pre></td></tr></table></figure>
-
+<h3 id="物理媒体："><a href="#物理媒体：" class="headerlink" title="物理媒体："></a>物理媒体：</h3><p><img src="https://cdnjson.com/images/2023/03/23/imagefdc98297cb8f7d9e.png" alt="avatar"></p>
 <p><img src="https://s2.loli.net/2023/02/08/x85PnRkLuey3gmH.png" alt="avatar"></p>
 <p><img src="https://s2.loli.net/2023/02/08/R6fuCnWYScw9Khy.png" alt="avatar"></p>
 <hr>
@@ -511,10 +509,7 @@
 <li>其他更高层次的PDU是数据<code>data</code></li>
 </ul>
 <p><strong>具体来说</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">数据单元 --- 应用层 --- 报文message</span><br><span class="line">数据单元 --- 传输层 --- 报文段segment</span><br><span class="line">数据单元 --- 网络层 --- 分组packet</span><br><span class="line">数据单元 --- 链路层 --- 帧frame</span><br><span class="line">数据单元 --- 物理层 --- 位bit</span><br></pre></td></tr></table></figure>
-
-
-
+<p><img src="https://cdnjson.com/images/2023/03/23/image94c1d7406046a3d4.png" alt="avatar"></p>
 <h3 id="分层处理和实现复杂系统的好处？"><a href="#分层处理和实现复杂系统的好处？" class="headerlink" title="分层处理和实现复杂系统的好处？"></a>分层处理和实现复杂系统的好处？</h3><ul>
 <li>概念化：结构清晰，便于标示网络组件，以及描述其相互关系<ul>
 <li>分层参考模型</li>
@@ -546,10 +541,7 @@
 <li>点对对协议PPP，802.11(wifi)，Ethernet</li>
 </ul>
 <p>物理层: 在线路上传送bit</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">Internet协议栈 --- 应用层 --- 网络应用</span><br><span class="line">Internet协议栈 --- 传输层 --- 主机之间的数据传输</span><br><span class="line">Internet协议栈 --- 网络层 --- 为数据包从源到目的选择路由</span><br><span class="line">Internet协议栈 --- 链路层 --- 相邻网络节点之间的数据传输</span><br><span class="line">Internet协议栈 --- 物理层 --- 在线路上传送bit</span><br></pre></td></tr></table></figure>
-
-
-
+<p><img src="https://cdnjson.com/images/2023/03/23/image58791ea91b1bcfce.png" alt="avatar"></p>
 <h3 id="ISO-x2F-OSI-参考模型："><a href="#ISO-x2F-OSI-参考模型：" class="headerlink" title="ISO &#x2F; OSI 参考模型："></a>ISO &#x2F; OSI 参考模型：</h3><p><img src="https://s2.loli.net/2023/02/09/sUY6iWKrzgXEuAk.png" alt="avatar"></p>
 <h3 id="封装与解封装："><a href="#封装与解封装：" class="headerlink" title="封装与解封装："></a>封装与解封装：</h3><p><img src="https://s2.loli.net/2023/02/09/ujJOm6TViNrvBZw.png" alt="avatar"></p>
 <hr>
