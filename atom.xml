@@ -6,7 +6,7 @@
   <link href="https://conqueror712.github.io/atom.xml" rel="self"/>
   
   <link href="https://conqueror712.github.io/"/>
-  <updated>2023-03-29T05:25:10.259Z</updated>
+  <updated>2023-03-30T01:30:54.655Z</updated>
   <id>https://conqueror712.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>初识 - 文献综述丨学习记录</title>
+    <link href="https://conqueror712.github.io/post/Literature-Review.html"/>
+    <id>https://conqueror712.github.io/post/Literature-Review.html</id>
+    <published>2023-03-29T13:25:35.000Z</published>
+    <updated>2023-03-30T01:30:54.655Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>鉴于笔者差不多也要开始写文献综述了，而作为一个这方面的萌新，对此可以说是一窍不通。</p><p>下面就记录我自己的经验，关于学习如何写一个文献综述，以及如何写好一个文献综述。</p><p>话说这篇文章事实上就是对于网上的内容进行的一个”小综述”，大概算是吧（笑）。</p><blockquote><p>个人博客：<a href="https://conqueror712.github.io/">https://conqueror712.github.io/</a></p><p>知乎：<a href="https://www.zhihu.com/people/soeur712/posts">https://www.zhihu.com/people/soeur712/posts</a></p><p>Bilibili：<a href="https://space.bilibili.com/57089326">https://space.bilibili.com/57089326</a></p><p>掘金：<a href="https://juejin.cn/user/1297878069809725/posts">https://juejin.cn/user/1297878069809725/posts</a></p></blockquote><hr><p>文献综述还有一些别名：研究综述、国内外研究现状</p><p>定义：在全面掌握分析某一学术问题或者研究领域相关文献的基础上，对该学术问题或研究领域在一定时期内已有的研究成果、存在的问题进行<strong>分析、归纳、整理和评述</strong>而形成的一种不同于研究论文的文体。</p><p>文献综述反映当前某一领域中某分支学科或重要专题的历史现状、最新进展、学术见解和建议，它往往能反映出有关问题的新动态、新趋势、新水平、新原理和新技术等等。作者一般不在其中发表个人见解和建议，也不做任何评论，只是客观概括地反映事实。</p><hr><h1 id="文献综述有什么用："><a href="#文献综述有什么用：" class="headerlink" title="文献综述有什么用："></a>文献综述有什么用：</h1><ul><li>是科研新手非常好的入门方式</li><li>可以整理自己的<strong>思路</strong></li><li>避免与已有的研究<strong>重复</strong></li><li>明确现有研究和自己将要做的研究的<strong>必要性与价值</strong></li><li>体现研究者对于相关研究领域的<strong>熟悉程度</strong></li></ul><hr><h1 id="如何入门文献综述："><a href="#如何入门文献综述：" class="headerlink" title="如何入门文献综述："></a>如何入门文献综述：</h1><h2 id="选题："><a href="#选题：" class="headerlink" title="选题："></a>选题：</h2><blockquote><p>良好的开始是成功的一半</p></blockquote><ul><li>新颖性</li><li>可行性</li><li>选题的意义和价值</li></ul><p>具体来说：</p><p><strong>新颖性</strong>主要看是不是能在这个领域贡献新的知识，判断方法与思路：</p><ol><li>是否呈现新事实 or 发现新现象</li><li>是否有新的阐释</li><li>是否提出新问题</li><li>是否拓展新视角</li></ol><p><strong>可行性</strong>顾名思义，既要有一定的相关文献作为基础，又不能选择已经比较完善的领域。</p><p><strong>选题的意义和价值</strong>，这大致可以分为两个方面，理论意义和实践意义。理论意义就是指这个选题是否可以丰富和完善已有的理论研究内容，促进该领域的进一步发展；实践意义就是说是否对现实生活有用，考虑经济效益和社会效益。</p><hr><h2 id="检索："><a href="#检索：" class="headerlink" title="检索："></a>检索：</h2><p>盲目的检索只会徒增自己的时间成本，甚至会影响到之后的研究。</p><p>需要真正明确自己的研究方向，再进行检索。</p><hr><h2 id="看："><a href="#看：" class="headerlink" title="看："></a>看：</h2><p>高效阅读？带着以下的问题：</p><ol><li><p>这篇文章主要解决哪些问题？</p></li><li><p>针对这些问题，作者采用了哪些方法？</p></li><li><p>这些方法各具有哪些优点和不足？</p></li><li><p>目前该领域的最新研究进展如何？</p></li></ol><p>其次，有一些需要注意的点：</p><ul><li>看前言、摘要和绪论，根据关键词，找到适合的书来看。注意不要看的太仔细，不要拘泥于一两个知识点</li><li>找关键词：从师兄师姐或者课题组的其他同学的论文的关键词</li><li>尽可能多的看，看二三十篇开始动手整理</li></ul><hr><h2 id="写："><a href="#写：" class="headerlink" title="写："></a>写：</h2><ul><li>将绪论部分求同存异，然后按自己的逻辑编排，便于了解课题和打基础</li><li>找到一个方向从而缩小关注的范围，便于深入，这一步可以问一问老师</li></ul><hr><h2 id="再看："><a href="#再看：" class="headerlink" title="再看："></a>再看：</h2><ul><li>关注方法，关键性能指标，原理等</li><li>分类，比较</li></ul><hr><h2 id="深入细节："><a href="#深入细节：" class="headerlink" title="深入细节："></a>深入细节：</h2><ul><li>继续看文献，但是要统计和比较</li><li>对别人的图表要有自己的分析，当成未知结论的图，重新分析得出自己的结论，提出新的问题和方法</li><li>熟练应用数学特别是统计</li><li>耐心，文献不是一天看完的，一般这一周期都会持续三个月以上的时间</li></ul><hr><h2 id="关于参考文献："><a href="#关于参考文献：" class="headerlink" title="关于参考文献："></a>关于参考文献：</h2><p>参考文献是很重要的，一定要<strong>认真对待</strong>。</p><p>一个合格的参考文献需要有：</p><ul><li>全面性</li><li>新进性</li><li>权威性、代表性</li><li>相关性</li><li>实事求是性</li></ul><hr><h1 id="文献综述的常见问题："><a href="#文献综述的常见问题：" class="headerlink" title="文献综述的常见问题："></a>文献综述的常见问题：</h1><ul><li>内容不完整</li><li>逻辑混乱</li><li>避重就轻</li><li>只述不评</li><li>个人观点过多</li></ul><hr><h1 id="什么是一个优秀的文献综述："><a href="#什么是一个优秀的文献综述：" class="headerlink" title="什么是一个优秀的文献综述："></a>什么是一个优秀的文献综述：</h1><blockquote><ol><li><p>在将要研究的主题之下，我们<strong>已经知道了什么</strong>？</p></li><li><p>研究的主要概念或主要变量具有怎样的<strong>特征</strong>？</p></li><li><p>这些主要的概念或变量之间具有怎样的<strong>关系</strong>？</p></li><li><p>有关这个研究主题，<strong>已有的理论</strong>有哪些？</p></li><li><p>在已有的研究中，存在怎样的<strong>缺陷或不足</strong>？</p></li><li><p>还有哪些观点<strong>有待检验</strong>？</p></li><li><p>哪些证据是<strong>缺乏的、不全面的、互相矛盾或非常局限的</strong>？</p></li><li><p><strong>为什么</strong>要研究目前所确定的这个问题？</p></li><li><p>你希望当前的研究对这个主题有怎样的<strong>贡献</strong>（你的<strong>研究价值</strong>是什么）？</p></li><li><p>已有的研究设计或研究方法，存在哪些有<strong>待改进之处</strong></p></li></ol></blockquote><hr><h1 id="文献综述结构："><a href="#文献综述结构：" class="headerlink" title="文献综述结构："></a>文献综述结构：</h1><p>研究背景&#x2F;研究目的与意义，研究现状，评述，参考文献；</p><p>（大致如上，但是不仅限于此）</p><hr>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;前言：&quot;&gt;&lt;a href=&quot;#前言：&quot; class=&quot;headerlink&quot; title=&quot;前言：&quot;&gt;&lt;/a&gt;前言：&lt;/h1&gt;&lt;p&gt;鉴于笔者差不多也要开始写文献综述了，而作为一个这方面的萌新，对此可以说是一窍不通。&lt;/p&gt;
+&lt;p&gt;下面就记录我自己的经验，关于学习如</summary>
+      
+    
+    
+    
+    <category term="Experience" scheme="https://conqueror712.github.io/categories/Experience/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>深度学习 - Ep2 - 多层感知机丨学习记录</title>

@@ -1,3 +1,4 @@
+https://conqueror712.github.io/post/Literature-Review.html
 https://conqueror712.github.io/post/DL-MLP.html
 https://conqueror712.github.io/post/DL-LinearNN.html
 https://conqueror712.github.io/post/DeepLearningNote.html
@@ -26,3 +27,4 @@ https://conqueror712.github.io/categories/408/
 https://conqueror712.github.io/categories/AI/
 https://conqueror712.github.io/categories/Devlopment-Tech/
 https://conqueror712.github.io/categories/XCPC/
+https://conqueror712.github.io/categories/Experience/
