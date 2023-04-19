@@ -1,6 +1,6 @@
+https://conqueror712.github.io/post/DL-CNN.html
 https://conqueror712.github.io/post/Neo4j-3.html
 https://conqueror712.github.io/post/Computer-Network-2.html
-https://conqueror712.github.io/post/DL-CNN.html
 https://conqueror712.github.io/post/DL-Calc.html
 https://conqueror712.github.io/post/DL-MLP.html
 https://conqueror712.github.io/post/Neo4j-2.html
