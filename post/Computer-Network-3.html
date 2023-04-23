@@ -1,16 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>计算机网络 - Ep3 - 传输层丨学习记录 | 落雨乄天珀夜</title><meta name="author" content="落雨乄天珀夜"><meta name="copyright" content="落雨乄天珀夜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Computer Networking A Top-Down Approach Learning Note Part 3 前言的前言： 本文是笔者初学计算机网络的笔记和一些心得，难免会有部分疏漏和错误，还请各位读者积极指出，不吝赐教。 有一些内容是笔者认为对自己暂时没那么重要的部分，就没有放上去，具体的内容可以查看相关的书籍。 还有要补充的就是，计算机网络的学习记录将会分为多部分， 这一部分，主要">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>计网 - Ep3 - 传输层[万字长文]丨学习记录 | 落雨乄天珀夜</title><meta name="author" content="落雨乄天珀夜"><meta name="copyright" content="落雨乄天珀夜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Computer Networking A Top-Down Approach Learning Note Part 3  前言的前言：本篇尚未完结，图片均未上传至图床，有待更新，敬请期待。  前言： 本文是笔者初学计算机网络的笔记和一些心得，难免会有部分疏漏和错误，还请各位读者积极指出，不吝赐教。 有一些内容是笔者认为对自己暂时没那么重要的部分，就没有放上去，具体的内容可以查看相关的书籍。 观前">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机网络 - Ep3 - 传输层丨学习记录">
+<meta property="og:title" content="计网 - Ep3 - 传输层[万字长文]丨学习记录">
 <meta property="og:url" content="https://conqueror712.github.io/post/Computer-Network-3.html">
 <meta property="og:site_name" content="落雨乄天珀夜">
-<meta property="og:description" content="Computer Networking A Top-Down Approach Learning Note Part 3 前言的前言： 本文是笔者初学计算机网络的笔记和一些心得，难免会有部分疏漏和错误，还请各位读者积极指出，不吝赐教。 有一些内容是笔者认为对自己暂时没那么重要的部分，就没有放上去，具体的内容可以查看相关的书籍。 还有要补充的就是，计算机网络的学习记录将会分为多部分， 这一部分，主要">
+<meta property="og:description" content="Computer Networking A Top-Down Approach Learning Note Part 3  前言的前言：本篇尚未完结，图片均未上传至图床，有待更新，敬请期待。  前言： 本文是笔者初学计算机网络的笔记和一些心得，难免会有部分疏漏和错误，还请各位读者积极指出，不吝赐教。 有一些内容是笔者认为对自己暂时没那么重要的部分，就没有放上去，具体的内容可以查看相关的书籍。 观前">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img.picgo.net/2023/04/20/wallhaven-ex96zo8451cbbe4ca7680d.png">
+<meta property="og:image" content="https://s2.loli.net/2023/04/23/CVvQzXKwt6H9kb8.jpg">
 <meta property="article:published_time" content="2023-04-20T06:39:28.000Z">
-<meta property="article:modified_time" content="2023-04-20T06:51:10.424Z">
+<meta property="article:modified_time" content="2023-04-23T03:04:35.634Z">
 <meta property="article:author" content="落雨乄天珀夜">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img.picgo.net/2023/04/20/wallhaven-ex96zo8451cbbe4ca7680d.png"><link rel="shortcut icon" href="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg"><link rel="canonical" href="https://conqueror712.github.io/post/Computer-Network-3"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+<meta name="twitter:image" content="https://s2.loli.net/2023/04/23/CVvQzXKwt6H9kb8.jpg"><link rel="shortcut icon" href="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg"><link rel="canonical" href="https://conqueror712.github.io/post/Computer-Network-3"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
   root: '/',
   algolia: undefined,
   localSearch: undefined,
@@ -47,12 +47,12 @@
   islazyload: false,
   isAnchor: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: '计算机网络 - Ep3 - 传输层丨学习记录',
+  title: '计网 - Ep3 - 传输层[万字长文]丨学习记录',
   isPost: true,
   isHome: false,
   isHighlightShrink: false,
-  isToc: false,
-  postUpdate: '2023-04-20 14:51:10'
+  isToc: true,
+  postUpdate: '2023-04-23 11:04:35'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -142,12 +142,14 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="落雨乄天珀夜" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg" onerror="onerror=null;src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.picgo.net/2023/04/20/wallhaven-ex96zo8451cbbe4ca7680d.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">落雨乄天珀夜</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计算机网络 - Ep3 - 传输层丨学习记录</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-20T06:39:28.000Z" title="发表于 2023-04-20 14:39:28">2023-04-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-20T06:51:10.424Z" title="更新于 2023-04-20 14:51:10">2023-04-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/408/">408</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计算机网络 - Ep3 - 传输层丨学习记录"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><em>Computer Networking A Top-Down Approach Learning Note Part 3</em></p>
-<p><strong>前言的前言</strong>：</p>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg" onerror="onerror=null;src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/04/23/CVvQzXKwt6H9kb8.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">落雨乄天珀夜</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计网 - Ep3 - 传输层[万字长文]丨学习记录</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-20T06:39:28.000Z" title="发表于 2023-04-20 14:39:28">2023-04-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-23T03:04:35.634Z" title="更新于 2023-04-23 11:04:35">2023-04-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/408/">408</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计网 - Ep3 - 传输层[万字长文]丨学习记录"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><em>Computer Networking A Top-Down Approach Learning Note Part 3</em></p>
+<blockquote>
+<p>前言的前言：本篇尚未完结，图片均未上传至图床，有待更新，敬请期待。</p>
+</blockquote>
+<p><strong>前言</strong>：</p>
 <p>本文是笔者初学计算机网络的笔记和一些心得，难免会有部分疏漏和错误，还请各位读者积极指出，不吝赐教。</p>
 <p>有一些内容是笔者认为对自己暂时没那么重要的部分，就没有放上去，具体的内容可以查看相关的书籍。</p>
-<p>还有要补充的就是，计算机网络的学习记录将会分为多部分，</p>
-<p>这一部分，主要是涵盖了《自顶向下计算机网络》的第三章的内容。</p>
+<p>观前提醒：本文篇幅较长，若您只是想看其中的某一小节的知识，直接点击目录进行跳转即可！</p>
 <p>事不宜迟，我们开始吧！</p>
 <blockquote>
 <p>个人博客：<a href="https://conqueror712.github.io/">https://conqueror712.github.io/</a></p>
@@ -155,8 +157,196 @@
 <p>Bilibili：<a target="_blank" rel="noopener" href="https://space.bilibili.com/57089326">https://space.bilibili.com/57089326</a></p>
 <p>掘金：<a target="_blank" rel="noopener" href="https://juejin.cn/user/1297878069809725/posts">https://juejin.cn/user/1297878069809725/posts</a></p>
 </blockquote>
+<p>注：本文图片的水印均是笔者自己的。</p>
 <hr>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://conqueror712.github.io">落雨乄天珀夜</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://conqueror712.github.io/post/Computer-Network-3.html">https://conqueror712.github.io/post/Computer-Network-3.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://conqueror712.github.io" target="_blank">落雨乄天珀夜</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://img.picgo.net/2023/04/20/wallhaven-ex96zo8451cbbe4ca7680d.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/Notification.html"><img class="next-cover" src="https://img.picgo.net/2023/04/19/imagea9cd77be37fcc925.png" onerror="onerror=null;src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【！！前排通知！！】</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="avatar"/></div><div class="author-info__name">落雨乄天珀夜</div><div class="author-info__description">「落花人独立丨微雨燕双飞」</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Conqueror712"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog ~</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/Computer-Network-3.html" title="计算机网络 - Ep3 - 传输层丨学习记录"><img src="https://img.picgo.net/2023/04/20/wallhaven-ex96zo8451cbbe4ca7680d.png" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="计算机网络 - Ep3 - 传输层丨学习记录"/></a><div class="content"><a class="title" href="/post/Computer-Network-3.html" title="计算机网络 - Ep3 - 传输层丨学习记录">计算机网络 - Ep3 - 传输层丨学习记录</a><time datetime="2023-04-20T06:39:28.000Z" title="发表于 2023-04-20 14:39:28">2023-04-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/Notification.html" title="【！！前排通知！！】"><img src="https://img.picgo.net/2023/04/19/imagea9cd77be37fcc925.png" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="【！！前排通知！！】"/></a><div class="content"><a class="title" href="/post/Notification.html" title="【！！前排通知！！】">【！！前排通知！！】</a><time datetime="2023-04-19T12:07:46.000Z" title="发表于 2023-04-19 20:07:46">2023-04-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/Neo4j-3.html" title="Neo4j - Ep3丨学习记录"><img src="https://cdnjson.com/images/2023/04/09/wallhaven-qzj8ol.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="Neo4j - Ep3丨学习记录"/></a><div class="content"><a class="title" href="/post/Neo4j-3.html" title="Neo4j - Ep3丨学习记录">Neo4j - Ep3丨学习记录</a><time datetime="2023-04-09T05:21:28.000Z" title="发表于 2023-04-09 13:21:28">2023-04-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/DL-CNN.html" title="深度学习 - Ep4 - 卷积神经网络丨学习记录"><img src="https://cdnjson.com/images/2023/04/08/wallhaven-2yz2dx.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="深度学习 - Ep4 - 卷积神经网络丨学习记录"/></a><div class="content"><a class="title" href="/post/DL-CNN.html" title="深度学习 - Ep4 - 卷积神经网络丨学习记录">深度学习 - Ep4 - 卷积神经网络丨学习记录</a><time datetime="2023-04-08T11:48:55.000Z" title="发表于 2023-04-08 19:48:55">2023-04-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/Neo4j-2.html" title="Neo4j - Ep2丨学习记录"><img src="https://cdnjson.com/images/2023/04/02/wallhaven-7p9o6v.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="Neo4j - Ep2丨学习记录"/></a><div class="content"><a class="title" href="/post/Neo4j-2.html" title="Neo4j - Ep2丨学习记录">Neo4j - Ep2丨学习记录</a><time datetime="2023-04-02T01:46:08.000Z" title="发表于 2023-04-02 09:46:08">2023-04-02</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.picgo.net/2023/04/20/wallhaven-ex96zo8451cbbe4ca7680d.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 落雨乄天珀夜</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+<h1 id="Unit-3-传输层"><a href="#Unit-3-传输层" class="headerlink" title="Unit 3 传输层"></a>Unit 3 传输层</h1><p>传输层，为<strong>运行在不同主机上的应用进程</strong>，提供<strong>直接的通信服务</strong>，起着至关重要的作用。</p>
+<hr>
+<h2 id="Learning-Target"><a href="#Learning-Target" class="headerlink" title="Learning Target:"></a>Learning Target:</h2><p>传输层的工作原理：</p>
+<ul>
+<li>多路复用 &#x2F; 多路分解</li>
+<li>可靠数据传输</li>
+<li>流量控制</li>
+<li>拥塞控制</li>
+</ul>
+<p>Internet的传输层协议：</p>
+<ul>
+<li>UDP：无连接传输</li>
+<li>TCP：面向连接的可靠传输</li>
+<li>TCP的拥塞控制</li>
+</ul>
+<hr>
+<h2 id="概述和传输层服务："><a href="#概述和传输层服务：" class="headerlink" title="概述和传输层服务："></a>概述和传输层服务：</h2><blockquote>
+<p>传输服务与协议</p>
+</blockquote>
+<p><strong>传输服务和协议</strong>目的：为运行在不同主机上的应用进程提供<strong>逻辑通信</strong>。</p>
+<p>传输协议运行位置：端系统。</p>
+<ul>
+<li>发送方：将应用层来的报文分成<strong>报文段</strong>，然后继续传递给网络层。</li>
+<li>接收方：将报文段重组成报文，然后继续传递给应用层。（相反的过程）</li>
+</ul>
+<p>还需注意的是，有很多传输层协议可以使用，对于Internet来说，就是TCP和UDP。</p>
+<blockquote>
+<p>我们来对比一下传输层和网络层的区别</p>
+</blockquote>
+<p>网络层服务：主机之间的逻辑通信。</p>
+<p>传输层服务：进程之间的逻辑通信（更细）。</p>
+<ul>
+<li>传输层服务<strong>依赖于</strong>网络层的服务（延时和带宽，这两个不可以被加强）</li>
+<li>传输层服务对网络层的服务进行<strong>增强</strong>（数据丢失、数据混乱、加密）</li>
+</ul>
+<p>笔者的理解：网络层建立起主机之间的逻辑通信之后，传输层才能在之上进行颗粒度更细的进程上的逻辑通信。</p>
+<blockquote>
+<p>Internet传输层协议</p>
+</blockquote>
+<img src="C:\Users\22562\AppData\Roaming\Typora\typora-user-images\image-20230420154708008.png" alt="image-20230420154708008" style="zoom: 80%;" />
+
+<hr>
+<h2 id="多路复用与多路分解："><a href="#多路复用与多路分解：" class="headerlink" title="多路复用与多路分解："></a>多路复用与多路分解：</h2><p>人话解释：就是将，由网络层提供的主机到主机的交付服务，延伸到，为运行在主机上的应用程序提供进程到进程的交付服务。</p>
+<p>这是所有的计算机网络都需要的服务，而不仅仅是Internet独有的。</p>
+<p>复习<strong>套接字</strong>：相当于网络和进程之间传递数据的门户。</p>
+<blockquote>
+<p>发送方主机——多路复用：</p>
+</blockquote>
+<p>含义：从多个套接字，接收来自多个进程的报文，根据套接字对应的<strong>IP地址和端口号</strong>等信息，对报文段<strong>用头部</strong>加以封装（该头部信息用于以后的解复用）。</p>
+<blockquote>
+<p>接收方主机——多路分解：</p>
+</blockquote>
+<p>含义：根据报文段的头部信息中的<strong>IP地址和端口号</strong>，将接收到的报文段发给正确的套接字（和对应的应用进程）。</p>
+<ul>
+<li>Port是端口号，用于区分进程</li>
+<li>PID是进程的唯一标识</li>
+</ul>
+<p>如果还没有明白，可以仔细阅读这个例子 ：</p>
+<p><img src="C:\Users\22562\AppData\Roaming\Typora\typora-user-images\image-20230420190250662.png" alt="image-20230420190250662"></p>
+<h3 id="传输层多路复用的要求："><a href="#传输层多路复用的要求：" class="headerlink" title="传输层多路复用的要求："></a>传输层多路复用的要求：</h3><ol>
+<li>套接字有唯一标识符；</li>
+<li>每个报文段有特殊字段来指示该报文段所要交付到的套接字；</li>
+</ol>
+<img src="C:\Users\22562\AppData\Roaming\Typora\typora-user-images\image-20230420191955299.png" alt="image-20230420191955299" style="zoom: 67%;" />
+
+<p>（UDP和TCP报文段除了上图所示内容以外还有一些其他的内容）</p>
+<p>端口号是一个16bits的数，大小范围[0, 65535]；</p>
+<p>[0, 1023]的端口号称之为<strong>周知端口号</strong>，保留给HTTP(80)等周知应用层协议。</p>
+<hr>
+<h3 id="无连接的多路复用与多路分解："><a href="#无连接的多路复用与多路分解：" class="headerlink" title="无连接的多路复用与多路分解："></a>无连接的多路复用与多路分解：</h3><p>一个UDP套接字是由一个<strong>二元组</strong>来全面标识的：</p>
+<p>该二元组包含一个<strong>目的IP地址</strong>和一个<strong>目的端口号</strong>。</p>
+<p>那么，源端口号还有存在的必要吗？答案是有的，源端口号作为<strong>返回地址</strong>的一部分。</p>
+<img src="C:\Users\22562\AppData\Roaming\Typora\typora-user-images\image-20230420200655593.png" alt="image-20230420200655593" style="zoom:67%;" />
+
+<hr>
+<h3 id="面向连接的多路复用与多路分解："><a href="#面向连接的多路复用与多路分解：" class="headerlink" title="面向连接的多路复用与多路分解："></a>面向连接的多路复用与多路分解：</h3><p>TCP套接字和UDP套接字的区别是，TCP套接字是由一个四元组来全面标识的：</p>
+<p>四元组：源IP地址，源端口号，目的IP地址，目的端口号。</p>
+<p>与UDP不同的是：</p>
+<p>两个具有不同源IP地址或源端口号的到达TCP报文段将被定向到两个不同的套接字，除非TCP报文段携带了初始创建连接的请求。</p>
+<blockquote>
+<p>具体的细节并没有在此展开，笔者认为，一方面是因为写在一起过于纷繁复杂，不便于读者观看；另一方面是笔者自己也一时间看不下去那么多细节，所以就先Overview，之后在做题的过程中遇到问题再返回来查漏补缺。</p>
+</blockquote>
+<hr>
+<h3 id="Web服务器与TCP："><a href="#Web服务器与TCP：" class="headerlink" title="Web服务器与TCP："></a>Web服务器与TCP：</h3><p>先以一图以示之：</p>
+<p><img src="C:\Users\22562\AppData\Roaming\Typora\typora-user-images\image-20230421221520590.png" alt="image-20230421221520590"></p>
+<hr>
+<h2 id="无连接传输-UDP："><a href="#无连接传输-UDP：" class="headerlink" title="无连接传输 - UDP："></a>无连接传输 - UDP：</h2><h3 id="UDP介绍："><a href="#UDP介绍：" class="headerlink" title="UDP介绍："></a>UDP介绍：</h3><p>UDP的全称到底是什么？事实上是：User Datagram Protocol，即用户数据报协议。</p>
+<p>UDP传的是数据报。</p>
+<p>与IP一样，也是<strong>尽力而为</strong>的，除了相比IP，更加细分了进程到进程以外（IP是主机到主机），几乎没有额外的内容了。</p>
+<p><img src="C:\Users\22562\AppData\Roaming\Typora\typora-user-images\image-20230421221817030.png" alt="image-20230421221817030"></p>
+<p><img src="C:\Users\22562\AppData\Roaming\Typora\typora-user-images\image-20230421221830264.png" alt="image-20230421221830264"></p>
+<hr>
+<h3 id="UDP校验和："><a href="#UDP校验和：" class="headerlink" title="UDP校验和："></a>UDP校验和：</h3><p>校验和的目的：检测在被传输报文段中的差错（如比特反转）。</p>
+<p><img src="C:\Users\22562\AppData\Roaming\Typora\typora-user-images\image-20230421222011427.png" alt="image-20230421222011427"></p>
+<p>关于可靠数据传输，我们要知道的是，可靠数据传输的实现问题不仅在传输层会出现，在链路层和应用层也会出现。</p>
+<hr>
+<h2 id="TCP拥塞控制："><a href="#TCP拥塞控制：" class="headerlink" title="TCP拥塞控制："></a>TCP拥塞控制：</h2><p>拥塞控制的意义：</p>
+<p>防止过多的数据注入网络，保证网络中的路由器或链路<strong>不至于过载</strong>。</p>
+<hr>
+<h3 id="关于拥塞："><a href="#关于拥塞：" class="headerlink" title="关于拥塞："></a>关于拥塞：</h3><p>当拥塞出现的时候，端点实际上并不了解拥塞发生的细节，对于通信连接的端点来说，只能”观察”到其现象，即通信时延的增加。</p>
+<p>我们考虑以下这个例子：</p>
+<p><img src="C:\Users\22562\AppData\Roaming\Typora\typora-user-images\image-20230422233230436.png" alt="image-20230422233230436"></p>
+<hr>
+<h3 id="控制与流量控制的区别："><a href="#控制与流量控制的区别：" class="headerlink" title="控制与流量控制的区别："></a>控制与流量控制的区别：</h3><p>拥塞控制：<strong>全局性</strong>的过程，让网络能够承受现有的网络负荷，涉及所有的主机、路由器以及与降低网络传输性能有关的所有因素。</p>
+<p>流量控制：<strong>局部性</strong>的过程，是端到端的问题，与拥塞控制一样，是<strong>通过控制发送方发送数据的速率来达到控制效果</strong>。</p>
+<hr>
+<h3 id="两个窗口："><a href="#两个窗口：" class="headerlink" title="两个窗口："></a>两个窗口：</h3><p>TCP为什么要有两个窗口呢？</p>
+<p>事实上，这是因为发送方在确定发送报文段的速率的时候，既要考虑接收方的接收能力，又要从全局考虑不要使网络发生拥塞。</p>
+<ol>
+<li><p>接收窗口rwnd：</p>
+<p> <strong>接收方</strong>根据<strong>目前接收缓存大小</strong>所许诺的最新窗口值，反映<strong>接收方的容量</strong>。</p>
+<p> 由接收方根据其放在TCP报文的首部的窗口字段，通知对方。</p>
+</li>
+<li><p>拥塞窗口cwnd：</p>
+<p> <strong>发送方</strong>根据自己估算的<strong>网络拥塞程度</strong>而设置的窗口值，反映<strong>网络的当前容量</strong>。</p>
+<p> 只要网络未出现拥塞，拥塞窗口就可以再大一些，以便把更多的分组发送出去，反之，一旦出现网络拥塞，拥塞窗口就会减小一些，以限制注入网络的分组数。</p>
+</li>
+</ol>
+<p>这两者有一个上限：</p>
+<p>$发送窗口的上限值 &#x3D; min[rwnd, cwnd]$</p>
+<p>然而，接收窗口的大小是根据TCP报文首部的窗口字段通知发送方的，但是发送方该如何维护拥塞窗口呢？这时候就需要慢开始和拥塞避免算法了，请看下文。</p>
+<blockquote>
+<p>当然，上述条件成立的前提是，我们假设了接收方总是有足够大的缓存空间，基于此，发送窗口的大小由网络的拥塞程度决定，故而等效为拥塞窗口。</p>
+</blockquote>
+<hr>
+<h3 id="四种拥塞控制的算法："><a href="#四种拥塞控制的算法：" class="headerlink" title="四种拥塞控制的算法："></a>四种拥塞控制的算法：</h3><p>慢开始、拥塞避免、快重传、快恢复。</p>
+<p>这四种算法是同时运用的。</p>
+<blockquote>
+<p>一句话概括：</p>
+</blockquote>
+<p>在TCP连接建立和网络出现超时的时候，采用慢开始和拥塞避免算法；</p>
+<p>当发送方接收到冗余ACK时，采用快重传和快恢复算法。</p>
+<h4 id="慢开始算法："><a href="#慢开始算法：" class="headerlink" title="慢开始算法："></a>慢开始算法：</h4><blockquote>
+<p>一句话解释算法：</p>
+</blockquote>
+<p>在TCP刚刚连接好并开始发送TCP报文段时，先令拥塞窗口cwnd &#x3D; 1，即一个最大报文段长度MSS；</p>
+<p>每当接收到一个对新报文段的确认后，cwnd++，即增大一个MSS；</p>
+<p>这样逐步增大发送方的cwnd，可以使分组注入网络的速率更加合理。</p>
+<blockquote>
+<p>慢开始的慢到底是什么意思</p>
+</blockquote>
+<p>其实，这个慢的意思是一开始先不着急用很大的窗口来发送报文段，初始时，cwnd &#x3D; 1的效果类似于”试探”。</p>
+<p>这就是慢的含义——花费一点时间来慢慢的进入正题。</p>
+<p>使用慢开始算法后，每经过一个传输轮次RTT，cwnd就会加倍，也就是说是指数规律增长，这样一来，慢开始就会一直把cwnd增大到一个规定的<strong>慢开始门限ssthresh（阈值）</strong>，然后改用拥塞避免算法。</p>
+<blockquote>
+<p>所谓RTT，就是往返时延Round-Trip Time</p>
+<p>是指网络通信中一个数据包从发送端发送到接收端，再从接收端返回到发送端所需的时间。</p>
+<p>在计算机网络中，往返时延是一个重要的网络性能指标，可以反映出网络的响应速度和稳定性。当我们在浏览网页、发送邮件、进行在线游戏等网络操作时，RTT 往返时延会直接影响我们的体验。较低的 RTT 往返时延可以提高网络响应速度和传输效率，较高的 RTT 往返时延则会导致网络传输变慢、卡顿、延迟等问题。</p>
+</blockquote>
+<h4 id="拥塞避免算法："><a href="#拥塞避免算法：" class="headerlink" title="拥塞避免算法："></a>拥塞避免算法：</h4><blockquote>
+<p>一句话解释算法：</p>
+</blockquote>
+<p>每经过一个RTT，就让cwnd++，而不是加倍，使得cwnd线性缓慢增长。</p>
+<p>据此，我们可以知道：</p>
+<ul>
+<li>if (cwnd &lt; ssthresh): use 慢开始算法</li>
+<li>if (cwnd &gt; ssthresh): use 拥塞避免算法</li>
+<li>if (cwnd &#x3D;&#x3D; ssthresh): use 慢开始算法 or 拥塞避免算法（一般来说是用拥塞避免算法）</li>
+</ul>
+<h4 id="网络拥塞的处理过程："><a href="#网络拥塞的处理过程：" class="headerlink" title="网络拥塞的处理过程："></a>网络拥塞的处理过程：</h4><p>无论是哪个阶段，只要发送方判断网络出现拥塞（未按时收到确认ACK），</p>
+<p>就要把慢开始门限ssthresh设置为<strong>出现拥塞时的发送方的cwnd值的一半</strong>（但不能小于2），</p>
+<p>然后，把cwnd重新设置为1，继续执行慢开始算法。</p>
+<blockquote>
+<p>特别地，在慢开始阶段，若2cwnd&gt;ssthresh，则令下一个RTT后的cwnd&#x3D;ssthresh而不是2cwnd。</p>
+</blockquote>
+<p>如例图所示：</p>
+<p><img src="C:\Users\22562\AppData\Roaming\Typora\typora-user-images\image-20230423100833567.png" alt="image-20230423100833567"></p>
+<p>然而，需要注意的是，这两种算法都不能完全避免拥塞，只是可以缓解拥塞。</p>
+<blockquote>
+<p>所谓ACK，是指确认（Acknowledgment）的缩写，它是一种用于确认收到数据的信号。在TCP&#x2F;IP协议中，当一个计算机接收到另一个计算机发送的数据包时，会向发送方发送一个ACK信号，表示已经成功接收到数据。这个ACK信号是由接收方发送给发送方的，以告诉发送方数据已经被正确接收。在TCP协议中，发送方会等待一个ACK信号来确认数据已经被成功接收，如果在一定时间内没有收到ACK信号，就会认为数据包丢失或损坏，然后重新发送数据。因此，ACK在计算机网络中非常重要，它能够确保数据的可靠传输。</p>
+</blockquote>
+<hr>
+<p>快重传和快恢复算法是对慢开始和拥塞避免算法的改进。</p>
+<h4 id="快重传："><a href="#快重传：" class="headerlink" title="快重传："></a>快重传：</h4><blockquote>
+<p>一句话解释算法：</p>
+</blockquote>
+<p>我们已经知道的是，TCP可靠传输机制中，利用了快重传技术，通过冗余ACK来检测丢包的发生。</p>
+<p>在这里，我们利用冗余ACK来检测网络的拥塞，其实是同一套道理（因为丢了包不就意味着网络可能出现了拥塞嘛）。</p>
+<p>快重传并不是取消了重传计时器，而是在某些情况下更早地重传丢失的报文段。</p>
+<p>当发送方<strong>连续收到三个重复的ACK</strong>时，<strong>直接重传</strong>对方尚未接收到的报文段，而<strong>不必等待</strong>那个报文段设置的重传计时器超时。</p>
+<h4 id="快恢复："><a href="#快恢复：" class="headerlink" title="快恢复："></a>快恢复：</h4><blockquote>
+<p>一句话解释算法：</p>
+</blockquote>
+<p>当发送方连续收到三个冗余ACK时，把慢开始门限ssthresh设置为此时cwnd的一半，这是为了预防网络发生拥塞。</p>
+<p>这一过程与慢开始有点类似，但是不同的是，快恢复会把cwnd值设置为慢开始门限ssthresh改变后的数值，而不是1，然后直接开始进行拥塞避免算法。如下图例子所示：</p>
+<p><img src="C:\Users\22562\AppData\Roaming\Typora\typora-user-images\image-20230423105147786.png" alt="image-20230423105147786"></p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://conqueror712.github.io">落雨乄天珀夜</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://conqueror712.github.io/post/Computer-Network-3.html">https://conqueror712.github.io/post/Computer-Network-3.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://conqueror712.github.io" target="_blank">落雨乄天珀夜</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2023/04/23/CVvQzXKwt6H9kb8.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/Neo4j-3.html"><img class="next-cover" src="https://cdnjson.com/images/2023/04/09/wallhaven-qzj8ol.jpg" onerror="onerror=null;src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Neo4j - Ep3丨学习记录</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="avatar"/></div><div class="author-info__name">落雨乄天珀夜</div><div class="author-info__description">「落花人独立丨微雨燕双飞」</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Conqueror712"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Unit-3-%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="toc-number">1.</span> <span class="toc-text">Unit 3 传输层</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Learning-Target"><span class="toc-number">1.1.</span> <span class="toc-text">Learning Target:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0%E5%92%8C%E4%BC%A0%E8%BE%93%E5%B1%82%E6%9C%8D%E5%8A%A1%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">概述和传输层服务：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E4%B8%8E%E5%A4%9A%E8%B7%AF%E5%88%86%E8%A7%A3%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">多路复用与多路分解：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E7%9A%84%E8%A6%81%E6%B1%82%EF%BC%9A"><span class="toc-number">1.3.1.</span> <span class="toc-text">传输层多路复用的要求：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E8%BF%9E%E6%8E%A5%E7%9A%84%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E4%B8%8E%E5%A4%9A%E8%B7%AF%E5%88%86%E8%A7%A3%EF%BC%9A"><span class="toc-number">1.3.2.</span> <span class="toc-text">无连接的多路复用与多路分解：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E8%BF%9E%E6%8E%A5%E7%9A%84%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E4%B8%8E%E5%A4%9A%E8%B7%AF%E5%88%86%E8%A7%A3%EF%BC%9A"><span class="toc-number">1.3.3.</span> <span class="toc-text">面向连接的多路复用与多路分解：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8ETCP%EF%BC%9A"><span class="toc-number">1.3.4.</span> <span class="toc-text">Web服务器与TCP：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E8%BF%9E%E6%8E%A5%E4%BC%A0%E8%BE%93-UDP%EF%BC%9A"><span class="toc-number">1.4.</span> <span class="toc-text">无连接传输 - UDP：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="toc-number">1.4.1.</span> <span class="toc-text">UDP介绍：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP%E6%A0%A1%E9%AA%8C%E5%92%8C%EF%BC%9A"><span class="toc-number">1.4.2.</span> <span class="toc-text">UDP校验和：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%EF%BC%9A"><span class="toc-number">1.5.</span> <span class="toc-text">TCP拥塞控制：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%8B%A5%E5%A1%9E%EF%BC%9A"><span class="toc-number">1.5.1.</span> <span class="toc-text">关于拥塞：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E4%B8%8E%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-number">1.5.2.</span> <span class="toc-text">控制与流量控制的区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E7%AA%97%E5%8F%A3%EF%BC%9A"><span class="toc-number">1.5.3.</span> <span class="toc-text">两个窗口：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E7%A7%8D%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E7%9A%84%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="toc-number">1.5.4.</span> <span class="toc-text">四种拥塞控制的算法：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%85%A2%E5%BC%80%E5%A7%8B%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="toc-number">1.5.4.1.</span> <span class="toc-text">慢开始算法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%A5%E5%A1%9E%E9%81%BF%E5%85%8D%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="toc-number">1.5.4.2.</span> <span class="toc-text">拥塞避免算法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%8B%A5%E5%A1%9E%E7%9A%84%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-number">1.5.4.3.</span> <span class="toc-text">网络拥塞的处理过程：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E9%87%8D%E4%BC%A0%EF%BC%9A"><span class="toc-number">1.5.4.4.</span> <span class="toc-text">快重传：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E6%81%A2%E5%A4%8D%EF%BC%9A"><span class="toc-number">1.5.4.5.</span> <span class="toc-text">快恢复：</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/Computer-Network-3.html" title="计网 - Ep3 - 传输层[万字长文]丨学习记录"><img src="https://s2.loli.net/2023/04/23/CVvQzXKwt6H9kb8.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="计网 - Ep3 - 传输层[万字长文]丨学习记录"/></a><div class="content"><a class="title" href="/post/Computer-Network-3.html" title="计网 - Ep3 - 传输层[万字长文]丨学习记录">计网 - Ep3 - 传输层[万字长文]丨学习记录</a><time datetime="2023-04-20T06:39:28.000Z" title="发表于 2023-04-20 14:39:28">2023-04-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/Neo4j-3.html" title="Neo4j - Ep3丨学习记录"><img src="https://cdnjson.com/images/2023/04/09/wallhaven-qzj8ol.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="Neo4j - Ep3丨学习记录"/></a><div class="content"><a class="title" href="/post/Neo4j-3.html" title="Neo4j - Ep3丨学习记录">Neo4j - Ep3丨学习记录</a><time datetime="2023-04-09T05:21:28.000Z" title="发表于 2023-04-09 13:21:28">2023-04-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/DL-CNN.html" title="深度学习 - Ep4 - 卷积神经网络丨学习记录"><img src="https://cdnjson.com/images/2023/04/08/wallhaven-2yz2dx.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="深度学习 - Ep4 - 卷积神经网络丨学习记录"/></a><div class="content"><a class="title" href="/post/DL-CNN.html" title="深度学习 - Ep4 - 卷积神经网络丨学习记录">深度学习 - Ep4 - 卷积神经网络丨学习记录</a><time datetime="2023-04-08T11:48:55.000Z" title="发表于 2023-04-08 19:48:55">2023-04-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/Neo4j-2.html" title="Neo4j - Ep2丨学习记录"><img src="https://cdnjson.com/images/2023/04/02/wallhaven-7p9o6v.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="Neo4j - Ep2丨学习记录"/></a><div class="content"><a class="title" href="/post/Neo4j-2.html" title="Neo4j - Ep2丨学习记录">Neo4j - Ep2丨学习记录</a><time datetime="2023-04-02T01:46:08.000Z" title="发表于 2023-04-02 09:46:08">2023-04-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/Literature-Review.html" title="初识 - 文献综述丨学习记录"><img src="https://cdnjson.com/images/2023/03/29/wallhaven-zyz56w.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="初识 - 文献综述丨学习记录"/></a><div class="content"><a class="title" href="/post/Literature-Review.html" title="初识 - 文献综述丨学习记录">初识 - 文献综述丨学习记录</a><time datetime="2023-03-29T13:25:35.000Z" title="发表于 2023-03-29 21:25:35">2023-03-29</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/04/23/CVvQzXKwt6H9kb8.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 落雨乄天珀夜</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
   window.MathJax = {
     tex: {
       inlineMath: [ ['$','$'], ["\\(","\\)"]],
