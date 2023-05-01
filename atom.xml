@@ -6,7 +6,7 @@
   <link href="https://conqueror712.github.io/atom.xml" rel="self"/>
   
   <link href="https://conqueror712.github.io/"/>
-  <updated>2023-04-26T16:08:19.349Z</updated>
+  <updated>2023-05-01T12:52:51.588Z</updated>
   <id>https://conqueror712.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MLC-LLM教程丨无需科技，浏览器就能用的大模型</title>
+    <link href="https://conqueror712.github.io/post/MLC-LLM.html"/>
+    <id>https://conqueror712.github.io/post/MLC-LLM.html</id>
+    <published>2023-05-01T12:14:34.000Z</published>
+    <updated>2023-05-01T12:52:51.588Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><blockquote><p>本文预计阅读时长：10分钟</p></blockquote><p>你是否还在为ChatGPT的注册、网络、封号等问题头疼？</p><p>别担心，人人都能<strong>本地使用</strong>的语言模型来了！</p><p>本文就来介绍<strong>MLC-LLM</strong>的浏览器使用方法。</p><p>特别说明：<strong>进行对话无需科技</strong>！</p><p>当然，它不仅可以通过浏览器来使用，还可以通过手机或电脑（不同于浏览器）来使用，</p><p>笔者认为，<strong>浏览器方法是最简单的一种</strong>，故撰写此文。</p><blockquote><p>个人博客：<a href="https://conqueror712.github.io/">https://conqueror712.github.io/</a></p><p>知乎：<a href="https://www.zhihu.com/people/soeur712/posts">https://www.zhihu.com/people/soeur712/posts</a></p><p>Bilibili：<a href="https://space.bilibili.com/57089326">https://space.bilibili.com/57089326</a></p><p>掘金：<a href="https://juejin.cn/user/1297878069809725/posts">https://juejin.cn/user/1297878069809725/posts</a></p></blockquote><hr><h1 id="教程："><a href="#教程：" class="headerlink" title="教程："></a>教程：</h1><h2 id="官方文档："><a href="#官方文档：" class="headerlink" title="官方文档："></a>官方文档：</h2><p>首先，给出官方文档，英文阅读能力较强的读者可以自行前往进行参考，当然，笔者就是根据官方文档来学习的使用方法，只看官方文档显然也可以，不过可能会有一些解释不清的地方，不妨继续阅读本文以明确。</p><p>文档主页：<a href="https://mlc.ai/mlc-llm/">https://mlc.ai/mlc-llm/</a></p><p>浏览器方法页面：<a href="https://mlc.ai/web-llm/">https://mlc.ai/web-llm/</a></p><blockquote><p>心急的读者可能会直接在自己的浏览器上进行对话了，但是很遗憾，这大概并不能成功。</p></blockquote><hr><h2 id="环境配置："><a href="#环境配置：" class="headerlink" title="环境配置："></a>环境配置：</h2><p>读者不要看到环境配置就大惊失色，事实上，这并没有多么困难，甚至可以说是傻瓜式，一键式操作。</p><p>我们只需要下载一个<strong>开发者专用的Chrome浏览器</strong>，俗称金丝雀版Chrome。</p><p>下载地址：<a href="https://www.google.com/chrome/canary/%EF%BC%88%E9%9C%80%E8%A6%81%E7%A7%91%E6%8A%80%EF%BC%89">https://www.google.com/chrome/canary/（需要科技）</a></p><blockquote><p>笔者也为不方便使用科技的读者准备了下载链接：</p><p>链接：<code>https://pan.baidu.com/s/1X9RuHQkRYA07tCjimYIU4Q?pwd=8guf </code></p><p>提取码：<code>8guf</code></p></blockquote><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/70ceebe112e44907bcbf47cd5d145332~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p><p>傻瓜式安装后，我们就可以通过金丝雀版Chrome打开上面的浏览器方法页面<a href="https://mlc.ai/web-llm/%E3%80%82">https://mlc.ai/web-llm/。</a></p><blockquote><p>此时，我们才可以真正的进行对话，不过在此之前，我们需要等待浏览器初始化，这大概需要两分钟。</p></blockquote><p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1c72d1e8619a4b078f092d6771570168~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p><blockquote><p>PS：如果没有进行初始化，那就输入一段话然后按一下<code>Send</code>试一试。</p></blockquote><hr><h2 id="效果演示："><a href="#效果演示：" class="headerlink" title="效果演示："></a>效果演示：</h2><p>初始化结束后，我们就可以愉快地对话了！</p><blockquote><p>值得一提的是，中文可能会出现乱码的情况，不过他会自己修复一些。</p></blockquote><p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8852074afe154433854685e060a207f4~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p><blockquote><p>需要注意的是，响应速度可能并不尽如人意，这大概与本机的配置有关，但这也不失为一种本地化使用AI的办法，当你的其他AI崩溃的时候，不妨来试一试MLC-LLM！</p></blockquote><p>这张任务管理器界面截图证明了这个确实是跑在本地上了，笔者的渣机内存和GPU占用率很高：</p><p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ff639722a1ec459abf24b188dbba3784~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p><hr><p>THE END.</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;前言：&quot;&gt;&lt;a href=&quot;#前言：&quot; class=&quot;headerlink&quot; title=&quot;前言：&quot;&gt;&lt;/a&gt;前言：&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;本文预计阅读时长：10分钟&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;你是否还在为ChatGPT的注册、网</summary>
+      
+    
+    
+    
+    <category term="Experience" scheme="https://conqueror712.github.io/categories/Experience/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>面经丨BUPT第三届模拟面试大赛</title>
@@ -457,31 +482,6 @@
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;个人博客：&lt;a href=&quot;https://conqueror712.github.io/&quot;&gt;https://conqueror712.github.io/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;知乎：&lt;a href=&quot;https://www.zhihu.com/</summary>
-      
-    
-    
-    
-    <category term="Devlopment-Tech" scheme="https://conqueror712.github.io/categories/Devlopment-Tech/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Git丨学习记录</title>
-    <link href="https://conqueror712.github.io/post/Git.html"/>
-    <id>https://conqueror712.github.io/post/Git.html</id>
-    <published>2022-09-26T08:43:04.000Z</published>
-    <updated>2023-03-23T01:30:39.717Z</updated>
-    
-    <content type="html"><![CDATA[<p>前言：</p><p>鉴于本人比较愚蠢，每次使用Git都会遇到不少的问题，<br>又因为本人比较懒，不愿意每次都上网查资料来debug，<br>故开此记录文档来便于查阅。</p><blockquote><p>个人博客：<a href="https://conqueror712.github.io/">https://conqueror712.github.io/</a></p><p>知乎：<a href="https://www.zhihu.com/people/soeur712/posts">https://www.zhihu.com/people/soeur712/posts</a></p><p>Bilibili：<a href="https://space.bilibili.com/57089326">https://space.bilibili.com/57089326</a></p><p>掘金：<a href="https://juejin.cn/user/1297878069809725/posts">https://juejin.cn/user/1297878069809725/posts</a></p></blockquote><hr><h1 id="0-debug记录"><a href="#0-debug记录" class="headerlink" title="0. debug记录"></a>0. debug记录</h1><p>如果在<code>git commit</code>之后出现：<br><code>Please enter the commit message for your changes. Lines starting...</code><br>那是因为没写<code>-m &quot;xxxx&quot;</code>，自动给跳转到<code>VIM</code>来让你手动输入参数了，<br>解决方法：</p><pre><code> 1. 按`i`或者`insert`键，进入&quot;插入模式&quot; 2. 修改最上面那行的黄色合并信息，也可以不改 1. 按下: `wq+ENTER`提交更新 所以还是推荐写上`-m &quot;xxxx&quot;`参数</code></pre><p>关于长城墙：请使用VPN</p><hr><h1 id="1-版本控制"><a href="#1-版本控制" class="headerlink" title="1. 版本控制"></a>1. 版本控制</h1><p>简而言之就是，在项目的版本迭代过程中，要保留老版本。</p><p>定义：版本控制（Revision Control）是一种在开发过程中用于管理我们对文件、目录或工程等内容的修改历史，方便查看更改历史记录，备份以便恢复以前的版本的软件工程技术。</p><p>本地版本控制 -&gt;<br>集中版本控制(例如SVN，逻辑简单方便使用但是若服务器崩了就寄了) -&gt;<br>分布式版本控制(例如Git，每个人都拥有全部的代码，可以离线地在本地提交，联网了再扔到服务器上)</p><hr><h1 id="2-Git的配置"><a href="#2-Git的配置" class="headerlink" title="2. Git的配置"></a>2. Git的配置</h1><p>Windows: 官网下载，速度慢就配镜像；<br>Linux: <code>apt -get install git 或 sudo apt install git</code></p><p>当需要卸载的时候，记得回去清一下环境变量，然后在控制面板卸载就可以了；</p><p>鉴于<code>Git Bash</code>是<code>Linux</code>风格的窗口，故下面贴一些常用且基本的<code>Linux</code>命令，以便查阅：</p><p><img src="https://s2.loli.net/2023/01/13/9DInFLTamokZG3g.png" alt="avatar"></p><p>查看当前目录下的Git配置:<br><code>git config -l</code></p><p>查看系统给我们自动配置的配置（什么话啊）：<br><code>git config --system --list</code></p><p>查看用户自己配的配置：<br><code>git config --global --list</code><br>会出现<code>user.name &amp; user.email</code>，这是必须要配置的<br>如何配置？很简单：<br><code>git config --global user.name &quot;你的名字&quot;</code><br><code>git config --global user.email &quot;你的邮箱&quot;</code><br>如何删除？很简单，因为保存在本地了<br><code>Git\etc\gitconfig （安装目录） --system系统级</code><br><code>C:\Users\Administrator\.gitconfig   --global全局</code></p><hr><h1 id="3-Git基本理论（核心）"><a href="#3-Git基本理论（核心）" class="headerlink" title="3. Git基本理论（核心）"></a>3. Git基本理论（核心）</h1><p>Git本地有三个工作区域：</p><ol><li>工作目录(Working Directory):就是平时存放项目代码的地方</li><li>暂存区(Stage&#x2F;Index):用于临时存放你的改动，事实上只是一个文件，保存即将提交到文件列表信息</li><li>资源库(Repository或Git Directory):安全存放数据的位置，这里有提交到所有版本的数据，HEAD指向最新放入仓库的版本<br>Git远程有一个工作区域：</li><li>远程Git仓库(Remote Directory)：托管代码的服务器，可以简单的认为是你项目组中的一台电脑用于远程数据交换</li></ol><p>一个重要的原理图：</p><p><img src="https://s2.loli.net/2023/01/13/WwsykcjUFqv9TQb.png" alt="avatar"></p><p>在工作目录里面的隐藏的git文件夹里面有一个HEAD文件，里面大概是这样的内容：<br>ref: refs&#x2F;heads&#x2F;master<br>这个master是主分支的意思<br>当然，现在版本(2020.10.01之后)大概是变成了&#x2F;main 意思是一样的</p><p>Git的工作流程：</p><ol><li>在工作目录中添加、修改文件 -&gt; 有一个UserMapper.xml文件</li><li>将需要进行版本管理的文件放入暂存区域 -&gt; git add .</li><li>将暂存区域的文件提交到Git仓库 -&gt; git commit<br>因此，Git管理的文件有三种状态</li><li>已修改(modified)</li><li>已暂存(staged)</li><li>已提交(committed)</li></ol><hr><h1 id="4-Git项目搭建"><a href="#4-Git项目搭建" class="headerlink" title="4. Git项目搭建"></a>4. Git项目搭建</h1><p><img src="https://s2.loli.net/2023/01/13/w8THEhXqWjRfUQp.png" alt="avatar"></p><p>xxxxxxxxxx 上面的部分和之前的一张图片有一点差别，暂时先不去管；​查看当前暂存区状态：git status​创建本地仓库的两种方式：1. 创建全新的仓库，需要用Git管理的项目的根目录执行    在当前目录新建一个Git代码库，在Git Bash中    git init    执行之后就可以看到多了一个.git目录    2. 另一种方式是克隆远程目录    克隆一个项目和它的整个代码历史版本（版本信息）    git clone [url]</p><p>查看当前暂存区状态：git status</p><p>创建本地仓库的两种方式：</p><p>创建仓库的时候，许可证推荐选择GPL-3.0，具体的细则可以点进去自己看。</p><p>SSH的获取ssh-keygen<br>如果需要加密算法那就是ssh-keygen -t rsa</p><p>在C盘的&#x2F;user&#x2F;administrator&#x2F;.ssh&#x2F;id_rsa.pub找到，复制之后扔到Github的对应位置</p><p>克隆远程仓库到本地，复制地址之后git clone [url]就好了</p><hr><h1 id="5-Git文件操作"><a href="#5-Git文件操作" class="headerlink" title="5. Git文件操作"></a>5. Git文件操作</h1><p>文件的4种状态：</p><ol><li>Untracked:未跟踪，此文件在文件夹中，但并没有加入到Git库，不参与版本控制，通过git add状态变为Staged</li><li>Unmodify:文件已经入库，未修改，即版本库中的文件快照内容与文件夹中完全一致。这种类型的文件有两种去处：<ol><li>如果它被修改，而变为Modified；</li><li>如果使用git rm移除版本库，则变为Untracked文件</li></ol></li><li>Modified:文件已修改，仅仅是修改，并没有进行其他的操作，这个文件也有两个去处：<ol><li>通过git add可进入暂存Staged状态</li><li>使用git checkout则丢弃修改过，返回到Unmodify状态。git checkout即从库中取出文件，覆盖当前修改。</li></ol></li><li>Staged:暂存状态，执行git commit则将修改同步到库中，这时库中的文件和本地文件又变为一致，文件为Unmodify状态，执行git reset HEAD filename取消暂存，文件状态为Modified</li></ol><p>查看文件状态：</p><ol><li>查看指定文件状态git status [filename]</li><li>查看所有文件状态git status</li></ol><p>git add . # 添加所有文件到暂存区<br>git commit -m “我是信息我是信息” # 提交暂存区中的内容到本地仓库 -m的意思是提交信息</p><p>忽略文件：<br>有些时候我们并不想把所有的文件都纳入版本控制中，比如数据库文件、临时文件、设计文件等</p><p>应当在主目录下建立.gitignore文件，并且有以下规则：</p><ol><li>忽略文件中的空行或以#开始的行将会被忽略</li><li>可以使用Linux通配符，这里不过多展开</li><li>如果名称的最前面有一个！表示例外规则，将不被忽略</li><li>如果名称的最前面是一个路径分隔符&#x2F;，表示要忽略的文件在此目录下，而子目录中的文件不忽略</li><li>如果名称的最后面是一个路径分隔符&#x2F;，表示要忽略的是此目录下该名称的子目录，而非文件（默认文件或目录都忽略）</li></ol><blockquote><p><em>.txt# 忽略所有.txt结尾的文件<br>!lib.txt# 但lib.txt除外<br>&#x2F;temp# 仅忽略项目根目录下的TODO文件，不包括其他目录temp<br>build&#x2F;# 忽略build&#x2F;目录下的所有文件<br>doc&#x2F;</em>.txt# 会忽略doc&#x2F;notes.txt但不包括doc&#x2F;server&#x2F;arch.txt</p></blockquote><hr><h1 id="6-Git分支说明"><a href="#6-Git分支说明" class="headerlink" title="6. Git分支说明"></a>6. Git分支说明</h1><p>Git分支中常用的命令：</p><p>列出所有本地分支<code>git branch</code></p><p>列出所有远程分支<code>git branch -r</code></p><p>新建一个分支，但依然停留在当前分支<code>git branch [branch-name]</code></p><p>新建一个分支，并切换到该分支<code>git checkout -b [branch]</code></p><p>合并指定分支到当前分支<code>git merge [branch]</code></p><p>删除分支<code>git branch -d [branch-name]</code></p><p>删除远程分支<br><code>git push origin --delete [branch-name]</code><br><code>git branch -dr [remote/branch]</code></p><p>特别的，如果多个分支并行执行，就会导致我们代码不冲突，也就是同时存在多个版本<br>这里暂时不特别管这部分…</p><hr><h1 id="7-其他"><a href="#7-其他" class="headerlink" title="7. 其他"></a>7. 其他</h1><h2 id="Fork-与上游仓库同步"><a href="#Fork-与上游仓库同步" class="headerlink" title="Fork 与上游仓库同步"></a>Fork 与上游仓库同步</h2><p>要将您的 Fork 与上游仓库同步，您需要执行以下步骤：</p><p>首先，将上游仓库的 URL 添加为远程仓库。在终端或命令行中，进入您的本地仓库并运行以下命令：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add upstream &lt;upstream_repository_url&gt;</span><br></pre></td></tr></table></figure><p>这将把上游仓库的 URL 添加为一个名为“upstream”的远程仓库。</p><p>接下来，获取上游仓库的更新。运行以下命令：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch upstream</span><br></pre></td></tr></table></figure><p>这将获取上游仓库的更新，但并不会自动将其合并到您的本地分支中。</p><p>现在，将您的本地分支切换到主分支（通常是 <code>master</code>）。运行以下命令：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure><p>接下来，将上游仓库的更改合并到您的本地分支中。运行以下命令：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge upstream/master</span><br></pre></td></tr></table></figure><p>这将在您的本地分支中合并上游仓库的更改。</p><p>最后，将更新后的本地分支推送到您的 Fork 上。运行以下命令：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure><p>这将将更新后的本地分支推送到您的 Fork 上。</p><hr>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;前言：&lt;/p&gt;
-&lt;p&gt;鉴于本人比较愚蠢，每次使用Git都会遇到不少的问题，&lt;br&gt;又因为本人比较懒，不愿意每次都上网查资料来debug，&lt;br&gt;故开此记录文档来便于查阅。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;个人博客：&lt;a href=&quot;https://conqueror</summary>
       
     
     
