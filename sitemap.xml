@@ -2,9 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://conqueror712.github.io/post/Paper-BERT.html</loc>
+    
+    <lastmod>2023-05-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://conqueror712.github.io/post/Computer-Network-4-2.html</loc>
     
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-05-16</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -301,7 +310,7 @@
 
   <url>
     <loc>https://conqueror712.github.io/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-05-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -311,42 +320,42 @@
   
   <url>
     <loc>https://conqueror712.github.io/categories/408/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://conqueror712.github.io/categories/AI/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://conqueror712.github.io/categories/Devlopment-Tech/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://conqueror712.github.io/categories/Interview/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://conqueror712.github.io/categories/XCPC/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://conqueror712.github.io/categories/Experience/</loc>
-    <lastmod>2023-05-15</lastmod>
+    <lastmod>2023-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
