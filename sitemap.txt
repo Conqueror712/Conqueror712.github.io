@@ -1,3 +1,4 @@
+https://conqueror712.github.io/post/Paper-BigBird.html
 https://conqueror712.github.io/post/GinGorm-CRUD.html
 https://conqueror712.github.io/post/Go-FFmpeg.html
 https://conqueror712.github.io/post/Paper-BERT.html
@@ -39,5 +40,5 @@ https://conqueror712.github.io/categories/408/
 https://conqueror712.github.io/categories/AI/
 https://conqueror712.github.io/categories/Devlopment-Tech/
 https://conqueror712.github.io/categories/XCPC/
-https://conqueror712.github.io/categories/Interview/
 https://conqueror712.github.io/categories/Experience/
+https://conqueror712.github.io/categories/Interview/
