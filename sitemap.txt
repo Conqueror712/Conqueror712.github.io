@@ -1,3 +1,4 @@
+https://conqueror712.github.io/post/FastText.html
 https://conqueror712.github.io/post/nvprof.html
 https://conqueror712.github.io/post/ZLUDA.html
 https://conqueror712.github.io/post/Paper-Transformer.html

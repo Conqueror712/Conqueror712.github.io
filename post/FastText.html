@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录 | 落雨乄天珀夜</title><meta name="author" content="落雨乄天珀夜"><meta name="copyright" content="落雨乄天珀夜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="📕环境：macOS or Linux 🍀本文代码已开源： https:&#x2F;&#x2F;github.com&#x2F;Conqueror712&#x2F;Data-Cleaning-Practice Trafilature文本提取目的：更有效地提取网页中的有用的内容，重点关注有意义的、结构化的文本，有助于模型更好地理解和生成具有特定格式和结构的文本 工具：trafilatura（RefinedWeb使用的） 官方文档：htt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录">
+<meta property="og:url" content="https://conqueror712.github.io/post/FastText.html">
+<meta property="og:site_name" content="落雨乄天珀夜">
+<meta property="og:description" content="📕环境：macOS or Linux 🍀本文代码已开源： https:&#x2F;&#x2F;github.com&#x2F;Conqueror712&#x2F;Data-Cleaning-Practice Trafilature文本提取目的：更有效地提取网页中的有用的内容，重点关注有意义的、结构化的文本，有助于模型更好地理解和生成具有特定格式和结构的文本 工具：trafilatura（RefinedWeb使用的） 官方文档：htt">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdnjson.com/images/2023/07/12/wallhaven-rrjxpw.jpg">
+<meta property="article:published_time" content="2023-07-11T06:06:45.000Z">
+<meta property="article:modified_time" content="2023-07-11T16:22:34.264Z">
+<meta property="article:author" content="落雨乄天珀夜">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdnjson.com/images/2023/07/12/wallhaven-rrjxpw.jpg"><link rel="shortcut icon" href="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg"><link rel="canonical" href="https://conqueror712.github.io/post/FastText"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-07-12 00:22:34'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="落雨乄天珀夜" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg" onerror="onerror=null;src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdnjson.com/images/2023/07/12/wallhaven-rrjxpw.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">落雨乄天珀夜</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-11T06:06:45.000Z" title="发表于 2023-07-11 14:06:45">2023-07-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-07-11T16:22:34.264Z" title="更新于 2023-07-12 00:22:34">2023-07-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>📕环境：macOS or Linux</p>
+<p>🍀本文代码已开源：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Conqueror712/Data-Cleaning-Practice">https://github.com/Conqueror712/Data-Cleaning-Practice</a></p>
+<h1 id="Trafilature文本提取"><a href="#Trafilature文本提取" class="headerlink" title="Trafilature文本提取"></a>Trafilature文本提取</h1><p>目的：更有效地提取网页中的有用的内容，重点关注有意义的、结构化的文本，有助于模型更好地理解和生成具有特定格式和结构的文本</p>
+<p>工具：trafilatura（RefinedWeb使用的）</p>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://trafilatura.readthedocs.io/en/latest/">https://trafilatura.readthedocs.io/en/latest/</a></p>
+<blockquote>
+<p>下面给出trafilatura的使用demo（命令行版本）：</p>
+</blockquote>
+<p>安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install trafilature</span><br></pre></td></tr></table></figure>
+
+<p>使用：以<a target="_blank" rel="noopener" href="https://github.com/HqWu-HITCS/Awesome-Chinese-LLM">https://github.com/HqWu-HITCS/Awesome-Chinese-LLM</a>举例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trafilatura -u &quot;https://github.com/HqWu-HITCS/Awesome-Chinese-LLM&quot;</span><br></pre></td></tr></table></figure>
+
+<p>输出：可以看到有一些不重要的内容被忽略掉了</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/aeb578dc8663473285232c40c91616de~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p>非命令行版本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import trafilatura</span><br><span class="line"></span><br><span class="line">downloaded = trafilatura.fetch_url(&#x27;https://github.com/HqWu-HITCS/Awesome-Chinese-LLM&#x27;)</span><br><span class="line"></span><br><span class="line">print(trafilatura.extract(downloaded))</span><br></pre></td></tr></table></figure>
+
+<h1 id="Langdetect语言筛选"><a href="#Langdetect语言筛选" class="headerlink" title="Langdetect语言筛选"></a>Langdetect语言筛选</h1><p>目的：构造一个纯英文的数据集</p>
+<p>工具：langdetect（C4使用的）、CCNet的分类器（RefinedWeb使用的）</p>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://pypi.org/project/langdetect/">https://pypi.org/project/langdetect/</a></p>
+<blockquote>
+<p>下面给出langdetect的使用demo：</p>
+</blockquote>
+<p>安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install langdetect</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<p>To detect the language of the text:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from langdetect import detect</span><br><span class="line">from langdetect import detect_langs</span><br><span class="line">print(detect(&quot;War doesn&#x27;t show who&#x27;s right, just who&#x27;s left.&quot;))</span><br><span class="line">print(detect(&quot;Ein, zwei, drei, vier&quot;))</span><br></pre></td></tr></table></figure>
+
+<p>To find out the probabilities for the top languages:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(detect_langs(&quot;Otec matka syn.&quot;))</span><br></pre></td></tr></table></figure>
+
+<p>输出：注意，这个概率的结果每次都不尽相同</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b537b44b5aac4cfc8988d5e4af86adf7~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<h1 id="FastText文本分类"><a href="#FastText文本分类" class="headerlink" title="FastText文本分类"></a>FastText文本分类</h1><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a65f02cd1a2441d8b66853ea2fd92158~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<h2 id="一、词表示模型Word-Representation-Model"><a href="#一、词表示模型Word-Representation-Model" class="headerlink" title="一、词表示模型Word Representation Model"></a>一、词表示模型Word Representation Model</h2><p>之前说了很多内容，但是理论总要和实践相结合，我们不妨来测试一下词表示模型Word Representation Model：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import fasttext</span><br><span class="line"></span><br><span class="line">Skipgram model:</span><br><span class="line"></span><br><span class="line">model1 = fasttext.train_unsupervised(&#x27;data.txt&#x27;, model=&#x27;skipgram&#x27;)</span><br><span class="line"></span><br><span class="line">cbow model:</span><br><span class="line"></span><br><span class="line">model2 = fasttext.train_unsupervised(&#x27;data.txt&#x27;, model=&#x27;cbow&#x27;)</span><br><span class="line">print(model1.words)  # list of words in dictionary</span><br><span class="line">print(model2[&#x27;care&#x27;])  # get the vector of the word &#x27;care&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>这时候，有趣的事情出现了，当我的data.txt的数据量很小的时候，会出现报错：</p>
+<p>Empty vocabulary. Try a smaller -minCount value.</p>
+<p>此时，我的data.txt里面的内容只有一行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi, this is a test, don&#x27;t be care!</span><br></pre></td></tr></table></figure>
+
+<p>当我增加到两行，三行…无济于事；但就当我增加到五行的时候，事情发生了转变，结果被正确的输出出来了，如图所示：</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/64ae6d2dc9a4406b906ef14fe1a446c0~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p>另外，使用<code>model1.save_model(“ListModel_demo.bin”)</code>可以将训练出来的模型保存起来，以便下次使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">model3 = fasttext.load_model(&#x27;ListModel_demo.bin&#x27;)</span><br><span class="line">print(model3.words)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="二、文本分类模型Text-Classfication-Model"><a href="#二、文本分类模型Text-Classfication-Model" class="headerlink" title="二、文本分类模型Text Classfication Model"></a>二、文本分类模型Text Classfication Model</h2><p>接下来测试一下文本分类模型Text Classification Model，有如下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import fasttext</span><br><span class="line">model = fasttext.train_supervised(&#x27;data.train.txt&#x27;)</span><br><span class="line">print(model.words)</span><br><span class="line">print(model.labels)</span><br></pre></td></tr></table></figure>
+
+<p>此时我的data.train.txt是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">__label__ apple pineapple</span><br><span class="line">__label__ peer</span><br><span class="line">watermelon</span><br></pre></td></tr></table></figure>
+
+<p>而输出结果如下：</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cc38c05d534949e9a40ed3b17d6b9bd4~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p>更进一步地，我们可以看一看指标：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import fasttext</span><br><span class="line">model = fasttext.train_supervised(&#x27;data.train.txt&#x27;)</span><br><span class="line">print(model.words)</span><br><span class="line">print(model.labels)</span><br><span class="line">def print_results(N, p, r):</span><br><span class="line">    print(&quot;N\t&quot; + str(N))</span><br><span class="line">    print(&quot;P@&#123;&#125;\t&#123;:.3f&#125;&quot;.format(1, p))</span><br><span class="line">    print(&quot;R@&#123;&#125;\t&#123;:.3f&#125;&quot;.format(1, r))</span><br></pre></td></tr></table></figure>
+
+<p>To evaluate our model by computing the precision at 1 (P@1) and the recall on a test set, we use the test function</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">print_results(*model.test(&#x27;test.txt&#x27;))</span><br><span class="line"></span><br><span class="line">predict labels for a specific text</span><br><span class="line"></span><br><span class="line">print(model.predict(“Which baking dish is best to bake a banana bread ?”))</span><br><span class="line"></span><br><span class="line">predict more than one label by specifying the parameter k</span><br><span class="line"></span><br><span class="line">print(model.predict(“Which baking dish is best to bake a banana bread ?&quot;, k=3))</span><br></pre></td></tr></table></figure>
+
+<p>predict more than one sentence</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(model.predict([“Which baking dish is best to bake a banana bread ?&quot;, &quot;Why not put knives in the dishwasher?&quot;], k=3))</span><br></pre></td></tr></table></figure>
+
+<p>输出结果如下：</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a6073458a8b44643a1c405cf3de08dde~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<hr>
+<h2 id="三、压缩模型Quantize"><a href="#三、压缩模型Quantize" class="headerlink" title="三、压缩模型Quantize"></a>三、压缩模型Quantize</h2><p>如果按照上面的方法，做出来的.bin模型文件超级大，怎样缩小又不失准确性呢？我们使用quantize方法，只需要添加上这些代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">with the previously trained `model` object, call</span><br><span class="line"></span><br><span class="line">model.quantize(input=&#x27;data.train.txt&#x27;, retrain=True)</span><br><span class="line"></span><br><span class="line">then display results and save the new model</span><br><span class="line"></span><br><span class="line">print_results(*model.test(&#x27;test.txt&#x27;))</span><br><span class="line">model.save_model(&quot;CompressedModel_demo.ftz&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>这里有一点需要注意的是，如果数据集过小，就会失败，有如下报错：</p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/162262eda655416d9f49c14b6a807943~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p>为此，我们需要更大一点data.train.txt，而不能仅仅是手打的两行字。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/382050b0a8fb40ce83c81f52885d1479~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p>很好，这次我们成功了！</p>
+<p>我们不妨来对比一下压缩前后的模型大小区别：</p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2d3ae2edc62840c79c8cbb18b3950a54~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p>如此悬殊的空间差距！</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://conqueror712.github.io">落雨乄天珀夜</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://conqueror712.github.io/post/FastText.html">https://conqueror712.github.io/post/FastText.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://conqueror712.github.io" target="_blank">落雨乄天珀夜</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdnjson.com/images/2023/07/12/wallhaven-rrjxpw.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/nvprof.html"><img class="next-cover" src="https://cdnjson.com/images/2023/07/09/wallhaven-kx2g71.jpg" onerror="onerror=null;src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CUDA性能分析丨ltrace和nvprof工具如何使用？</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="avatar"/></div><div class="author-info__name">落雨乄天珀夜</div><div class="author-info__description">「落花人独立丨微雨燕双飞」</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Conqueror712"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Trafilature%E6%96%87%E6%9C%AC%E6%8F%90%E5%8F%96"><span class="toc-number">1.</span> <span class="toc-text">Trafilature文本提取</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Langdetect%E8%AF%AD%E8%A8%80%E7%AD%9B%E9%80%89"><span class="toc-number">2.</span> <span class="toc-text">Langdetect语言筛选</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FastText%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB"><span class="toc-number">3.</span> <span class="toc-text">FastText文本分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%AF%8D%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8BWord-Representation-Model"><span class="toc-number">3.1.</span> <span class="toc-text">一、词表示模型Word Representation Model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8BText-Classfication-Model"><span class="toc-number">3.2.</span> <span class="toc-text">二、文本分类模型Text Classfication Model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%8E%8B%E7%BC%A9%E6%A8%A1%E5%9E%8BQuantize"><span class="toc-number">3.3.</span> <span class="toc-text">三、压缩模型Quantize</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/FastText.html" title="文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录"><img src="https://cdnjson.com/images/2023/07/12/wallhaven-rrjxpw.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录"/></a><div class="content"><a class="title" href="/post/FastText.html" title="文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录">文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录</a><time datetime="2023-07-11T06:06:45.000Z" title="发表于 2023-07-11 14:06:45">2023-07-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/nvprof.html" title="CUDA性能分析丨ltrace和nvprof工具如何使用？"><img src="https://cdnjson.com/images/2023/07/09/wallhaven-kx2g71.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="CUDA性能分析丨ltrace和nvprof工具如何使用？"/></a><div class="content"><a class="title" href="/post/nvprof.html" title="CUDA性能分析丨ltrace和nvprof工具如何使用？">CUDA性能分析丨ltrace和nvprof工具如何使用？</a><time datetime="2023-07-09T11:15:02.000Z" title="发表于 2023-07-09 19:15:02">2023-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ZLUDA.html" title="ZLUDA丨如何在Intel的GPU上运行CUDA代码？"><img src="https://cdnjson.com/images/2023/07/02/wallhaven-welrv7.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="ZLUDA丨如何在Intel的GPU上运行CUDA代码？"/></a><div class="content"><a class="title" href="/post/ZLUDA.html" title="ZLUDA丨如何在Intel的GPU上运行CUDA代码？">ZLUDA丨如何在Intel的GPU上运行CUDA代码？</a><time datetime="2023-07-02T13:07:09.000Z" title="发表于 2023-07-02 21:07:09">2023-07-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/Paper-Transformer.html" title="再回首划时代的技术 - Transformer丨论文解读"><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/48c24f16f14c4efcadec5ad2dfd34de1~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="再回首划时代的技术 - Transformer丨论文解读"/></a><div class="content"><a class="title" href="/post/Paper-Transformer.html" title="再回首划时代的技术 - Transformer丨论文解读">再回首划时代的技术 - Transformer丨论文解读</a><time datetime="2023-06-06T09:25:30.000Z" title="发表于 2023-06-06 17:25:30">2023-06-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/Paper-BigBird.html" title="NLP的林子大了，什么「大鸟」都有 - BigBird丨论文解读"><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b44fb44b68d84a9c8bbb56134ade2e57~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="NLP的林子大了，什么「大鸟」都有 - BigBird丨论文解读"/></a><div class="content"><a class="title" href="/post/Paper-BigBird.html" title="NLP的林子大了，什么「大鸟」都有 - BigBird丨论文解读">NLP的林子大了，什么「大鸟」都有 - BigBird丨论文解读</a><time datetime="2023-05-29T04:32:00.000Z" title="发表于 2023-05-29 12:32:00">2023-05-29</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdnjson.com/images/2023/07/12/wallhaven-rrjxpw.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 落雨乄天珀夜</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
