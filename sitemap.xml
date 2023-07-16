@@ -391,14 +391,14 @@
 
   
   <url>
-    <loc>https://conqueror712.github.io/categories/408/</loc>
+    <loc>https://conqueror712.github.io/categories/CUDA/</loc>
     <lastmod>2023-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://conqueror712.github.io/categories/CUDA/</loc>
+    <loc>https://conqueror712.github.io/categories/408/</loc>
     <lastmod>2023-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -419,6 +419,13 @@
   </url>
   
   <url>
+    <loc>https://conqueror712.github.io/categories/Interview/</loc>
+    <lastmod>2023-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://conqueror712.github.io/categories/Experience/</loc>
     <lastmod>2023-07-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -427,13 +434,6 @@
   
   <url>
     <loc>https://conqueror712.github.io/categories/XCPC/</loc>
-    <lastmod>2023-07-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://conqueror712.github.io/categories/Interview/</loc>
     <lastmod>2023-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
