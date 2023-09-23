@@ -1,153 +1,308 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>2023了，再来看看NLP经典之作 - BERT丨论文解读 | 落雨乄天珀夜</title><meta name="author" content="落雨乄天珀夜"><meta name="copyright" content="落雨乄天珀夜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="零、前言：📕欢迎访问：  个人博客：https:&#x2F;&#x2F;conqueror712.github.io&#x2F; 知乎：https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;soeur712&#x2F;posts Bilibili：https:&#x2F;&#x2F;space.bilibili.com&#x2F;57089326 掘金：https:&#x2F;&#x2F;juejin.cn&#x2F;user&#x2F;1297878069809725&#x2F;posts   🍬观前小剧">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Conqueror712">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://conqueror712.github.io/post/paper-bert.html"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="零、前言：📕欢迎访问：  个人博客：https:&#x2F;&#x2F;conqueror712.github.io&#x2F; 知乎：https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;soeur712&#x2F;posts  Bilibili：https:&#x2F;&#x2F;space.bilibili.com&#x2F;57089326  掘金：https:&#x2F;&#x2F;juejin.cn&#x2F;user&#x2F;1297878069809725&#x2F;posts    🍬观">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2023了，再来看看NLP经典之作 - BERT丨论文解读">
 <meta property="og:url" content="https://conqueror712.github.io/post/Paper-BERT.html">
 <meta property="og:site_name" content="落雨乄天珀夜">
-<meta property="og:description" content="零、前言：📕欢迎访问：  个人博客：https:&#x2F;&#x2F;conqueror712.github.io&#x2F; 知乎：https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;soeur712&#x2F;posts Bilibili：https:&#x2F;&#x2F;space.bilibili.com&#x2F;57089326 掘金：https:&#x2F;&#x2F;juejin.cn&#x2F;user&#x2F;1297878069809725&#x2F;posts   🍬观前小剧">
+<meta property="og:description" content="零、前言：📕欢迎访问：  个人博客：https:&#x2F;&#x2F;conqueror712.github.io&#x2F; 知乎：https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;soeur712&#x2F;posts  Bilibili：https:&#x2F;&#x2F;space.bilibili.com&#x2F;57089326  掘金：https:&#x2F;&#x2F;juejin.cn&#x2F;user&#x2F;1297878069809725&#x2F;posts    🍬观">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a82ec344c5e746a789f5a5f10577397a~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?">
+<meta property="og:image" content="https://cdnjson.com/images/2023/05/19/image79f52a4bd5c81654.png">
+<meta property="og:image" content="https://cdnjson.com/images/2023/05/20/image2decf2d7bd0b6324.png">
+<meta property="og:image" content="https://cdnjson.com/images/2023/05/19/image4ba18c7a6d70362c.png">
+<meta property="og:image" content="https://cdnjson.com/images/2023/05/19/imagef1add2ac16e1587b.png">
+<meta property="og:image" content="https://cdnjson.com/images/2023/05/19/image4ba18c7a6d70362c.png">
+<meta property="og:image" content="https://cdnjson.com/images/2023/05/19/image856058d1358a11da.png">
+<meta property="og:image" content="https://cdnjson.com/images/2023/05/20/imagec7866559f6d03693.png">
+<meta property="og:image" content="https://cdnjson.com/images/2023/05/20/imagedb613b6793064687.png">
+<meta property="og:image" content="https://cdnjson.com/images/2023/05/20/image4c8380af809bea06.png">
+<meta property="og:image" content="https://cdnjson.com/images/2023/05/20/image20c21b2fae29114d.png">
 <meta property="article:published_time" content="2023-05-20T13:48:01.000Z">
 <meta property="article:modified_time" content="2023-05-20T13:49:03.900Z">
 <meta property="article:author" content="落雨乄天珀夜">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a82ec344c5e746a789f5a5f10577397a~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?"><link rel="shortcut icon" href="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg"><link rel="canonical" href="https://conqueror712.github.io/post/Paper-BERT"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  date_suffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
-  },
-  isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: '2023了，再来看看NLP经典之作 - BERT丨论文解读',
-  isPost: true,
-  isHome: false,
-  isHighlightShrink: false,
-  isToc: true,
-  postUpdate: '2023-05-20 21:49:03'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
+<meta name="twitter:image" content="https://cdnjson.com/images/2023/05/19/image79f52a4bd5c81654.png">
     
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
         
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
+            2023了，再来看看NLP经典之作 - BERT丨论文解读 -
+        
+        Conqueror712
+    </title>
     
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="落雨乄天珀夜" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg" onerror="onerror=null;src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a82ec344c5e746a789f5a5f10577397a~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">落雨乄天珀夜</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">2023了，再来看看NLP经典之作 - BERT丨论文解读</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-20T13:48:01.000Z" title="发表于 2023-05-20 21:48:01">2023-05-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-20T13:49:03.900Z" title="更新于 2023-05-20 21:49:03">2023-05-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="2023了，再来看看NLP经典之作 - BERT丨论文解读"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="零、前言："><a href="#零、前言：" class="headerlink" title="零、前言："></a>零、前言：</h1><p><strong>📕欢迎访问</strong>：</p>
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"conqueror712.github.io","root":"/","language":"zh-CN"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.4.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    Global.data_config = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="落雨乄天珀夜" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="swup-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="https://conqueror712.github.io/">
+                
+                Conqueror712
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
+        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            
+                
+                
+                <img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a82ec344c5e746a789f5a5f10577397a~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?" alt="2023了，再来看看NLP经典之作 - BERT丨论文解读" class="max-w-none"/>
+                
+                <h1 class="article-title-cover">2023了，再来看看NLP经典之作 - BERT丨论文解读</h1>
+            
+            </div>
+            
+                    
+        
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Conqueror712</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-05-20 21:48:01</span>
+        <span class="mobile">2023-05-20 21:48:01</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-05-20 21:49:03</span>
+            <span class="mobile">2023-05-20 21:49:03</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/AI/">AI</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body">
+            <h1 id="零、前言："><a href="#零、前言：" class="headerlink" title="零、前言："></a>零、前言：</h1><p><strong>📕欢迎访问</strong>：</p>
 <blockquote>
 <p>个人博客：<a href="https://conqueror712.github.io/">https://conqueror712.github.io/</a></p>
-<p>知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/soeur712/posts">https://www.zhihu.com/people/soeur712/posts</a></p>
-<p>Bilibili：<a target="_blank" rel="noopener" href="https://space.bilibili.com/57089326">https://space.bilibili.com/57089326</a></p>
-<p>掘金：<a target="_blank" rel="noopener" href="https://juejin.cn/user/1297878069809725/posts">https://juejin.cn/user/1297878069809725/posts</a></p>
+<p>知乎：<a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/people/soeur712/posts" >https://www.zhihu.com/people/soeur712/posts <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>Bilibili：<a class="link"   target="_blank" rel="noopener" href="https://space.bilibili.com/57089326" >https://space.bilibili.com/57089326 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>掘金：<a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/user/1297878069809725/posts" >https://juejin.cn/user/1297878069809725/posts <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 </blockquote>
 <hr>
 <p><strong>🍬观前小剧场</strong>：</p>
@@ -162,7 +317,7 @@
 </blockquote>
 <hr>
 <h1 id="一、BERT简介："><a href="#一、BERT简介：" class="headerlink" title="一、BERT简介："></a>一、BERT简介：</h1><blockquote>
-<p>BERT开源仓库：<a target="_blank" rel="noopener" href="https://github.com/google-research/bert">https://github.com/google-research/bert</a></p>
+<p>BERT开源仓库：<a class="link"   target="_blank" rel="noopener" href="https://github.com/google-research/bert" >https://github.com/google-research/bert <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 </blockquote>
 <h2 id="一句话解释BERT："><a href="#一句话解释BERT：" class="headerlink" title="一句话解释BERT："></a>一句话解释BERT：</h2><p>是一个预训练的语言表征模型，是一个<strong>深度的、双向的Transformer</strong>，用来做<strong>预训练</strong>，针对一般的语言理解任务。</p>
 <blockquote>
@@ -180,15 +335,25 @@
 <p>乍一看，怎么BERT这个名字和他的含义不是特别沾边啊？</p>
 <p>事实上，这是因为BERT基于了ELMo的一些工作，而这两个名字都是美国的一个老少皆宜的少儿英语学习节目——<strong>芝麻街</strong>（笑）。</p>
 <blockquote>
-<p>芝麻街中文官网：<a target="_blank" rel="noopener" href="https://www.sesamestreetchina.com.cn/">https://www.sesamestreetchina.com.cn/</a></p>
+<p>芝麻街中文官网：<a class="link"   target="_blank" rel="noopener" href="https://www.sesamestreetchina.com.cn/" >https://www.sesamestreetchina.com.cn/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 </blockquote>
 <p>于是乎，一发不可收拾，NLP领域的文章就把芝麻街中人物的名字用了个遍。</p>
-<p><img src="https://cdnjson.com/images/2023/05/19/image79f52a4bd5c81654.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdnjson.com/images/2023/05/19/image79f52a4bd5c81654.png"
+                      alt="avatar"
+                ></p>
 <hr>
 <h1 id="二、BERT与GPT、ELMo的关系"><a href="#二、BERT与GPT、ELMo的关系" class="headerlink" title="二、BERT与GPT、ELMo的关系"></a>二、BERT与GPT、ELMo的关系</h1><blockquote>
 <p>由于BERT是基于<strong>GPT</strong>和<strong>ELMo</strong>这两个工作的，我们就先来看一下他们之间有什么区别。</p>
 </blockquote>
-<p><img src="https://cdnjson.com/images/2023/05/20/image2decf2d7bd0b6324.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdnjson.com/images/2023/05/20/image2decf2d7bd0b6324.png"
+                      alt="avatar"
+                ></p>
 <h2 id="BERT与GPT的区别："><a href="#BERT与GPT的区别：" class="headerlink" title="BERT与GPT的区别："></a>BERT与GPT的区别：</h2><p>在2018年，GPT是<strong>单向的</strong>，基于左边的上下文信息，来生成新的文段。（2023年有待考究）；</p>
 <p>而BERT不仅用了左侧的信息，还用了右侧的信息，所以说是一个<strong>双向的</strong>操作，即Bidirectional。</p>
 <h2 id="BERT与ELMo的区别："><a href="#BERT与ELMo的区别：" class="headerlink" title="BERT与ELMo的区别："></a>BERT与ELMo的区别：</h2><p>ELMo用的是基于RNN的架构，在用于一些特定的下游任务时，需要<strong>对架构做一定的调整</strong>；</p>
@@ -239,7 +404,12 @@
 <blockquote>
 <p>以下是预训练和微调的图示：（后续还会介绍其细节，先大致浏览一下即可）</p>
 </blockquote>
-<p><img src="https://cdnjson.com/images/2023/05/19/image4ba18c7a6d70362c.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdnjson.com/images/2023/05/19/image4ba18c7a6d70362c.png"
+                      alt="avatar"
+                ></p>
 <blockquote>
 <p>论文的这一部分对这些前置的技术做了简要的介绍，这是非常好的习惯。倘若是对于大家可能熟知的任务一笔带过，会显得整个文章不那么得体，不那么自洽。</p>
 </blockquote>
@@ -252,7 +422,12 @@
 <p>如何把超参数换算成可学习参数的大小呢？</p>
 </blockquote>
 <h2 id="BERT模型可学习参数计算："><a href="#BERT模型可学习参数计算：" class="headerlink" title="BERT模型可学习参数计算："></a>BERT模型可学习参数计算：</h2><p>可学习参数主要分为两块：嵌入层、Transformer块，过程有图简述之：</p>
-<p><img src="https://cdnjson.com/images/2023/05/19/imagef1add2ac16e1587b.png" alt="avatar"><br>自注意力机制本身并没有可学习参数，但是对于<strong>多头注意力</strong>，会把进入的所有K(Key)、V(Value)、Q(Query)都做一次投影，每次投影的维度为64，而且有$A × 64 &#x3D; H$；</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdnjson.com/images/2023/05/19/imagef1add2ac16e1587b.png"
+                      alt="avatar"
+                ><br>自注意力机制本身并没有可学习参数，但是对于<strong>多头注意力</strong>，会把进入的所有K(Key)、V(Value)、Q(Query)都做一次投影，每次投影的维度为64，而且有$A × 64 &#x3D; H$；</p>
 <p>如上，前面的自注意力块有$4H^2$个参数，MLP有$H×4H×2&#x3D;8H^2$个参数，则每个Transformer块中有$12H^2$个参数；</p>
 <p>最后再乘$L$和字典大小，得到$Sum &#x3D; 30000H+12LH^2$，代入$BERT_{BASE}$可以获得确实是大约$110M$个参数。</p>
 <hr>
@@ -268,12 +443,22 @@
 <li>学习一个嵌入层，来知道某个句子是第一个还是第二个。</li>
 </ul>
 <p>这个时候我们再回去看一下上面给出过的图，就很好理解了：</p>
-<p><img src="https://cdnjson.com/images/2023/05/19/image4ba18c7a6d70362c.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdnjson.com/images/2023/05/19/image4ba18c7a6d70362c.png"
+                      alt="avatar"
+                ></p>
 <p>如上图，每一个Token进入BERT，得到这个Token的Embedding表示。</p>
 <p>整体上的效果就是：输入一个序列，得到一个序列，最后再添加额外的输出层来得到想要的结果。</p>
 <p>对于每一个词元，进入BERT时的向量表示的是：</p>
 <p>这个词元本身的Embedding + 它在哪个位置的Embedding + 位置的Embedding，如下图所示：</p>
-<p><img src="https://cdnjson.com/images/2023/05/19/image856058d1358a11da.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdnjson.com/images/2023/05/19/image856058d1358a11da.png"
+                      alt="avatar"
+                ></p>
 <ul>
 <li><strong>Token Embedding</strong>：词元的Embedding层，对于每一个词元，输出一个对应的向量；</li>
 <li><strong>Segment Embedding</strong>：A表示第一句话，B表示第二句话；</li>
@@ -295,20 +480,35 @@
 <blockquote>
 <p>附录的一个例子：</p>
 </blockquote>
-<img src="https://cdnjson.com/images/2023/05/20/imagec7866559f6d03693.png" alt="avatar" style="zoom: 80%;" />
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdnjson.com/images/2023/05/20/imagec7866559f6d03693.png"
+                      alt="avatar" style="zoom: 80%;" 
+                >
 
 <h3 id="句子匹配："><a href="#句子匹配：" class="headerlink" title="句子匹配："></a>句子匹配：</h3><p>无论是在QA还是语言推理层面，都是一个句子对，所以最好让其学习一些句子层面的信息。</p>
 <p>对于句子A和B，有可能是相邻，也有可能不是，那么相邻的就是正例，不相邻的就是负例，各占50%。</p>
 <blockquote>
 <p>附录的一个例子，简单读一下Input和Label就明白了：</p>
 </blockquote>
-<img src="https://cdnjson.com/images/2023/05/20/imagedb613b6793064687.png" alt="avatar" style="zoom: 80%;" />
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdnjson.com/images/2023/05/20/imagedb613b6793064687.png"
+                      alt="avatar" style="zoom: 80%;" 
+                >
 
 <p>值得一提的是，可以看到有一个<code>##</code>，这个意思是说，flightless这个词在原文中不常见，所以砍成了两个词，<code>##</code>的作用是表明这原本是一个词。</p>
 <blockquote>
 <p>两种不同策略的预训练精度结果（MLM和LR）：</p>
 </blockquote>
-<img src="https://cdnjson.com/images/2023/05/20/image4c8380af809bea06.png" alt="avatar" style="zoom:67%;" />
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdnjson.com/images/2023/05/20/image4c8380af809bea06.png"
+                      alt="avatar" style="zoom:67%;" 
+                >
 
 <hr>
 <h2 id="再看微调："><a href="#再看微调：" class="headerlink" title="再看微调："></a>再看微调：</h2><p>由于选择了单一个编码器的架构，而不是像传统的Transformer一样有编码器和解码器，所以会有一些缺点：</p>
@@ -317,55 +517,417 @@
 <blockquote>
 <p>如下图是BERT在分类任务上的表现情况：</p>
 </blockquote>
-<p><img src="https://cdnjson.com/images/2023/05/20/image20c21b2fae29114d.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdnjson.com/images/2023/05/20/image20c21b2fae29114d.png"
+                      alt="avatar"
+                ></p>
 <hr>
 <h1 id="五、结论与尾声"><a href="#五、结论与尾声" class="headerlink" title="五、结论与尾声:"></a>五、结论与尾声:</h1><p>在本文发布的当时，语言模型迁移学习的经验改进表明，丰富的<strong>无监督预训练</strong>是许多<strong>语言理解系统</strong>的组成部分，这个效果是非常好的。</p>
 <p>使得训练集比较少的任务也能够使用深度神经网络，获得比较好的效果。</p>
 <p>特别是，这些结果使<strong>低资源任务</strong>也能从深度单向架构中受益。BERT的主要贡献是进一步将这些发现<strong>推广到深度双向架构</strong>，允许相同的预训练模型成功地处理<strong>广泛的</strong>NLP任务。</p>
 <hr>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://conqueror712.github.io">落雨乄天珀夜</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://conqueror712.github.io/post/Paper-BERT.html">https://conqueror712.github.io/post/Paper-BERT.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://conqueror712.github.io" target="_blank">落雨乄天珀夜</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a82ec344c5e746a789f5a5f10577397a~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/Paper-BigBird.html"><img class="prev-cover" src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b44fb44b68d84a9c8bbb56134ade2e57~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?" onerror="onerror=null;src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">NLP的林子大了，什么「大鸟」都有 - BigBird丨论文解读</div></div></a></div><div class="next-post pull-right"><a href="/post/Computer-Network-4-2.html"><img class="next-cover" src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e26cc82ed8b74dfbbad55d94b885444e~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?" onerror="onerror=null;src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">计网 -  路由算法丨学习记录</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="avatar"/></div><div class="author-info__name">落雨乄天珀夜</div><div class="author-info__description">「落花人独立丨微雨燕双飞」</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Conqueror712"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%B6%E3%80%81%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">零、前言：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81BERT%E7%AE%80%E4%BB%8B%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">一、BERT简介：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E8%A7%A3%E9%87%8ABERT%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">一句话解释BERT：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BERT%E5%87%BA%E7%8E%B0%E7%9A%84%E7%9B%AE%E7%9A%84%E5%92%8C%E6%84%8F%E4%B9%89%EF%BC%9A"><span class="toc-number">2.2.</span> <span class="toc-text">BERT出现的目的和意义：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81BERT%E4%B8%8EGPT%E3%80%81ELMo%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">3.</span> <span class="toc-text">二、BERT与GPT、ELMo的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#BERT%E4%B8%8EGPT%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-number">3.1.</span> <span class="toc-text">BERT与GPT的区别：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BERT%E4%B8%8EELMo%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-number">3.2.</span> <span class="toc-text">BERT与ELMo的区别：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81BERT%E9%A2%84%E8%AE%AD%E7%BB%83"><span class="toc-number">4.</span> <span class="toc-text">三、BERT预训练</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E5%9C%A8NLP%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%9A"><span class="toc-number">4.1.</span> <span class="toc-text">预训练在NLP的应用：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NLP%E4%B8%AD%E4%B8%A4%E7%A7%8D%E9%A2%84%E8%AE%AD%E7%BB%83%E7%9A%84%E7%AD%96%E7%95%A5%EF%BC%9A"><span class="toc-number">4.2.</span> <span class="toc-text">NLP中两种预训练的策略：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MLM%E2%80%94%E2%80%94%E6%9D%A5%E8%87%AA%E8%BF%9C%E5%8F%A4%E7%9A%84%E7%A7%98%E5%AE%9D%EF%BC%9A"><span class="toc-number">4.3.</span> <span class="toc-text">MLM——来自远古的秘宝：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E6%A0%87%E6%B3%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%80%E5%AE%9A%E6%9B%B4%E5%A5%BD%E5%90%97%EF%BC%9A"><span class="toc-number">4.4.</span> <span class="toc-text">有标注的数据集一定更好吗：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BERT%E9%A2%84%E8%AE%AD%E7%BB%83%E4%B8%8E%E5%BE%AE%E8%B0%83%EF%BC%9A"><span class="toc-number">4.5.</span> <span class="toc-text">BERT预训练与微调：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83Pre-Training%EF%BC%9A"><span class="toc-number">4.5.1.</span> <span class="toc-text">预训练Pre-Training：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E8%B0%83Fine-Tuning%EF%BC%9A"><span class="toc-number">4.5.2.</span> <span class="toc-text">微调Fine-Tuning：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%B7%B1%E5%85%A5BERT%E6%A8%A1%E5%9E%8B"><span class="toc-number">5.</span> <span class="toc-text">四、深入BERT模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#BERT%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84%EF%BC%9A"><span class="toc-number">5.1.</span> <span class="toc-text">BERT模型架构：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BERT%E6%A8%A1%E5%9E%8B%E5%8F%AF%E5%AD%A6%E4%B9%A0%E5%8F%82%E6%95%B0%E8%AE%A1%E7%AE%97%EF%BC%9A"><span class="toc-number">5.2.</span> <span class="toc-text">BERT模型可学习参数计算：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BERT%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%EF%BC%9A"><span class="toc-number">5.3.</span> <span class="toc-text">BERT输入输出：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%87%E8%AF%8D%E6%96%B9%E6%B3%95%EF%BC%9AWordPiece"><span class="toc-number">5.3.1.</span> <span class="toc-text">切词方法：WordPiece</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E5%8F%A5%E5%AD%90%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">5.3.2.</span> <span class="toc-text">合并句子的方法：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MLM%E9%A2%84%E8%AE%AD%E7%BB%83%E7%9A%84%E7%BB%86%E8%8A%82%EF%BC%9A"><span class="toc-number">5.4.</span> <span class="toc-text">MLM预训练的细节：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E5%BD%A2%E5%A1%AB%E7%A9%BA%EF%BC%9A"><span class="toc-number">5.4.1.</span> <span class="toc-text">完形填空：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%A5%E5%AD%90%E5%8C%B9%E9%85%8D%EF%BC%9A"><span class="toc-number">5.4.2.</span> <span class="toc-text">句子匹配：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%8D%E7%9C%8B%E5%BE%AE%E8%B0%83%EF%BC%9A"><span class="toc-number">5.5.</span> <span class="toc-text">再看微调：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%BB%93%E8%AE%BA%E4%B8%8E%E5%B0%BE%E5%A3%B0"><span class="toc-number">6.</span> <span class="toc-text">五、结论与尾声:</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/CargoBuild2.html" title="移花接木[续]丨从零开始的环境配置流程"><img src="https://cdnjson.com/images/2023/07/23/wallhaven-5gkxz3.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="移花接木[续]丨从零开始的环境配置流程"/></a><div class="content"><a class="title" href="/post/CargoBuild2.html" title="移花接木[续]丨从零开始的环境配置流程">移花接木[续]丨从零开始的环境配置流程</a><time datetime="2023-07-23T13:02:25.000Z" title="发表于 2023-07-23 21:02:25">2023-07-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/CargoBuild.html" title="移花接木丨重定义CUDA函数与Cargo构建"><img src="https://cdnjson.com/images/2023/07/16/wallhaven-2y33xy.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="移花接木丨重定义CUDA函数与Cargo构建"/></a><div class="content"><a class="title" href="/post/CargoBuild.html" title="移花接木丨重定义CUDA函数与Cargo构建">移花接木丨重定义CUDA函数与Cargo构建</a><time datetime="2023-07-16T05:35:38.000Z" title="发表于 2023-07-16 13:35:38">2023-07-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/FastText.html" title="文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录"><img src="https://cdnjson.com/images/2023/07/12/wallhaven-rrjxpw.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录"/></a><div class="content"><a class="title" href="/post/FastText.html" title="文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录">文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录</a><time datetime="2023-07-11T06:06:45.000Z" title="发表于 2023-07-11 14:06:45">2023-07-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/nvprof.html" title="CUDA性能分析丨ltrace和nvprof工具如何使用？"><img src="https://cdnjson.com/images/2023/07/09/wallhaven-kx2g71.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="CUDA性能分析丨ltrace和nvprof工具如何使用？"/></a><div class="content"><a class="title" href="/post/nvprof.html" title="CUDA性能分析丨ltrace和nvprof工具如何使用？">CUDA性能分析丨ltrace和nvprof工具如何使用？</a><time datetime="2023-07-09T11:15:02.000Z" title="发表于 2023-07-09 19:15:02">2023-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ZLUDA.html" title="ZLUDA丨如何在Intel的GPU上运行CUDA代码？"><img src="https://cdnjson.com/images/2023/07/02/wallhaven-welrv7.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="ZLUDA丨如何在Intel的GPU上运行CUDA代码？"/></a><div class="content"><a class="title" href="/post/ZLUDA.html" title="ZLUDA丨如何在Intel的GPU上运行CUDA代码？">ZLUDA丨如何在Intel的GPU上运行CUDA代码？</a><time datetime="2023-07-02T13:07:09.000Z" title="发表于 2023-07-02 21:07:09">2023-07-02</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a82ec344c5e746a789f5a5f10577397a~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 落雨乄天珀夜</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
-  window.MathJax = {
-    tex: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"]],
-      tags: 'ams'
-    },
-    chtml: {
-      scale: 1.2
-    },
-    options: {
-      renderActions: {
-        findScript: [10, doc => {
-          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
-            const display = !!node.type.match(/; *mode=display/)
-            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
-            const text = document.createTextNode('')
-            node.parentNode.replaceChild(text, node)
-            math.start = {node: text, delim: '', n: 0}
-            math.end = {node: text, delim: '', n: 0}
-            doc.math.push(math)
-          }
-        }, ''],
-        insertScript: [200, () => {
-          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
-            const target = node.parentNode
-            if (target.nodeName.toLowerCase() === 'li') {
-              target.parentNode.classList.add('has-jax')
-            } else {
-              target.classList.add('has-jax')
-            }
-          });
-        }, '', false]
-      }
-    }
-  }
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 2023了，再来看看NLP经典之作 - BERT丨论文解读</li>
+        <li><strong>作者:</strong> Conqueror712</li>
+        <li><strong>创建于
+                :</strong> 2023-05-20 21:48:01</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2023-05-20 21:49:03
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://redefine.ohevan.com//post/Paper-BERT.html
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+            本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 进行许可。
+            
+
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                        rel="prev"
+                        href="/post/Paper-BigBird.html"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">NLP的林子大了，什么「大鸟」都有 - BigBird丨论文解读</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                        rel="next"
+                        href="/post/Computer-Network-4-2.html"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">计网 -  路由算法丨学习记录</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container">
+                <div class="comments-container pjax">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;评论
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-swup-reload-script>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">2023了，再来看看NLP经典之作 - BERT丨论文解读</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%B6%E3%80%81%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="nav-text">零、前言：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81BERT%E7%AE%80%E4%BB%8B%EF%BC%9A"><span class="nav-text">一、BERT简介：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E8%A7%A3%E9%87%8ABERT%EF%BC%9A"><span class="nav-text">一句话解释BERT：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BERT%E5%87%BA%E7%8E%B0%E7%9A%84%E7%9B%AE%E7%9A%84%E5%92%8C%E6%84%8F%E4%B9%89%EF%BC%9A"><span class="nav-text">BERT出现的目的和意义：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81BERT%E4%B8%8EGPT%E3%80%81ELMo%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">二、BERT与GPT、ELMo的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BERT%E4%B8%8EGPT%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-text">BERT与GPT的区别：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BERT%E4%B8%8EELMo%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-text">BERT与ELMo的区别：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81BERT%E9%A2%84%E8%AE%AD%E7%BB%83"><span class="nav-text">三、BERT预训练</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E5%9C%A8NLP%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%9A"><span class="nav-text">预训练在NLP的应用：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NLP%E4%B8%AD%E4%B8%A4%E7%A7%8D%E9%A2%84%E8%AE%AD%E7%BB%83%E7%9A%84%E7%AD%96%E7%95%A5%EF%BC%9A"><span class="nav-text">NLP中两种预训练的策略：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MLM%E2%80%94%E2%80%94%E6%9D%A5%E8%87%AA%E8%BF%9C%E5%8F%A4%E7%9A%84%E7%A7%98%E5%AE%9D%EF%BC%9A"><span class="nav-text">MLM——来自远古的秘宝：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E6%A0%87%E6%B3%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%80%E5%AE%9A%E6%9B%B4%E5%A5%BD%E5%90%97%EF%BC%9A"><span class="nav-text">有标注的数据集一定更好吗：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BERT%E9%A2%84%E8%AE%AD%E7%BB%83%E4%B8%8E%E5%BE%AE%E8%B0%83%EF%BC%9A"><span class="nav-text">BERT预训练与微调：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83Pre-Training%EF%BC%9A"><span class="nav-text">预训练Pre-Training：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E8%B0%83Fine-Tuning%EF%BC%9A"><span class="nav-text">微调Fine-Tuning：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%B7%B1%E5%85%A5BERT%E6%A8%A1%E5%9E%8B"><span class="nav-text">四、深入BERT模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BERT%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84%EF%BC%9A"><span class="nav-text">BERT模型架构：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BERT%E6%A8%A1%E5%9E%8B%E5%8F%AF%E5%AD%A6%E4%B9%A0%E5%8F%82%E6%95%B0%E8%AE%A1%E7%AE%97%EF%BC%9A"><span class="nav-text">BERT模型可学习参数计算：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BERT%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%EF%BC%9A"><span class="nav-text">BERT输入输出：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E8%AF%8D%E6%96%B9%E6%B3%95%EF%BC%9AWordPiece"><span class="nav-text">切词方法：WordPiece</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%88%E5%B9%B6%E5%8F%A5%E5%AD%90%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-text">合并句子的方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MLM%E9%A2%84%E8%AE%AD%E7%BB%83%E7%9A%84%E7%BB%86%E8%8A%82%EF%BC%9A"><span class="nav-text">MLM预训练的细节：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E5%BD%A2%E5%A1%AB%E7%A9%BA%EF%BC%9A"><span class="nav-text">完形填空：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%A5%E5%AD%90%E5%8C%B9%E9%85%8D%EF%BC%9A"><span class="nav-text">句子匹配：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%8D%E7%9C%8B%E5%BE%AE%E8%B0%83%EF%BC%9A"><span class="nav-text">再看微调：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E7%BB%93%E8%AE%BA%E4%B8%8E%E5%B0%BE%E5%A3%B0"><span class="nav-text">五、结论与尾声:</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Conqueror712</a>
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.4.4</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex justify-center items-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+        ],
+        containers: ["#swup"],
+    });
+
+    swup.hooks.on("page:view", () => {
+        Global.refresh();
+    });
+
+    // if (document.readyState === "complete") {
+    //
+    // } else {
+    //     document.addEventListener("DOMContentLoaded", () => init());
+    // }
+</script>
+
+
+
+
+
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
   
-  const script = document.createElement('script')
-  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
-  script.id = 'MathJax-script'
-  script.async = true
-  document.head.appendChild(script)
-} else {
-  MathJax.startup.document.state(0)
-  MathJax.texReset()
-  MathJax.typeset()
-}</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>

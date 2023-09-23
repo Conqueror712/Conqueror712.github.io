@@ -1,148 +1,335 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>计网- Ep1 - 概述「 万字长文」丨学习记录 | 落雨乄天珀夜</title><meta name="author" content="落雨乄天珀夜"><meta name="copyright" content="落雨乄天珀夜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Computer Networking A Top-Down Approach Learning Note Part 1  前言： 本文是笔者初学计算机网络的笔记和一些心得，难免会有部分疏漏和错误，还请各位读者积极指出，不吝赐教。 有一些内容是笔者认为对自己暂时没那么重要的部分，就没有放上去，具体的内容可以查看相关的书籍。 观前提醒：本文篇幅较长，若您只是想看其中的某一小节的知识，直接点击目录进行">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Conqueror712">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://conqueror712.github.io/post/computer-network.html"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Computer Networking A Top-Down Approach Learning Note Part 1  前言： 本文是笔者初学计算机网络的笔记和一些心得，难免会有部分疏漏和错误，还请各位读者积极指出，不吝赐教。 有一些内容是笔者认为对自己暂时没那么重要的部分，就没有放上去，具体的内容可以查看相关的书籍。 观前提醒：本文篇幅较长，若您只是想看其中的某一小节的知识，直接点击目录进行">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计网- Ep1 - 概述「 万字长文」丨学习记录">
 <meta property="og:url" content="https://conqueror712.github.io/post/Computer-Network.html">
 <meta property="og:site_name" content="落雨乄天珀夜">
 <meta property="og:description" content="Computer Networking A Top-Down Approach Learning Note Part 1  前言： 本文是笔者初学计算机网络的笔记和一些心得，难免会有部分疏漏和错误，还请各位读者积极指出，不吝赐教。 有一些内容是笔者认为对自己暂时没那么重要的部分，就没有放上去，具体的内容可以查看相关的书籍。 观前提醒：本文篇幅较长，若您只是想看其中的某一小节的知识，直接点击目录进行">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdnjson.com/images/2023/03/18/1266437.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/02/05/CmaRS2pUiZKVYP5.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/05/ejtp8fUq4HBGIRO.png">
+<meta property="og:image" content="https://cdnjson.com/images/2023/03/23/image5d8db9ed618aaa1b.png">
+<meta property="og:image" content="http://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper_files/ruswp_diag4.gif">
+<meta property="og:image" content="http://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper_files/ruswp_diag3.gif">
+<meta property="og:image" content="https://s2.loli.net/2023/02/06/UByjCsFYKgawRHn.png">
+<meta property="og:image" content="https://cdnjson.com/images/2023/03/23/image743f3bbf41c6554c.png">
+<meta property="og:image" content="https://cdnjson.com/images/2023/03/23/image30aa3f256f40a3aa.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/09/IFwhJQifvaKbPu3.png">
+<meta property="og:image" content="https://cdnjson.com/images/2023/03/23/image7eaaa24dbd1b5bb1.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/08/i8aqtym1HWz3ATd.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/08/hGF62ZPvNKTErOq.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/08/kVEIqCre7obDHF1.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/08/2eDUayYI1VsgCwX.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/08/Ep6Xf7Lhr2ayGPH.png">
+<meta property="og:image" content="https://cdnjson.com/images/2023/03/23/image238dd675d5273d52.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/08/pEzcJ6yqtaZl5A4.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/08/cGiBtFpqmgaOxYD.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/08/gLapHFwhsI7WqyN.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/08/qMKP6JzvwNAlVmi.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/08/dzcoI4xFt3kKDEW.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/08/AfL1I4be9KXhJtB.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/08/K3CfPj7cB6nm54F.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/08/OypJYFo6GZ1HmMc.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/08/oVwYQ3TDIbL1vMJ.png">
+<meta property="og:image" content="https://cdnjson.com/images/2023/03/23/imagefdc98297cb8f7d9e.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/08/x85PnRkLuey3gmH.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/08/R6fuCnWYScw9Khy.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/09/jEsRQm896bUuTCF.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/09/LAfnrGHpzymOXt1.png">
+<meta property="og:image" content="https://cdnjson.com/images/2023/03/23/image94c1d7406046a3d4.png">
+<meta property="og:image" content="https://cdnjson.com/images/2023/03/23/image58791ea91b1bcfce.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/09/sUY6iWKrzgXEuAk.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/09/ujJOm6TViNrvBZw.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/09/gaZ2Cz9KfmYvEIM.png">
+<meta property="og:image" content="https://s2.loli.net/2023/02/09/lt87ge4ZbTCksoW.png">
+<meta property="og:image" content="http://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper_files/ruswp_diag6.gif">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f2c2ce0c78bd4510825974bec7e046d0~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="og:image" content="https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work/latency.jpg">
+<meta property="og:image" content="https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work/ssl.jpg">
+<meta property="og:image" content="https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work/dom.gif">
+<meta property="og:image" content="https://s2.loli.net/2023/01/30/wzGjACSikPZ6rWp.png">
 <meta property="article:published_time" content="2023-02-09T12:03:22.000Z">
 <meta property="article:modified_time" content="2023-04-23T03:09:43.776Z">
 <meta property="article:author" content="落雨乄天珀夜">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdnjson.com/images/2023/03/18/1266437.jpg"><link rel="shortcut icon" href="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg"><link rel="canonical" href="https://conqueror712.github.io/post/Computer-Network"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  date_suffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
-  },
-  isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: '计网- Ep1 - 概述「 万字长文」丨学习记录',
-  isPost: true,
-  isHome: false,
-  isHighlightShrink: false,
-  isToc: true,
-  postUpdate: '2023-04-23 11:09:43'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
+<meta name="twitter:image" content="https://s2.loli.net/2023/02/05/CmaRS2pUiZKVYP5.png">
     
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
         
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
+            计网- Ep1 - 概述「 万字长文」丨学习记录 -
+        
+        Conqueror712
+    </title>
     
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="落雨乄天珀夜" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg" onerror="onerror=null;src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdnjson.com/images/2023/03/18/1266437.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">落雨乄天珀夜</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计网- Ep1 - 概述「 万字长文」丨学习记录</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-09T12:03:22.000Z" title="发表于 2023-02-09 20:03:22">2023-02-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-23T03:09:43.776Z" title="更新于 2023-04-23 11:09:43">2023-04-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/408/">408</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计网- Ep1 - 概述「 万字长文」丨学习记录"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><em>Computer Networking A Top-Down Approach Learning Note Part 1</em></p>
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"conqueror712.github.io","root":"/","language":"zh-CN"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.4.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    Global.data_config = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="落雨乄天珀夜" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="swup-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="https://conqueror712.github.io/">
+                
+                Conqueror712
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
+        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            
+                
+                
+                <img src="https://cdnjson.com/images/2023/03/18/1266437.jpg" alt="计网- Ep1 - 概述「 万字长文」丨学习记录" class="max-w-none"/>
+                
+                <h1 class="article-title-cover">计网- Ep1 - 概述「 万字长文」丨学习记录</h1>
+            
+            </div>
+            
+                    
+        
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Conqueror712</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-02-09 20:03:22</span>
+        <span class="mobile">2023-02-09 20:03:22</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-04-23 11:09:43</span>
+            <span class="mobile">2023-04-23 11:09:43</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/408/">408</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body">
+            <p><em>Computer Networking A Top-Down Approach Learning Note Part 1</em></p>
 <hr>
 <p><strong>前言</strong>：</p>
 <p>本文是笔者初学计算机网络的笔记和一些心得，难免会有部分疏漏和错误，还请各位读者积极指出，不吝赐教。</p>
@@ -151,9 +338,9 @@
 <p>事不宜迟，我们开始吧！</p>
 <blockquote>
 <p>个人博客：<a href="https://conqueror712.github.io/">https://conqueror712.github.io/</a></p>
-<p>知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/soeur712/posts">https://www.zhihu.com/people/soeur712/posts</a></p>
-<p>Bilibili：<a target="_blank" rel="noopener" href="https://space.bilibili.com/57089326">https://space.bilibili.com/57089326</a></p>
-<p>掘金：<a target="_blank" rel="noopener" href="https://juejin.cn/user/1297878069809725/posts">https://juejin.cn/user/1297878069809725/posts</a></p>
+<p>知乎：<a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/people/soeur712/posts" >https://www.zhihu.com/people/soeur712/posts <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>Bilibili：<a class="link"   target="_blank" rel="noopener" href="https://space.bilibili.com/57089326" >https://space.bilibili.com/57089326 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>掘金：<a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/user/1297878069809725/posts" >https://juejin.cn/user/1297878069809725/posts <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 </blockquote>
 <hr>
 <h1 id="Unit-1-计算机网络概述"><a href="#Unit-1-计算机网络概述" class="headerlink" title="Unit 1 计算机网络概述"></a>Unit 1 计算机网络概述</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>该课程的总体教学目标需要掌握计网的什么？</p>
@@ -170,11 +357,26 @@
 <p><strong>框架、术语、原理、历史。</strong></p>
 <p>此外，每一章大致分为两个部分：原理 + 实例；</p>
 <p>其中，原理又有两个部分：功能 + 服务（一般是向上层提供接口的服务）</p>
-<p><img src="https://s2.loli.net/2023/02/05/CmaRS2pUiZKVYP5.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/05/CmaRS2pUiZKVYP5.png"
+                      alt="avatar"
+                ></p>
 <hr>
-<h2 id="什么是Internet"><a href="#什么是Internet" class="headerlink" title="什么是Internet?"></a>什么是Internet?</h2><p><img src="https://s2.loli.net/2023/02/05/ejtp8fUq4HBGIRO.png" alt="avatar"></p>
+<h2 id="什么是Internet"><a href="#什么是Internet" class="headerlink" title="什么是Internet?"></a>什么是Internet?</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/05/ejtp8fUq4HBGIRO.png"
+                      alt="avatar"
+                ></p>
 <h3 id="从具体构成角度："><a href="#从具体构成角度：" class="headerlink" title="从具体构成角度："></a>从具体构成角度：</h3><p>互联网只是网络的一种，广义的网络就是<strong>节点 + 边</strong>，例如蜘蛛网、家族图谱等等。</p>
-<p><img src="https://cdnjson.com/images/2023/03/23/image5d8db9ed618aaa1b.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdnjson.com/images/2023/03/23/image5d8db9ed618aaa1b.png"
+                      alt="avatar"
+                ></p>
 <ul>
 <li>主机节点：主机<code>host</code> &#x3D; 端系统<code>end system</code>，图例是<code>□</code>，还包括运行的网络应用程序；</li>
 <li>数据交换节点：负责转发数据，图例是<code>○</code>；</li>
@@ -232,7 +434,12 @@
 <li><strong>IETF</strong>（互联网工程任务组）组织管理了<strong>使互联网工作的共享技术标准</strong>。</li>
 <li><strong>ICANN</strong>（互联网名称与数字地址分配机构）负责分发域名和IP地址（计算机用来在互联网上相互识别的数字），但是并不控制谁可以连接到互联网。</li>
 </ul>
-<p><img src="http://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper_files/ruswp_diag4.gif" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper_files/ruswp_diag4.gif"
+                      alt="avatar"
+                ></p>
 <h3 id="什么是IPv6？"><a href="#什么是IPv6？" class="headerlink" title="什么是IPv6？"></a>什么是IPv6？</h3><p>目前的互联网标准，称为IPv4，只允许大约4亿个IP地址。这在1970年代被认为是一个很大的数字，但今天，IPv4地址的供应几乎耗尽。</p>
 <p>因此，互联网工程师开发了一种名为IPv6的新标准。IPv6允许数量惊人，确切的数字是<strong>39位数</strong>，确保几乎永远不会再耗尽。</p>
 <p>具体的结构等细节这里不展开叙述。</p>
@@ -241,14 +448,29 @@
 <li>WIFI：任何人都可以购买WIFI网络设备，为了防止互相干扰，WIFI网络的功率和范围有严格的限制；</li>
 <li>蜂窝：更加集中，通过将服务区域分解为单元来工作，单元小到一个街区，大到数英里宽，每个单元的重心都有一个塔来提供服务，当设备从一个小区移动到另一个小区时，网络会自动将设备从一个塔转移到另一个塔，允许用户继续通信而不会中断。蜂窝网络使用许可用于其<strong>专用的频谱</strong>，由于该频谱稀缺，因此通常通过拍卖授予。</li>
 </ul>
-<p><img src="http://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper_files/ruswp_diag3.gif" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper_files/ruswp_diag3.gif"
+                      alt="avatar"
+                ></p>
 <h3 id="什么是云？"><a href="#什么是云？" class="headerlink" title="什么是云？"></a>什么是云？</h3><p>云描述了一种在 2000 年代初流行的计算方法。通过将文件存储在服务器上并通过互联网交付软件，云计算为用户提供了更简单、更可靠的计算体验。</p>
 <hr>
-<h2 id="网络边缘"><a href="#网络边缘" class="headerlink" title="网络边缘"></a>网络边缘</h2><p><img src="https://s2.loli.net/2023/02/06/UByjCsFYKgawRHn.png" alt="avatar"></p>
+<h2 id="网络边缘"><a href="#网络边缘" class="headerlink" title="网络边缘"></a>网络边缘</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/06/UByjCsFYKgawRHn.png"
+                      alt="avatar"
+                ></p>
 <h3 id="何为网络边缘？"><a href="#何为网络边缘？" class="headerlink" title="何为网络边缘？"></a>何为网络边缘？</h3><p><strong>采用网络设施的面向连接的服务；</strong></p>
 <p>说白了，就是上文提到过的那些”方的”，也就是主机节点和应用程序<code>□</code>，它们是edge；</p>
 <p>网络边缘是计算机网络的部件，当然还有其他的部件，一起构成了网络结构：</p>
-<p><img src="https://cdnjson.com/images/2023/03/23/image743f3bbf41c6554c.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdnjson.com/images/2023/03/23/image743f3bbf41c6554c.png"
+                      alt="avatar"
+                ></p>
 <hr>
 <h3 id="应用进程间的通讯方式："><a href="#应用进程间的通讯方式：" class="headerlink" title="应用进程间的通讯方式："></a>应用进程间的通讯方式：</h3><p>主要有两种模式</p>
 <h4 id="CS模式"><a href="#CS模式" class="headerlink" title="CS模式"></a>CS模式</h4><p>即客户端-服务器模式，这种模式是<strong>主从的</strong>，资源在服务器，客户端来请求之；</p>
@@ -265,7 +487,12 @@
 </blockquote>
 <hr>
 <h3 id="关于连接服务："><a href="#关于连接服务：" class="headerlink" title="关于连接服务："></a>关于连接服务：</h3><p>共同点：都是采用网络设施进行的。</p>
-<p><img src="https://cdnjson.com/images/2023/03/23/image30aa3f256f40a3aa.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdnjson.com/images/2023/03/23/image30aa3f256f40a3aa.png"
+                      alt="avatar"
+                ></p>
 <h4 id="TCP服务"><a href="#TCP服务" class="headerlink" title="TCP服务"></a>TCP服务</h4><ul>
 <li>可靠：不出错、不乱序、不重复、不丢失；</li>
 <li>流量控制：维护一个Balance，协调发送方和接收方的速率；</li>
@@ -278,10 +505,20 @@
 <li>无拥塞控制</li>
 </ul>
 <p>对于无连接服务，这里有补充：</p>
-<p><img src="https://s2.loli.net/2023/02/09/IFwhJQifvaKbPu3.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/09/IFwhJQifvaKbPu3.png"
+                      alt="avatar"
+                ></p>
 <hr>
 <h2 id="网络核心"><a href="#网络核心" class="headerlink" title="网络核心"></a>网络核心</h2><p>网络分类：</p>
-<p><img src="https://cdnjson.com/images/2023/03/23/image7eaaa24dbd1b5bb1.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdnjson.com/images/2023/03/23/image7eaaa24dbd1b5bb1.png"
+                      alt="avatar"
+                ></p>
 <p>基本问题：<strong>数据怎样通过网络进行传输？</strong></p>
 <p>网络核心包括分组交换机以及网络链路，它们一起构成了<strong>网状网络</strong>；</p>
 <h3 id="分组交换："><a href="#分组交换：" class="headerlink" title="分组交换："></a>分组交换：</h3><p>关键功能：<strong>路由 + 转发</strong></p>
@@ -295,17 +532,32 @@
 <li>将分组packet从一个路由器传到相邻路由器hop，一段段最终从源端传送到目标端；</li>
 <li>每段：采用链路的最大传输能力，即带宽；</li>
 </ul>
-<p><img src="https://s2.loli.net/2023/02/08/i8aqtym1HWz3ATd.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/08/i8aqtym1HWz3ATd.png"
+                      alt="avatar"
+                ></p>
 <h4 id="存储转发传输"><a href="#存储转发传输" class="headerlink" title="存储转发传输"></a>存储转发传输</h4><ul>
 <li>被传输到下一个链路之前，整个分组必须到达路由器；</li>
 <li>在一个速率为<code>R</code> bps的链路 ，一个长度为<code>L</code> bits 的分组 的存储转发延时： <code>L/R</code> s；</li>
 </ul>
-<h4 id="排队延时和分组丢失"><a href="#排队延时和分组丢失" class="headerlink" title="排队延时和分组丢失"></a>排队延时和分组丢失</h4><p><img src="https://s2.loli.net/2023/02/08/hGF62ZPvNKTErOq.png" alt="avatar"></p>
+<h4 id="排队延时和分组丢失"><a href="#排队延时和分组丢失" class="headerlink" title="排队延时和分组丢失"></a>排队延时和分组丢失</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/08/hGF62ZPvNKTErOq.png"
+                      alt="avatar"
+                ></p>
 <ul>
 <li>如果到达速率 &gt; 链路的输出速率，则分组将会排队，形成queue；</li>
 <li>但如果路由器的缓存用完了，分组将会被抛弃，俗称丢包；</li>
 </ul>
-<h4 id="统计多路复用"><a href="#统计多路复用" class="headerlink" title="统计多路复用"></a>统计多路复用</h4><p><img src="https://s2.loli.net/2023/02/08/kVEIqCre7obDHF1.png" alt="avatar"></p>
+<h4 id="统计多路复用"><a href="#统计多路复用" class="headerlink" title="统计多路复用"></a>统计多路复用</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/08/kVEIqCre7obDHF1.png"
+                      alt="avatar"
+                ></p>
 <h4 id="转发表和路由选择协议"><a href="#转发表和路由选择协议" class="headerlink" title="转发表和路由选择协议"></a>转发表和路由选择协议</h4><p>路由器怎样决定它应当向哪条链路进行转发呢？</p>
 <p>在因特网中，每个端系统具有一个称为IP地址的地址，当源主机要向目标端系统发送一个packet时，源在该分组的首部包含了目的地的IP地址，方便路由器进行转发；</p>
 <p>另外，每台路由器具有一个<strong>转发表</strong>，用于将目的地址（或者一部分）映射为输出链路。</p>
@@ -345,10 +597,25 @@
 <li>TDM 时分复用</li>
 <li>WDM 波分复用</li>
 </ul>
-<p><img src="https://s2.loli.net/2023/02/08/2eDUayYI1VsgCwX.png" alt="avatar"></p>
-<h4 id="电路交换-计算"><a href="#电路交换-计算" class="headerlink" title="电路交换-计算"></a>电路交换-计算</h4><p><img src="https://s2.loli.net/2023/02/08/Ep6Xf7Lhr2ayGPH.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/08/2eDUayYI1VsgCwX.png"
+                      alt="avatar"
+                ></p>
+<h4 id="电路交换-计算"><a href="#电路交换-计算" class="headerlink" title="电路交换-计算"></a>电路交换-计算</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/08/Ep6Xf7Lhr2ayGPH.png"
+                      alt="avatar"
+                ></p>
 <hr>
-<h3 id="分组交换网中的时延、丢包和吞吐量详解："><a href="#分组交换网中的时延、丢包和吞吐量详解：" class="headerlink" title="分组交换网中的时延、丢包和吞吐量详解："></a>分组交换网中的时延、丢包和吞吐量详解：</h3><h4 id="四种时延："><a href="#四种时延：" class="headerlink" title="四种时延："></a>四种时延：</h4><p><img src="https://cdnjson.com/images/2023/03/23/image238dd675d5273d52.png" alt="avatar"></p>
+<h3 id="分组交换网中的时延、丢包和吞吐量详解："><a href="#分组交换网中的时延、丢包和吞吐量详解：" class="headerlink" title="分组交换网中的时延、丢包和吞吐量详解："></a>分组交换网中的时延、丢包和吞吐量详解：</h3><h4 id="四种时延："><a href="#四种时延：" class="headerlink" title="四种时延："></a>四种时延：</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdnjson.com/images/2023/03/23/image238dd675d5273d52.png"
+                      alt="avatar"
+                ></p>
 <ul>
 <li>处理时延：检查分组首部和决定将该分组导向何处所需要的时间是处理时延的一部分；</li>
 <li>排队时延：在队列中，当分组在链路上等待传输时，它经受排队时延；</li>
@@ -356,9 +623,19 @@
 <li>传播时延：从链路起点到终点的物理传播需要的时间；</li>
 </ul>
 <h4 id="流量强度："><a href="#流量强度：" class="headerlink" title="流量强度："></a><strong>流量强度</strong>：</h4><p><code>L * a / R</code>，<code>a</code>是表示分组到达队列的平均速率，单位是<code>分组/秒</code>，即<code>pkt/s</code>；</p>
-<p><img src="https://s2.loli.net/2023/02/08/pEzcJ6yqtaZl5A4.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/08/pEzcJ6yqtaZl5A4.png"
+                      alt="avatar"
+                ></p>
 <h4 id="丢包："><a href="#丢包：" class="headerlink" title="丢包："></a><strong>丢包</strong>：</h4><p>随着流量强度接近1，队列将满，路由器将丢弃后续分组。</p>
-<h4 id="端到端时延："><a href="#端到端时延：" class="headerlink" title="端到端时延："></a>端到端时延：</h4><p><img src="https://s2.loli.net/2023/02/08/cGiBtFpqmgaOxYD.png" alt="avatar"></p>
+<h4 id="端到端时延："><a href="#端到端时延：" class="headerlink" title="端到端时延："></a>端到端时延：</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/08/cGiBtFpqmgaOxYD.png"
+                      alt="avatar"
+                ></p>
 <h5 id="1-Traceroute："><a href="#1-Traceroute：" class="headerlink" title="1. Traceroute："></a>1. Traceroute：</h5><p>Traceroute是一个简单的程序，它能够在任何因特网上运行。</p>
 <p>当用户指定一个目的主机名字时，源主机中的该程序朝着该目的地发送多个特殊的分组。</p>
 <p>更具体的内容暂略。</p>
@@ -368,7 +645,12 @@
 <li>瞬时吞吐量：是主机接收到文件的速率，以bps计；</li>
 <li>平均吞吐量：如果该文件由<code>F bit</code>，主机B接收到所有<code>F bit</code>用去了<code>T秒</code>，则文件传送的平均吞吐量是<code>F / T bps</code>；</li>
 </ul>
-<h5 id="瓶颈链路"><a href="#瓶颈链路" class="headerlink" title="瓶颈链路"></a>瓶颈链路</h5><p><img src="https://s2.loli.net/2023/02/08/gLapHFwhsI7WqyN.png" alt="avatar"></p>
+<h5 id="瓶颈链路"><a href="#瓶颈链路" class="headerlink" title="瓶颈链路"></a>瓶颈链路</h5><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/08/gLapHFwhsI7WqyN.png"
+                      alt="avatar"
+                ></p>
 <hr>
 <h2 id="接入网与物理媒体"><a href="#接入网与物理媒体" class="headerlink" title="接入网与物理媒体"></a>接入网与物理媒体</h2><p>接入网是指host与edge router相连的这条物理链路；</p>
 <p>三个方式：</p>
@@ -382,7 +664,12 @@
 <li>接入网络的带宽？</li>
 <li>共享 or 专用？</li>
 </ul>
-<h3 id="家庭接入："><a href="#家庭接入：" class="headerlink" title="家庭接入："></a>家庭接入：</h3><p><img src="https://s2.loli.net/2023/02/08/qMKP6JzvwNAlVmi.png" alt="avatar"></p>
+<h3 id="家庭接入："><a href="#家庭接入：" class="headerlink" title="家庭接入："></a>家庭接入：</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/08/qMKP6JzvwNAlVmi.png"
+                      alt="avatar"
+                ></p>
 <ul>
 <li>DSL 数字用户线，即接入网<ul>
 <li>采用现存的到交换局DSLAM的电话线；<ul>
@@ -395,11 +682,21 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://s2.loli.net/2023/02/08/dzcoI4xFt3kKDEW.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/08/dzcoI4xFt3kKDEW.png"
+                      alt="avatar"
+                ></p>
 <hr>
 <ul>
 <li><p>电缆</p>
-<p>  <img src="https://s2.loli.net/2023/02/08/AfL1I4be9KXhJtB.png" alt="avatar"></p>
+<p>  <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/08/AfL1I4be9KXhJtB.png"
+                      alt="avatar"
+                ></p>
 </li>
 </ul>
 <hr>
@@ -419,7 +716,12 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://s2.loli.net/2023/02/08/K3CfPj7cB6nm54F.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/08/K3CfPj7cB6nm54F.png"
+                      alt="avatar"
+                ></p>
 <hr>
 <ul>
 <li>拨号 + 卫星<ul>
@@ -436,22 +738,52 @@
 </li>
 </ul>
 <hr>
-<h3 id="企业接入网络："><a href="#企业接入网络：" class="headerlink" title="企业接入网络："></a>企业接入网络：</h3><p><img src="https://s2.loli.net/2023/02/08/OypJYFo6GZ1HmMc.png" alt="avatar"></p>
+<h3 id="企业接入网络："><a href="#企业接入网络：" class="headerlink" title="企业接入网络："></a>企业接入网络：</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/08/OypJYFo6GZ1HmMc.png"
+                      alt="avatar"
+                ></p>
 <ul>
 <li>以太网</li>
 <li>WiFi</li>
 </ul>
 <hr>
 <h3 id="广域无线接入网络："><a href="#广域无线接入网络：" class="headerlink" title="广域无线接入网络："></a>广域无线接入网络：</h3><p>各无线端系统共享无线接入网络（端系统到无线路由器），通过基站（接入站）；</p>
-<p><img src="https://s2.loli.net/2023/02/08/oVwYQ3TDIbL1vMJ.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/08/oVwYQ3TDIbL1vMJ.png"
+                      alt="avatar"
+                ></p>
 <hr>
-<h3 id="物理媒体："><a href="#物理媒体：" class="headerlink" title="物理媒体："></a>物理媒体：</h3><p><img src="https://cdnjson.com/images/2023/03/23/imagefdc98297cb8f7d9e.png" alt="avatar"></p>
-<p><img src="https://s2.loli.net/2023/02/08/x85PnRkLuey3gmH.png" alt="avatar"></p>
-<p><img src="https://s2.loli.net/2023/02/08/R6fuCnWYScw9Khy.png" alt="avatar"></p>
+<h3 id="物理媒体："><a href="#物理媒体：" class="headerlink" title="物理媒体："></a>物理媒体：</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdnjson.com/images/2023/03/23/imagefdc98297cb8f7d9e.png"
+                      alt="avatar"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/08/x85PnRkLuey3gmH.png"
+                      alt="avatar"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/08/R6fuCnWYScw9Khy.png"
+                      alt="avatar"
+                ></p>
 <hr>
 <h2 id="Internet结构和ISP"><a href="#Internet结构和ISP" class="headerlink" title="Internet结构和ISP"></a>Internet结构和ISP</h2><h3 id="互联网络结构：网络的网络"><a href="#互联网络结构：网络的网络" class="headerlink" title="互联网络结构：网络的网络"></a>互联网络结构：网络的网络</h3><p>端系统通过<strong>接入ISP</strong>来连接到互联网；</p>
 <p>若将每个接入ISP都连接到全局ISP，客户ISPs和提供者ISPs又经纪合约，这样一定会有竞争者有利可图，一定存在竞争，于是不能直接这么干；</p>
-<p><img src="https://s2.loli.net/2023/02/09/jEsRQm896bUuTCF.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/09/jEsRQm896bUuTCF.png"
+                      alt="avatar"
+                ></p>
 <ul>
 <li>POP: 高层ISP面向客户网络的接入点，涉及费用结算<ul>
 <li>如一个低层ISP接入多个高层ISP，多宿（multi home）</li>
@@ -497,7 +829,12 @@
 <li>实际数据：一个数据包最多可以包含 64 KB 的数据，大约是 20 页的纯文本。</li>
 </ul>
 <p>此外，如果互联网路由器遇到拥塞或其他技术问题，则可以通过简单地丢弃数据包来处理它。发送计算机负责检测数据包未到达其目标并发送另一个副本。这种方法似乎违反直觉，但它简化了互联网的核心基础设施，以更低的成本实现更高的性能。</p>
-<h3 id="数据单元DU："><a href="#数据单元DU：" class="headerlink" title="数据单元DU："></a>数据单元DU：</h3><p><img src="https://s2.loli.net/2023/02/09/LAfnrGHpzymOXt1.png" alt="avatar"></p>
+<h3 id="数据单元DU："><a href="#数据单元DU：" class="headerlink" title="数据单元DU："></a>数据单元DU：</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/09/LAfnrGHpzymOXt1.png"
+                      alt="avatar"
+                ></p>
 <p>上文提到过的：</p>
 <p>PDU (Protocol Data Unit)协议数据单元，是指对等层次之间传递的数据单位。</p>
 <ul>
@@ -508,7 +845,12 @@
 <li>其他更高层次的PDU是数据<code>data</code></li>
 </ul>
 <p><strong>具体来说</strong>：</p>
-<p><img src="https://cdnjson.com/images/2023/03/23/image94c1d7406046a3d4.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdnjson.com/images/2023/03/23/image94c1d7406046a3d4.png"
+                      alt="avatar"
+                ></p>
 <h3 id="分层处理和实现复杂系统的好处？"><a href="#分层处理和实现复杂系统的好处？" class="headerlink" title="分层处理和实现复杂系统的好处？"></a>分层处理和实现复杂系统的好处？</h3><ul>
 <li>概念化：结构清晰，便于标示网络组件，以及描述其相互关系<ul>
 <li>分层参考模型</li>
@@ -540,9 +882,24 @@
 <li>点对对协议PPP，802.11(wifi)，Ethernet</li>
 </ul>
 <p>物理层: 在线路上传送bit</p>
-<p><img src="https://cdnjson.com/images/2023/03/23/image58791ea91b1bcfce.png" alt="avatar"></p>
-<h3 id="ISO-x2F-OSI-参考模型："><a href="#ISO-x2F-OSI-参考模型：" class="headerlink" title="ISO &#x2F; OSI 参考模型："></a>ISO &#x2F; OSI 参考模型：</h3><p><img src="https://s2.loli.net/2023/02/09/sUY6iWKrzgXEuAk.png" alt="avatar"></p>
-<h3 id="封装与解封装："><a href="#封装与解封装：" class="headerlink" title="封装与解封装："></a>封装与解封装：</h3><p><img src="https://s2.loli.net/2023/02/09/ujJOm6TViNrvBZw.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdnjson.com/images/2023/03/23/image58791ea91b1bcfce.png"
+                      alt="avatar"
+                ></p>
+<h3 id="ISO-x2F-OSI-参考模型："><a href="#ISO-x2F-OSI-参考模型：" class="headerlink" title="ISO &#x2F; OSI 参考模型："></a>ISO &#x2F; OSI 参考模型：</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/09/sUY6iWKrzgXEuAk.png"
+                      alt="avatar"
+                ></p>
+<h3 id="封装与解封装："><a href="#封装与解封装：" class="headerlink" title="封装与解封装："></a>封装与解封装：</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/09/ujJOm6TViNrvBZw.png"
+                      alt="avatar"
+                ></p>
 <hr>
 <h2 id="面对攻击的网络"><a href="#面对攻击的网络" class="headerlink" title="面对攻击的网络"></a>面对攻击的网络</h2><p>网络安全领域主要探讨以下问题：</p>
 <ul>
@@ -563,7 +920,12 @@
 <li><strong>连接洪泛</strong>：攻击者在目标主机中创建大量的半开或者全开TCP连接，该主机因为这些伪造的连接而陷入困境，并停止接受合法的连接。</li>
 </ul>
 <p>值得一提的是，<strong>分布式DoS</strong>(Distributed DoS)攻击就是大名鼎鼎的DDoS攻击，攻击者控制多个源并让每个源向目标猛烈发送流量，比起单一主机的DoS，DDoS更加难以检测和防范。</p>
-<p><img src="https://s2.loli.net/2023/02/09/gaZ2Cz9KfmYvEIM.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/09/gaZ2Cz9KfmYvEIM.png"
+                      alt="avatar"
+                ></p>
 <h3 id="坏家伙能够嗅探分组："><a href="#坏家伙能够嗅探分组：" class="headerlink" title="坏家伙能够嗅探分组："></a>坏家伙能够嗅探分组：</h3><p>当无处不在的因特网接入极为便利并使得令人惊奇的新应用程序为移动用户所用的同时，也产生了重大的安全弱点——在无线传输设备的附近放置一台被动的接收机，该接收机就能得到传输的每个分组的副本。记录每个流经的分组副本的被动接收机也被称为<strong>分组嗅探器</strong>(packet sniffer)。</p>
 <p>当然，这也能够部署在有线环境中，这里先略过。</p>
 <p>因为分组嗅探器是被动的，也就是说它们不向信道中注入分组，所以难以检测它们的存在，因此，我们向无线信道发送分组的时候，<strong>必须接受这样的可能性</strong>。</p>
@@ -571,7 +933,12 @@
 <p>这里就介绍一个概念：</p>
 <p>将具有虚假源地址的分组注入因特网的能力被称为<strong>IP哄骗</strong> (IP spoofing)；</p>
 <hr>
-<h2 id="8-计算机网络的历史"><a href="#8-计算机网络的历史" class="headerlink" title="8. 计算机网络的历史"></a>8. 计算机网络的历史</h2><p><img src="https://s2.loli.net/2023/02/09/lt87ge4ZbTCksoW.png" alt="avatar"></p>
+<h2 id="8-计算机网络的历史"><a href="#8-计算机网络的历史" class="headerlink" title="8. 计算机网络的历史"></a>8. 计算机网络的历史</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/09/lt87ge4ZbTCksoW.png"
+                      alt="avatar"
+                ></p>
 <p>具体内容待补充，敬请期待！</p>
 <p><em>“不闻不若闻之，闻之不若见之，见之不若知之，知之不若行之。”</em></p>
 <hr>
@@ -581,7 +948,12 @@
 <p>有两种类型的域名。第一个是通用顶级域 （gTLD），例如 .com、.edu、.org 和 .gov。由于互联网起源于美国，因此这些域名往往在那里最受欢迎。这些域的权限通常委托给私人组织。</p>
 <p>还有国家代码顶级域 （ccTLD）。世界上每个国家都有自己的 2 个字母代码。例如，美国的 ccTLD 是 .us，英国的 ccTLD 是 .uk，中国的 ccTLD 是 .cn。这些域名由每个国家&#x2F;地区的当局管理。一些 ccTLD，如 .tv（代表岛国图瓦卢）和 .io（英属印度洋领地），在本国以外的地方很受欢迎。</p>
 </blockquote>
-<p><img src="http://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper_files/ruswp_diag6.gif" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper_files/ruswp_diag6.gif"
+                      alt="avatar"
+                ></p>
 <hr>
 <h2 id="二、浏览器的工作原理简述"><a href="#二、浏览器的工作原理简述" class="headerlink" title="二、浏览器的工作原理简述"></a>二、浏览器的工作原理简述</h2><h3 id="0-概述Overview："><a href="#0-概述Overview：" class="headerlink" title="0. 概述Overview："></a>0. 概述Overview：</h3><p>Web性能的两个主要问题：</p>
 <ol>
@@ -592,7 +964,12 @@
 <p>延迟是影响我们确保快速加载页面的能力的最大威胁。</p>
 <p>对于流畅的交互，开发人员的目标是确保高性能的网站交互，从平滑滚动到响应触摸。<strong>渲染时间是关键</strong>，要确保主线程能够完成我们投入的所有工作，并且仍然始终可用于处理用户交互。通过了解浏览器的单线程性质并在可能和适当的情况下最小化主线程的职责，可以提高 Web 性能，以确保呈现流畅和对交互的即时响应。</p>
 </blockquote>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f2c2ce0c78bd4510825974bec7e046d0~tplv-k3u1fbpfcp-zoom-1.image" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f2c2ce0c78bd4510825974bec7e046d0~tplv-k3u1fbpfcp-zoom-1.image"
+                      alt="avatar"
+                ></p>
 <hr>
 <h3 id="1-导航Navigation："><a href="#1-导航Navigation：" class="headerlink" title="1. 导航Navigation："></a>1. 导航Navigation：</h3><p>导航是加载网页的第一步；</p>
 <p>每当用户通过在地址栏中输入 URL、单击链接、提交表单以及其他操作来请求页面时，就是导航。</p>
@@ -608,7 +985,12 @@
 <li>权威DNS服务器：最后，授权DNS服务器将询问权威DNS服务器，以确定该域名的IP地址。</li>
 <li>缓存结果：找到的结果将被缓存，以便在将来不必再次查询。</li>
 </ol>
-<p><img src="https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work/latency.jpg" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work/latency.jpg"
+                      alt="avatar"
+                ></p>
 <h4 id="TCP三次握手："><a href="#TCP三次握手：" class="headerlink" title="TCP三次握手："></a>TCP三次握手：</h4><p>一旦知道 IP 地址，浏览器就会通过 TCP 三向握手建立与服务器的连接。</p>
 <p>TCP的三向握手技术通常被称为“SYN-SYN-ACK”（或更准确地说是SYN，SYN-ACK，ACK）。</p>
 <p>TCP三次握手是一种网络协议中的握手过程，主要用于确保客户端与服务器之间的可靠通信。步骤如下：</p>
@@ -629,13 +1011,18 @@
 <li>双方确认协商结果后，通信开始加密传输数据。</li>
 </ol>
 <p>TLS协商的过程确保了客户端和服务器之间的通信是安全的，防止了数据在传输过程中的泄露和篡改。</p>
-<p><img src="https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work/ssl.jpg" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work/ssl.jpg"
+                      alt="avatar"
+                ></p>
 <hr>
 <h3 id="2-响应Response："><a href="#2-响应Response：" class="headerlink" title="2. 响应Response："></a>2. 响应Response：</h3><p>现在，导航已经结束了，来到了响应的阶段。</p>
 <p>一旦我们与 Web 服务器建立了连接，浏览器就会<strong>代表用户发送初始 HTTP-GET 请求</strong>，</p>
 <p>对于网站来说，该请求通常是 HTML 文件。一旦服务器收到请求，它将回复相关的响应标头和HTML的内容。</p>
 <p>例如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en-US&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>My simple page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;styles.css&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;myscript.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;heading&quot;</span>&gt;</span>My Page<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>A paragraph with a <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://example.com/about&quot;</span>&gt;</span>link<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;myimage.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;image description&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;anotherscript.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en-US&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>My simple page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;styles.css&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;myscript.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;heading&quot;</span>&gt;</span>My Page<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>A paragraph with a <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://example.com/about&quot;</span>&gt;</span>link<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;myimage.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;image description&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;anotherscript.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
 
 
 
@@ -673,7 +1060,12 @@
 <h4 id="构建DOM树："><a href="#构建DOM树：" class="headerlink" title="构建DOM树："></a>构建DOM树：</h4><p>DOM 树描述文档的内容。<html> 元素是文档树的第一个标记和根节点。</p>
 <p>树反映了不同标签之间的关系和层次结构。嵌套在其他标签中的标签是子节点。</p>
 <p>DOM 节点的数量越多，构建 DOM 树所需的时间就越长。</p>
-<p><img src="https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work/dom.gif" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work/dom.gif"
+                      alt="avatar"
+                ></p>
 <h4 id="预加载扫描仪Preload-Scanner："><a href="#预加载扫描仪Preload-Scanner：" class="headerlink" title="预加载扫描仪Preload Scanner："></a>预加载扫描仪Preload Scanner：</h4><blockquote>
 <p>当浏览器构建 DOM 树时，此过程占用主线程。</p>
 <p>发生这种情况时，预加载扫描程序将解析可用内容并请求高优先级资源，如 CSS、JavaScript 和 Web 字体。</p>
@@ -681,13 +1073,18 @@
 <p>它将在后台检索资源，以便在主 HTML 解析器到达请求的资产时，它们可能已经在运行中，或者已被下载。预加载扫查器提供的优化可减少阻塞。</p>
 </blockquote>
 <p>例如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;styles.css&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;myscript.js&quot;</span> <span class="attr">async</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;myimage.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;image description&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;anotherscript.js&quot;</span> <span class="attr">async</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;styles.css&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;myscript.js&quot;</span> <span class="attr">async</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;myimage.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;image description&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;anotherscript.js&quot;</span> <span class="attr">async</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
 
 <p>在此示例中，当主线程解析 HTML 和 CSS 时，预加载扫描程序将找到脚本和图像，并开始下载它们。若要确保脚本不会阻止进程，请添加属性，或者如果 JavaScript 解析和执行顺序很重要，请添加属性。</p>
 <h4 id="构建CSSOM树："><a href="#构建CSSOM树：" class="headerlink" title="构建CSSOM树："></a>构建CSSOM树：</h4><p>关键呈现路径中的第二步是处理 CSS 并构建 CSSOM 树。</p>
 <p>CSS 对象模型类似于 DOM。DOM 和 CSSOM 都是树。它们是独立的数据结构。</p>
 <p>浏览器将 CSS 规则转换为它可以理解和使用的样式映射。浏览器遍历 CSS 中的每个规则集，根据 CSS 选择器创建具有父、子和同级关系的节点树。</p>
-<p><img src="https://s2.loli.net/2023/01/30/wzGjACSikPZ6rWp.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/01/30/wzGjACSikPZ6rWp.png"
+                      alt="avatar"
+                ></p>
 <p>除此之外，还有一些内容例如JavaScript编译和构建辅助功能树等等，这里不展开叙述。</p>
 <hr>
 <h3 id="3-渲染Render"><a href="#3-渲染Render" class="headerlink" title="3. 渲染Render"></a>3. 渲染Render</h3><p>接下来是渲染部分，以下是四个比较重要的内容：</p>
@@ -714,49 +1111,406 @@
 <li>技术支持：良好的技术支持是网站运行的重要保证，选择提供全天候技术支持的Hosting提供商是一个好选择。</li>
 </ol>
 <hr>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://conqueror712.github.io">落雨乄天珀夜</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://conqueror712.github.io/post/Computer-Network.html">https://conqueror712.github.io/post/Computer-Network.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://conqueror712.github.io" target="_blank">落雨乄天珀夜</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdnjson.com/images/2023/03/18/1266437.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/Go-FFmpeg.html"><img class="prev-cover" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c86138575ce24d23bff9f125f86a5244~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?" onerror="onerror=null;src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Go + FFmpeg交互丨学习记录</div></div></a></div><div class="next-post pull-right"><a href="/post/RabbitMQ.html"><img class="next-cover" src="https://cdnjson.com/images/2023/03/18/1300134.jpg" onerror="onerror=null;src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">RabbitMQ丨学习记录</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="avatar"/></div><div class="author-info__name">落雨乄天珀夜</div><div class="author-info__description">「落花人独立丨微雨燕双飞」</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Conqueror712"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Unit-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">Unit 1 计算机网络概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFInternet"><span class="toc-number">1.2.</span> <span class="toc-text">什么是Internet?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E5%85%B7%E4%BD%93%E6%9E%84%E6%88%90%E8%A7%92%E5%BA%A6%EF%BC%9A"><span class="toc-number">1.2.1.</span> <span class="toc-text">从具体构成角度：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%92%E8%81%94%E7%BD%91%EF%BC%9A"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">互联网：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%EF%BC%9A"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">协议：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E6%9C%8D%E5%8A%A1%E8%A7%92%E5%BA%A6%EF%BC%9A"><span class="toc-number">1.2.2.</span> <span class="toc-text">从服务角度：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E5%BA%94%E7%94%A8%E8%BF%9B%E7%A8%8B%EF%BC%9A"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">分布式应用进程：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%EF%BC%9A"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">基础设施：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%81%E5%9C%A8%E8%BF%90%E8%90%A5%E4%BA%92%E8%81%94%E7%BD%91%EF%BC%9F"><span class="toc-number">1.2.3.</span> <span class="toc-text">谁在运营互联网？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFIPv6%EF%BC%9F"><span class="toc-number">1.2.4.</span> <span class="toc-text">什么是IPv6？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E7%BA%BF%E4%BA%92%E8%81%94%E7%BD%91%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%EF%BC%9F"><span class="toc-number">1.2.5.</span> <span class="toc-text">无线互联网如何工作？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%91%EF%BC%9F"><span class="toc-number">1.2.6.</span> <span class="toc-text">什么是云？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98"><span class="toc-number">1.3.</span> <span class="toc-text">网络边缘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%95%E4%B8%BA%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98%EF%BC%9F"><span class="toc-number">1.3.1.</span> <span class="toc-text">何为网络边缘？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-number">1.3.2.</span> <span class="toc-text">应用进程间的通讯方式：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CS%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">CS模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#P2P%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">P2P模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%EF%BC%9A"><span class="toc-number">1.3.3.</span> <span class="toc-text">关于连接服务：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">TCP服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#UDP%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">UDP服务</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83"><span class="toc-number">1.4.</span> <span class="toc-text">网络核心</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2%EF%BC%9A"><span class="toc-number">1.4.1.</span> <span class="toc-text">分组交换：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E8%BD%AC%E5%8F%91%E4%BC%A0%E8%BE%93"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">存储转发传输</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%92%E9%98%9F%E5%BB%B6%E6%97%B6%E5%92%8C%E5%88%86%E7%BB%84%E4%B8%A2%E5%A4%B1"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">排队延时和分组丢失</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">统计多路复用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AC%E5%8F%91%E8%A1%A8%E5%92%8C%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.4.1.4.</span> <span class="toc-text">转发表和路由选择协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2%E7%9A%84%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-number">1.4.1.5.</span> <span class="toc-text">分组交换的网络层</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2%EF%BC%9A"><span class="toc-number">1.4.2.</span> <span class="toc-text">电路交换：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2-%E7%BD%91%E7%BB%9C%E8%B5%84%E6%BA%90%E5%88%86%E7%89%87"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">电路交换-网络资源分片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2-%E8%AE%A1%E7%AE%97"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">电路交换-计算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2%E7%BD%91%E4%B8%AD%E7%9A%84%E6%97%B6%E5%BB%B6%E3%80%81%E4%B8%A2%E5%8C%85%E5%92%8C%E5%90%9E%E5%90%90%E9%87%8F%E8%AF%A6%E8%A7%A3%EF%BC%9A"><span class="toc-number">1.4.3.</span> <span class="toc-text">分组交换网中的时延、丢包和吞吐量详解：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E7%A7%8D%E6%97%B6%E5%BB%B6%EF%BC%9A"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">四种时延：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E5%BC%BA%E5%BA%A6%EF%BC%9A"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">流量强度：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%A2%E5%8C%85%EF%BC%9A"><span class="toc-number">1.4.3.3.</span> <span class="toc-text">丢包：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AB%AF%E5%88%B0%E7%AB%AF%E6%97%B6%E5%BB%B6%EF%BC%9A"><span class="toc-number">1.4.3.4.</span> <span class="toc-text">端到端时延：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Traceroute%EF%BC%9A"><span class="toc-number">1.4.3.4.1.</span> <span class="toc-text">1. Traceroute：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E7%AB%AF%E7%B3%BB%E7%BB%9F%E3%80%81%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%92%8C%E5%85%B6%E4%BB%96%E6%97%B6%E5%BB%B6"><span class="toc-number">1.4.3.4.2.</span> <span class="toc-text">2. 端系统、应用程序和其他时延</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E5%90%9E%E5%90%90%E9%87%8F"><span class="toc-number">1.4.3.5.</span> <span class="toc-text">计算机网络中的吞吐量</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%93%B6%E9%A2%88%E9%93%BE%E8%B7%AF"><span class="toc-number">1.4.3.5.1.</span> <span class="toc-text">瓶颈链路</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%85%A5%E7%BD%91%E4%B8%8E%E7%89%A9%E7%90%86%E5%AA%92%E4%BD%93"><span class="toc-number">1.5.</span> <span class="toc-text">接入网与物理媒体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B6%E5%BA%AD%E6%8E%A5%E5%85%A5%EF%BC%9A"><span class="toc-number">1.5.1.</span> <span class="toc-text">家庭接入：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%81%E4%B8%9A%E6%8E%A5%E5%85%A5%E7%BD%91%E7%BB%9C%EF%BC%9A"><span class="toc-number">1.5.2.</span> <span class="toc-text">企业接入网络：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%BF%E5%9F%9F%E6%97%A0%E7%BA%BF%E6%8E%A5%E5%85%A5%E7%BD%91%E7%BB%9C%EF%BC%9A"><span class="toc-number">1.5.3.</span> <span class="toc-text">广域无线接入网络：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%AA%92%E4%BD%93%EF%BC%9A"><span class="toc-number">1.5.4.</span> <span class="toc-text">物理媒体：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Internet%E7%BB%93%E6%9E%84%E5%92%8CISP"><span class="toc-number">1.6.</span> <span class="toc-text">Internet结构和ISP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%92%E8%81%94%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%9A%84%E7%BD%91%E7%BB%9C"><span class="toc-number">1.6.1.</span> <span class="toc-text">互联网络结构：网络的网络</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E5%B1%82%E6%AC%A1%E5%8F%8A%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.7.</span> <span class="toc-text">协议层次及服务模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E5%8C%96%E6%96%B9%E5%BC%8F%E5%AE%9E%E7%8E%B0%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C%E5%8A%9F%E8%83%BD%EF%BC%9A"><span class="toc-number">1.7.1.</span> <span class="toc-text">层次化方式实现复杂网络功能：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E4%B8%8E%E5%8D%8F%E8%AE%AE%EF%BC%9A"><span class="toc-number">1.7.2.</span> <span class="toc-text">服务与协议：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E4%B8%8E%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.7.2.1.</span> <span class="toc-text">服务与协议的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E4%B8%8E%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%81%94%E7%B3%BB"><span class="toc-number">1.7.2.2.</span> <span class="toc-text">服务与协议的联系</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E5%8C%85%EF%BC%9F"><span class="toc-number">1.7.3.</span> <span class="toc-text">什么是数据包？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8D%95%E5%85%83DU%EF%BC%9A"><span class="toc-number">1.7.4.</span> <span class="toc-text">数据单元DU：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E5%A4%84%E7%90%86%E5%92%8C%E5%AE%9E%E7%8E%B0%E5%A4%8D%E6%9D%82%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%A5%BD%E5%A4%84%EF%BC%9F"><span class="toc-number">1.7.5.</span> <span class="toc-text">分层处理和实现复杂系统的好处？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Internet%E5%8D%8F%E8%AE%AE%E6%A0%88%EF%BC%9A"><span class="toc-number">1.7.6.</span> <span class="toc-text">Internet协议栈：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ISO-x2F-OSI-%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B%EF%BC%9A"><span class="toc-number">1.7.7.</span> <span class="toc-text">ISO &#x2F; OSI 参考模型：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E4%B8%8E%E8%A7%A3%E5%B0%81%E8%A3%85%EF%BC%9A"><span class="toc-number">1.7.8.</span> <span class="toc-text">封装与解封装：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%AF%B9%E6%94%BB%E5%87%BB%E7%9A%84%E7%BD%91%E7%BB%9C"><span class="toc-number">1.8.</span> <span class="toc-text">面对攻击的网络</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%8F%E5%AE%B6%E4%BC%99%E8%83%BD%E5%A4%9F%E7%BB%8F%E5%9B%A0%E7%89%B9%E7%BD%91%E5%B0%86%E6%9C%89%E5%AE%B3%E7%A8%8B%E5%BA%8F%E6%94%BE%E5%85%A5%E4%BD%A0%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%9A"><span class="toc-number">1.8.1.</span> <span class="toc-text">坏家伙能够经因特网将有害程序放入你的计算机中：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%8F%E5%AE%B6%E4%BC%99%E8%83%BD%E5%A4%9F%E6%94%BB%E5%87%BB%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%EF%BC%9A"><span class="toc-number">1.8.2.</span> <span class="toc-text">坏家伙能够攻击服务器和网络基础设施：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%8F%E5%AE%B6%E4%BC%99%E8%83%BD%E5%A4%9F%E5%97%85%E6%8E%A2%E5%88%86%E7%BB%84%EF%BC%9A"><span class="toc-number">1.8.3.</span> <span class="toc-text">坏家伙能够嗅探分组：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%8F%E5%AE%B6%E4%BC%99%E8%83%BD%E5%A4%9F%E4%BC%AA%E8%A3%85%E6%88%90%E4%BD%A0%E4%BF%A1%E4%BB%BB%E7%9A%84%E4%BA%BA%EF%BC%9A"><span class="toc-number">1.8.4.</span> <span class="toc-text">坏家伙能够伪装成你信任的人：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E5%8E%86%E5%8F%B2"><span class="toc-number">1.9.</span> <span class="toc-text">8. 计算机网络的历史</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Unit-1-5-%E5%BE%85%E6%95%B4%E7%90%86%E7%9A%84%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86"><span class="toc-number">2.</span> <span class="toc-text">Unit 1.5 待整理的网络知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9F%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">一、什么是域名系统？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0"><span class="toc-number">2.2.</span> <span class="toc-text">二、浏览器的工作原理简述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-%E6%A6%82%E8%BF%B0Overview%EF%BC%9A"><span class="toc-number">2.2.1.</span> <span class="toc-text">0. 概述Overview：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AF%BC%E8%88%AANavigation%EF%BC%9A"><span class="toc-number">2.2.2.</span> <span class="toc-text">1. 导航Navigation：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E6%9F%A5%E6%89%BEDNS-Lookup%EF%BC%9A"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">域名解析查找DNS Lookup：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%9A"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">TCP三次握手：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TLS%E5%8D%8F%E5%95%86%EF%BC%9A"><span class="toc-number">2.2.2.3.</span> <span class="toc-text">TLS协商：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%93%8D%E5%BA%94Response%EF%BC%9A"><span class="toc-number">2.2.3.</span> <span class="toc-text">2. 响应Response：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">HTTP请求方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP%E6%85%A2%E5%90%AF%E5%8A%A8-x2F-14KB%E8%A7%84%E5%88%99%EF%BC%9A"><span class="toc-number">2.2.3.2.</span> <span class="toc-text">TCP慢启动 &#x2F; 14KB规则：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%EF%BC%9A"><span class="toc-number">2.2.3.3.</span> <span class="toc-text">拥塞控制：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90Parsing%EF%BC%9A"><span class="toc-number">2.2.3.4.</span> <span class="toc-text">解析Parsing：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E5%BB%BADOM%E6%A0%91%EF%BC%9A"><span class="toc-number">2.2.3.5.</span> <span class="toc-text">构建DOM树：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%84%E5%8A%A0%E8%BD%BD%E6%89%AB%E6%8F%8F%E4%BB%AAPreload-Scanner%EF%BC%9A"><span class="toc-number">2.2.3.6.</span> <span class="toc-text">预加载扫描仪Preload Scanner：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E5%BB%BACSSOM%E6%A0%91%EF%BC%9A"><span class="toc-number">2.2.3.7.</span> <span class="toc-text">构建CSSOM树：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%B8%B2%E6%9F%93Render"><span class="toc-number">2.2.4.</span> <span class="toc-text">3. 渲染Render</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Style"><span class="toc-number">2.2.4.1.</span> <span class="toc-text">Style</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Layout"><span class="toc-number">2.2.4.2.</span> <span class="toc-text">Layout</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Paint"><span class="toc-number">2.2.4.3.</span> <span class="toc-text">Paint</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Compositing"><span class="toc-number">2.2.4.4.</span> <span class="toc-text">Compositing</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Hosting"><span class="toc-number">2.3.</span> <span class="toc-text">三、Hosting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-%E6%A6%82%E8%BF%B0Overview%EF%BC%9A-1"><span class="toc-number">2.3.1.</span> <span class="toc-text">0. 概述Overview：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Hosting%E7%BB%86%E8%8A%82%EF%BC%9A"><span class="toc-number">2.3.2.</span> <span class="toc-text">1. Hosting细节：</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/CargoBuild2.html" title="移花接木[续]丨从零开始的环境配置流程"><img src="https://cdnjson.com/images/2023/07/23/wallhaven-5gkxz3.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="移花接木[续]丨从零开始的环境配置流程"/></a><div class="content"><a class="title" href="/post/CargoBuild2.html" title="移花接木[续]丨从零开始的环境配置流程">移花接木[续]丨从零开始的环境配置流程</a><time datetime="2023-07-23T13:02:25.000Z" title="发表于 2023-07-23 21:02:25">2023-07-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/CargoBuild.html" title="移花接木丨重定义CUDA函数与Cargo构建"><img src="https://cdnjson.com/images/2023/07/16/wallhaven-2y33xy.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="移花接木丨重定义CUDA函数与Cargo构建"/></a><div class="content"><a class="title" href="/post/CargoBuild.html" title="移花接木丨重定义CUDA函数与Cargo构建">移花接木丨重定义CUDA函数与Cargo构建</a><time datetime="2023-07-16T05:35:38.000Z" title="发表于 2023-07-16 13:35:38">2023-07-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/FastText.html" title="文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录"><img src="https://cdnjson.com/images/2023/07/12/wallhaven-rrjxpw.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录"/></a><div class="content"><a class="title" href="/post/FastText.html" title="文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录">文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录</a><time datetime="2023-07-11T06:06:45.000Z" title="发表于 2023-07-11 14:06:45">2023-07-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/nvprof.html" title="CUDA性能分析丨ltrace和nvprof工具如何使用？"><img src="https://cdnjson.com/images/2023/07/09/wallhaven-kx2g71.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="CUDA性能分析丨ltrace和nvprof工具如何使用？"/></a><div class="content"><a class="title" href="/post/nvprof.html" title="CUDA性能分析丨ltrace和nvprof工具如何使用？">CUDA性能分析丨ltrace和nvprof工具如何使用？</a><time datetime="2023-07-09T11:15:02.000Z" title="发表于 2023-07-09 19:15:02">2023-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ZLUDA.html" title="ZLUDA丨如何在Intel的GPU上运行CUDA代码？"><img src="https://cdnjson.com/images/2023/07/02/wallhaven-welrv7.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="ZLUDA丨如何在Intel的GPU上运行CUDA代码？"/></a><div class="content"><a class="title" href="/post/ZLUDA.html" title="ZLUDA丨如何在Intel的GPU上运行CUDA代码？">ZLUDA丨如何在Intel的GPU上运行CUDA代码？</a><time datetime="2023-07-02T13:07:09.000Z" title="发表于 2023-07-02 21:07:09">2023-07-02</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdnjson.com/images/2023/03/18/1266437.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 落雨乄天珀夜</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
-  window.MathJax = {
-    tex: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"]],
-      tags: 'ams'
-    },
-    chtml: {
-      scale: 1.2
-    },
-    options: {
-      renderActions: {
-        findScript: [10, doc => {
-          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
-            const display = !!node.type.match(/; *mode=display/)
-            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
-            const text = document.createTextNode('')
-            node.parentNode.replaceChild(text, node)
-            math.start = {node: text, delim: '', n: 0}
-            math.end = {node: text, delim: '', n: 0}
-            doc.math.push(math)
-          }
-        }, ''],
-        insertScript: [200, () => {
-          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
-            const target = node.parentNode
-            if (target.nodeName.toLowerCase() === 'li') {
-              target.parentNode.classList.add('has-jax')
-            } else {
-              target.classList.add('has-jax')
-            }
-          });
-        }, '', false]
-      }
-    }
-  }
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 计网- Ep1 - 概述「 万字长文」丨学习记录</li>
+        <li><strong>作者:</strong> Conqueror712</li>
+        <li><strong>创建于
+                :</strong> 2023-02-09 20:03:22</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2023-04-23 11:09:43
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://redefine.ohevan.com//post/Computer-Network.html
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+            本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 进行许可。
+            
+
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                        rel="prev"
+                        href="/post/Go-FFmpeg.html"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Go + FFmpeg交互丨学习记录</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                        rel="next"
+                        href="/post/RabbitMQ.html"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">RabbitMQ丨学习记录</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container">
+                <div class="comments-container pjax">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;评论
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-swup-reload-script>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">计网- Ep1 - 概述「 万字长文」丨学习记录</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Unit-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0"><span class="nav-text">Unit 1 计算机网络概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFInternet"><span class="nav-text">什么是Internet?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E%E5%85%B7%E4%BD%93%E6%9E%84%E6%88%90%E8%A7%92%E5%BA%A6%EF%BC%9A"><span class="nav-text">从具体构成角度：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E%E6%9C%8D%E5%8A%A1%E8%A7%92%E5%BA%A6%EF%BC%9A"><span class="nav-text">从服务角度：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%81%E5%9C%A8%E8%BF%90%E8%90%A5%E4%BA%92%E8%81%94%E7%BD%91%EF%BC%9F"><span class="nav-text">谁在运营互联网？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFIPv6%EF%BC%9F"><span class="nav-text">什么是IPv6？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%BA%BF%E4%BA%92%E8%81%94%E7%BD%91%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%EF%BC%9F"><span class="nav-text">无线互联网如何工作？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%91%EF%BC%9F"><span class="nav-text">什么是云？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98"><span class="nav-text">网络边缘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%95%E4%B8%BA%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98%EF%BC%9F"><span class="nav-text">何为网络边缘？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="nav-text">应用进程间的通讯方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%EF%BC%9A"><span class="nav-text">关于连接服务：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83"><span class="nav-text">网络核心</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2%EF%BC%9A"><span class="nav-text">分组交换：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2%EF%BC%9A"><span class="nav-text">电路交换：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2%E7%BD%91%E4%B8%AD%E7%9A%84%E6%97%B6%E5%BB%B6%E3%80%81%E4%B8%A2%E5%8C%85%E5%92%8C%E5%90%9E%E5%90%90%E9%87%8F%E8%AF%A6%E8%A7%A3%EF%BC%9A"><span class="nav-text">分组交换网中的时延、丢包和吞吐量详解：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%85%A5%E7%BD%91%E4%B8%8E%E7%89%A9%E7%90%86%E5%AA%92%E4%BD%93"><span class="nav-text">接入网与物理媒体</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B6%E5%BA%AD%E6%8E%A5%E5%85%A5%EF%BC%9A"><span class="nav-text">家庭接入：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%81%E4%B8%9A%E6%8E%A5%E5%85%A5%E7%BD%91%E7%BB%9C%EF%BC%9A"><span class="nav-text">企业接入网络：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%BF%E5%9F%9F%E6%97%A0%E7%BA%BF%E6%8E%A5%E5%85%A5%E7%BD%91%E7%BB%9C%EF%BC%9A"><span class="nav-text">广域无线接入网络：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E5%AA%92%E4%BD%93%EF%BC%9A"><span class="nav-text">物理媒体：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Internet%E7%BB%93%E6%9E%84%E5%92%8CISP"><span class="nav-text">Internet结构和ISP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%92%E8%81%94%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%9A%84%E7%BD%91%E7%BB%9C"><span class="nav-text">互联网络结构：网络的网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8F%E8%AE%AE%E5%B1%82%E6%AC%A1%E5%8F%8A%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9E%8B"><span class="nav-text">协议层次及服务模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E5%8C%96%E6%96%B9%E5%BC%8F%E5%AE%9E%E7%8E%B0%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C%E5%8A%9F%E8%83%BD%EF%BC%9A"><span class="nav-text">层次化方式实现复杂网络功能：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E4%B8%8E%E5%8D%8F%E8%AE%AE%EF%BC%9A"><span class="nav-text">服务与协议：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E5%8C%85%EF%BC%9F"><span class="nav-text">什么是数据包？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8D%95%E5%85%83DU%EF%BC%9A"><span class="nav-text">数据单元DU：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%B1%82%E5%A4%84%E7%90%86%E5%92%8C%E5%AE%9E%E7%8E%B0%E5%A4%8D%E6%9D%82%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%A5%BD%E5%A4%84%EF%BC%9F"><span class="nav-text">分层处理和实现复杂系统的好处？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Internet%E5%8D%8F%E8%AE%AE%E6%A0%88%EF%BC%9A"><span class="nav-text">Internet协议栈：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ISO-x2F-OSI-%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B%EF%BC%9A"><span class="nav-text">ISO &#x2F; OSI 参考模型：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%81%E8%A3%85%E4%B8%8E%E8%A7%A3%E5%B0%81%E8%A3%85%EF%BC%9A"><span class="nav-text">封装与解封装：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E5%AF%B9%E6%94%BB%E5%87%BB%E7%9A%84%E7%BD%91%E7%BB%9C"><span class="nav-text">面对攻击的网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%8F%E5%AE%B6%E4%BC%99%E8%83%BD%E5%A4%9F%E7%BB%8F%E5%9B%A0%E7%89%B9%E7%BD%91%E5%B0%86%E6%9C%89%E5%AE%B3%E7%A8%8B%E5%BA%8F%E6%94%BE%E5%85%A5%E4%BD%A0%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%9A"><span class="nav-text">坏家伙能够经因特网将有害程序放入你的计算机中：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%8F%E5%AE%B6%E4%BC%99%E8%83%BD%E5%A4%9F%E6%94%BB%E5%87%BB%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%EF%BC%9A"><span class="nav-text">坏家伙能够攻击服务器和网络基础设施：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%8F%E5%AE%B6%E4%BC%99%E8%83%BD%E5%A4%9F%E5%97%85%E6%8E%A2%E5%88%86%E7%BB%84%EF%BC%9A"><span class="nav-text">坏家伙能够嗅探分组：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%8F%E5%AE%B6%E4%BC%99%E8%83%BD%E5%A4%9F%E4%BC%AA%E8%A3%85%E6%88%90%E4%BD%A0%E4%BF%A1%E4%BB%BB%E7%9A%84%E4%BA%BA%EF%BC%9A"><span class="nav-text">坏家伙能够伪装成你信任的人：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E5%8E%86%E5%8F%B2"><span class="nav-text">8. 计算机网络的历史</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unit-1-5-%E5%BE%85%E6%95%B4%E7%90%86%E7%9A%84%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86"><span class="nav-text">Unit 1.5 待整理的网络知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9F%EF%BC%9F"><span class="nav-text">一、什么是域名系统？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0"><span class="nav-text">二、浏览器的工作原理简述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0-%E6%A6%82%E8%BF%B0Overview%EF%BC%9A"><span class="nav-text">0. 概述Overview：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AF%BC%E8%88%AANavigation%EF%BC%9A"><span class="nav-text">1. 导航Navigation：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%93%8D%E5%BA%94Response%EF%BC%9A"><span class="nav-text">2. 响应Response：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%B8%B2%E6%9F%93Render"><span class="nav-text">3. 渲染Render</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81Hosting"><span class="nav-text">三、Hosting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0-%E6%A6%82%E8%BF%B0Overview%EF%BC%9A-1"><span class="nav-text">0. 概述Overview：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Hosting%E7%BB%86%E8%8A%82%EF%BC%9A"><span class="nav-text">1. Hosting细节：</span></a></li></ol></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Conqueror712</a>
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.4.4</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex justify-center items-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+        ],
+        containers: ["#swup"],
+    });
+
+    swup.hooks.on("page:view", () => {
+        Global.refresh();
+    });
+
+    // if (document.readyState === "complete") {
+    //
+    // } else {
+    //     document.addEventListener("DOMContentLoaded", () => init());
+    // }
+</script>
+
+
+
+
+
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
   
-  const script = document.createElement('script')
-  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
-  script.id = 'MathJax-script'
-  script.async = true
-  document.head.appendChild(script)
-} else {
-  MathJax.startup.document.state(0)
-  MathJax.texReset()
-  MathJax.typeset()
-}</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>

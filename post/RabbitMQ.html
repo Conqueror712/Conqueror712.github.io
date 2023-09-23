@@ -1,155 +1,317 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>RabbitMQ丨学习记录 | 落雨乄天珀夜</title><meta name="author" content="落雨乄天珀夜"><meta name="copyright" content="落雨乄天珀夜"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="零、前言本文记录了笔者在学习消息队列和RabbitMQ的基础知识的过程， 若笔者有任何疏忽纰漏之处，烦请不吝赐教。 本文会不断的补充、修改和完善，期待您的宝贵意见。  个人博客：https:&#x2F;&#x2F;conqueror712.github.io&#x2F; 知乎：https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;soeur712&#x2F;posts Bilibili：https:&#x2F;&#x2F;space.bilibili.">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Conqueror712">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://conqueror712.github.io/post/rabbitmq.html"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="零、前言本文记录了笔者在学习消息队列和RabbitMQ的基础知识的过程， 若笔者有任何疏忽纰漏之处，烦请不吝赐教。 本文会不断的补充、修改和完善，期待您的宝贵意见。  个人博客：https:&#x2F;&#x2F;conqueror712.github.io&#x2F; 知乎：https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;soeur712&#x2F;posts  Bilibili：https:&#x2F;&#x2F;space.bilibili">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RabbitMQ丨学习记录">
 <meta property="og:url" content="https://conqueror712.github.io/post/RabbitMQ.html">
 <meta property="og:site_name" content="落雨乄天珀夜">
-<meta property="og:description" content="零、前言本文记录了笔者在学习消息队列和RabbitMQ的基础知识的过程， 若笔者有任何疏忽纰漏之处，烦请不吝赐教。 本文会不断的补充、修改和完善，期待您的宝贵意见。  个人博客：https:&#x2F;&#x2F;conqueror712.github.io&#x2F; 知乎：https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;soeur712&#x2F;posts Bilibili：https:&#x2F;&#x2F;space.bilibili.">
+<meta property="og:description" content="零、前言本文记录了笔者在学习消息队列和RabbitMQ的基础知识的过程， 若笔者有任何疏忽纰漏之处，烦请不吝赐教。 本文会不断的补充、修改和完善，期待您的宝贵意见。  个人博客：https:&#x2F;&#x2F;conqueror712.github.io&#x2F; 知乎：https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;soeur712&#x2F;posts  Bilibili：https:&#x2F;&#x2F;space.bilibili">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdnjson.com/images/2023/03/18/1300134.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/02/01/bB8HDJIs2tlKSXw.png">
+<meta property="og:image" content="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2021/02/28/kuangstudyd40834ed-a15f-4606-bb36-ce475b05a949.png">
+<meta property="og:image" content="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2021/02/28/kuangstudy7c171d88-687a-4c6c-8a97-2b257467172e.png">
+<meta property="og:image" content="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2021/03/02/kuangstudy9e91d500-e775-45f3-92fa-78a6278efc51.png">
+<meta property="og:image" content="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2021/02/28/kuangstudyf908e193-4ca3-44b7-87d0-cbb17b55a107.png">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/829e35d4eaca409789a9b316e6a30334~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c90c89a804c04178aa9e10d9bc453eeb~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d09b86a5bfa54900af5361ed1c366de2~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/87bba41248a7409992a835504cd6b1cc~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e7380674c5874444bfa3eab1de3de6c3~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e1dcada7a7e04ee980a0be35a7d2df24~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a42acef3e2544458b6394896a74faef2~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4c5f7f91484e429b9c526d4fe7a6de7e~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/afb205703f6b488780a1ca70283d6e25~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d9ecbca20ad34c709f77526162c1d41f~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/221f097bdec64106bc3ecc12fe65270a~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5368c5bc790d41a183dba9283c2b496c~tplv-k3u1fbpfcp-watermark.image?">
 <meta property="article:published_time" content="2023-02-01T02:42:42.000Z">
 <meta property="article:modified_time" content="2023-03-23T01:23:35.115Z">
 <meta property="article:author" content="落雨乄天珀夜">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdnjson.com/images/2023/03/18/1300134.jpg"><link rel="shortcut icon" href="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg"><link rel="canonical" href="https://conqueror712.github.io/post/RabbitMQ"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  date_suffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
-  },
-  isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'RabbitMQ丨学习记录',
-  isPost: true,
-  isHome: false,
-  isHighlightShrink: false,
-  isToc: true,
-  postUpdate: '2023-03-23 09:23:35'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
+<meta name="twitter:image" content="https://s2.loli.net/2023/02/01/bB8HDJIs2tlKSXw.png">
     
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
         
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
+            RabbitMQ丨学习记录 -
+        
+        Conqueror712
+    </title>
     
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="落雨乄天珀夜" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg" onerror="onerror=null;src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdnjson.com/images/2023/03/18/1300134.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">落雨乄天珀夜</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">RabbitMQ丨学习记录</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-01T02:42:42.000Z" title="发表于 2023-02-01 10:42:42">2023-02-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-23T01:23:35.115Z" title="更新于 2023-03-23 09:23:35">2023-03-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Devlopment-Tech/">Devlopment-Tech</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="RabbitMQ丨学习记录"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="零、前言"><a href="#零、前言" class="headerlink" title="零、前言"></a>零、前言</h1><p>本文记录了笔者在学习消息队列和RabbitMQ的基础知识的过程，</p>
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"conqueror712.github.io","root":"/","language":"zh-CN"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.4.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    Global.data_config = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="落雨乄天珀夜" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="swup-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="https://conqueror712.github.io/">
+                
+                Conqueror712
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
+        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            
+                
+                
+                <img src="https://cdnjson.com/images/2023/03/18/1300134.jpg" alt="RabbitMQ丨学习记录" class="max-w-none"/>
+                
+                <h1 class="article-title-cover">RabbitMQ丨学习记录</h1>
+            
+            </div>
+            
+                    
+        
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Conqueror712</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-02-01 10:42:42</span>
+        <span class="mobile">2023-02-01 10:42:42</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-03-23 09:23:35</span>
+            <span class="mobile">2023-03-23 09:23:35</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Devlopment-Tech/">Devlopment-Tech</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body">
+            <h1 id="零、前言"><a href="#零、前言" class="headerlink" title="零、前言"></a>零、前言</h1><p>本文记录了笔者在学习消息队列和RabbitMQ的基础知识的过程，</p>
 <p>若笔者有任何疏忽纰漏之处，烦请不吝赐教。</p>
 <p>本文会不断的补充、修改和完善，期待您的宝贵意见。</p>
 <blockquote>
 <p>个人博客：<a href="https://conqueror712.github.io/">https://conqueror712.github.io/</a></p>
-<p>知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/soeur712/posts">https://www.zhihu.com/people/soeur712/posts</a></p>
-<p>Bilibili：<a target="_blank" rel="noopener" href="https://space.bilibili.com/57089326">https://space.bilibili.com/57089326</a></p>
-<p>掘金：<a target="_blank" rel="noopener" href="https://juejin.cn/user/1297878069809725/posts">https://juejin.cn/user/1297878069809725/posts</a></p>
+<p>知乎：<a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/people/soeur712/posts" >https://www.zhihu.com/people/soeur712/posts <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>Bilibili：<a class="link"   target="_blank" rel="noopener" href="https://space.bilibili.com/57089326" >https://space.bilibili.com/57089326 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>掘金：<a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/user/1297878069809725/posts" >https://juejin.cn/user/1297878069809725/posts <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 </blockquote>
 <h2 id="什么是中间件？为什么要使用它？"><a href="#什么是中间件？为什么要使用它？" class="headerlink" title="什么是中间件？为什么要使用它？"></a>什么是中间件？为什么要使用它？</h2><p>中间件 Middleware 是<strong>处于操作系统和应用程序之间的软件</strong>。</p>
 <p>人们在使用中间件时，往往是一组中间件<strong>集成在一起</strong>，构成一个平台（包括开发平台和运行平台），</p>
@@ -166,7 +328,12 @@
 <li>支持标准的接口</li>
 </ul>
 <p>另外，中间件的技术一般现在一些互联网公司或者项目中使用比较多，如果仅仅还只是一个初创公司建议还是使用单体架构，最多加个缓存中间件即可，不要盲目追求新或者所谓的高性能，而<strong>追求的背后一定是业务的驱动和项目的驱动</strong>。</p>
-<h2 id="MindMap："><a href="#MindMap：" class="headerlink" title="MindMap："></a><strong>MindMap</strong>：</h2><p><img src="https://s2.loli.net/2023/02/01/bB8HDJIs2tlKSXw.png" alt="avatar"></p>
+<h2 id="MindMap："><a href="#MindMap：" class="headerlink" title="MindMap："></a><strong>MindMap</strong>：</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.loli.net/2023/02/01/bB8HDJIs2tlKSXw.png"
+                      alt="avatar"
+                ></p>
 <h2 id="学习目标与技巧"><a href="#学习目标与技巧" class="headerlink" title="学习目标与技巧"></a>学习目标与技巧</h2><p><strong>我们需要理解和掌握</strong>：</p>
 <ul>
 <li>什么是消息中间件</li>
@@ -188,7 +355,12 @@
 </ul>
 <hr>
 <h1 id="一、分布式架构与消息中间件"><a href="#一、分布式架构与消息中间件" class="headerlink" title="一、分布式架构与消息中间件"></a>一、分布式架构与消息中间件</h1><h2 id="0-分布式架构"><a href="#0-分布式架构" class="headerlink" title="0. 分布式架构"></a>0. 分布式架构</h2><p>通俗解释分布式系统：<strong>一个请求由服务器端的多个服务协同处理完成</strong>。</p>
-<p><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2021/02/28/kuangstudyd40834ed-a15f-4606-bb36-ce475b05a949.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2021/02/28/kuangstudyd40834ed-a15f-4606-bb36-ce475b05a949.png"
+                      alt="avatar"
+                ></p>
 <blockquote>
 <p><strong>存在问题</strong><br>1：学习成本高，技术栈过多；<br>2：运维成本和服务器成本增高；<br>3：人员的成本也会增高；<br>4：项目的负载度也会上升；<br>5：面临的错误和容错性也会成倍增加；<br>6：占用的服务器端口和通讯的选择的成本高；<br>7：安全性的考虑和因素逼迫可能选择RMI&#x2F;MQ相关的服务器端通讯。</p>
 <p><strong>好处</strong><br>1：服务系统的独立，占用的服务器资源减少和占用的硬件成本减少；<br>确切的说是：可以合理的分配服务资源，不造成服务器资源的浪费；<br>2：系统的独立维护和部署，耦合度降低，可插拔性；<br>3：系统的架构和技术栈的选择可以变的灵活；<br>4：弹性的部署，不会造成平台因部署造成的瘫痪和停服的状态。</p>
@@ -207,7 +379,12 @@
 </ul>
 <p>很常见的一个例子就是电商的并发订单。</p>
 <h3 id="消息中间件的本质及设计："><a href="#消息中间件的本质及设计：" class="headerlink" title="消息中间件的本质及设计："></a>消息中间件的本质及设计：</h3><p>它是一种接受数据，接受请求、存储数据、发送数据等功能的技术服务。</p>
-<p><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2021/02/28/kuangstudy7c171d88-687a-4c6c-8a97-2b257467172e.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2021/02/28/kuangstudy7c171d88-687a-4c6c-8a97-2b257467172e.png"
+                      alt="avatar"
+                ></p>
 <h3 id="消息中间件的核心组成部分："><a href="#消息中间件的核心组成部分：" class="headerlink" title="消息中间件的核心组成部分："></a>消息中间件的核心组成部分：</h3><ul>
 <li>消息的协议</li>
 <li>消息的持久化机制</li>
@@ -216,7 +393,12 @@
 <li>消息的容错机制</li>
 </ul>
 <hr>
-<h1 id="二、消息与消息队列"><a href="#二、消息与消息队列" class="headerlink" title="二、消息与消息队列"></a>二、消息与消息队列</h1><h2 id="0-网络协议简介"><a href="#0-网络协议简介" class="headerlink" title="0. 网络协议简介"></a>0. 网络协议简介</h2><p><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2021/03/02/kuangstudy9e91d500-e775-45f3-92fa-78a6278efc51.png" alt="avatar"></p>
+<h1 id="二、消息与消息队列"><a href="#二、消息与消息队列" class="headerlink" title="二、消息与消息队列"></a>二、消息与消息队列</h1><h2 id="0-网络协议简介"><a href="#0-网络协议简介" class="headerlink" title="0. 网络协议简介"></a>0. 网络协议简介</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2021/03/02/kuangstudy9e91d500-e775-45f3-92fa-78a6278efc51.png"
+                      alt="avatar"
+                ></p>
 <p>协议：</p>
 <ol>
 <li>计算机底层操作系统和应用程序通讯时共同遵守的一组约定，只有遵循共同的约定和规范，系统和底层操作系统之间才能相互交流。</li>
@@ -282,7 +464,12 @@
 </ul>
 <hr>
 <h2 id="1-MQ持久化"><a href="#1-MQ持久化" class="headerlink" title="1. MQ持久化"></a>1. MQ持久化</h2><p>持久化就是将数据存入磁盘，而不是存在内存中随服务器重启断开而消失，使数据能够永久保存。</p>
-<p><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2021/02/28/kuangstudyf908e193-4ca3-44b7-87d0-cbb17b55a107.png" alt="avatar"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2021/02/28/kuangstudyf908e193-4ca3-44b7-87d0-cbb17b55a107.png"
+                      alt="avatar"
+                ></p>
 <hr>
 <h2 id="2-消息的分发策略"><a href="#2-消息的分发策略" class="headerlink" title="2. 消息的分发策略"></a>2. 消息的分发策略</h2><p>由于MQ有<strong>生产者、存储信息和消费者</strong>这三个角色，</p>
 <p>那么当生产者生成消息之后，MQ进行存储，消费者通过<code>push</code>和<code>pull</code>来进行获取消息。</p>
@@ -332,10 +519,15 @@
 </blockquote>
 <p><em>笔者致力于创作上至老奶奶，下至小狗狗都能看懂的教程！</em></p>
 <h2 id="0-Docker下安装RabbitMQ"><a href="#0-Docker下安装RabbitMQ" class="headerlink" title="0. Docker下安装RabbitMQ"></a>0. Docker下安装RabbitMQ</h2><h3 id="拉取镜像："><a href="#拉取镜像：" class="headerlink" title="拉取镜像："></a>拉取镜像：</h3><p>在cmd中直接输入以下即可，实测不需要打开管理员权限，也不需要切换目录；</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker search rabbitMq</span><br><span class="line"></span><br><span class="line">docker pull docker.io/rabbitmq:3.8-management</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker search rabbitMq</span><br><span class="line"></span><br><span class="line">docker pull docker.io/rabbitmq:3.8-management</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="创建容器："><a href="#创建容器：" class="headerlink" title="创建容器："></a>创建容器：</h3><p>进入 Docker Desktop 查看镜像ID，当然你也可以<code>docker images</code></p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/829e35d4eaca409789a9b316e6a30334~tplv-k3u1fbpfcp-watermark.image" alt="image.png"><br>将其复制并在cmd中输入以下指令来创建rabbitMq容器：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/829e35d4eaca409789a9b316e6a30334~tplv-k3u1fbpfcp-watermark.image"
+                      alt="image.png"
+                ><br>将其复制并在cmd中输入以下指令来创建rabbitMq容器：</p>
 <p><code>docker run --name rabbitmq -d -p 15672:15672 -p 5672:5672 818bf18535d7</code></p>
 <p>参数说明：</p>
 <ul>
@@ -344,30 +536,65 @@
 <li><code>-p</code>是设置容器内部端口号与主机的映射，web端口默认值为<code>15672</code>，数据通信端口默认值为<code>5672</code></li>
 </ul>
 <p>如果返回一大串容器ID那就说明创建成功啦！</p>
-<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c90c89a804c04178aa9e10d9bc453eeb~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c90c89a804c04178aa9e10d9bc453eeb~tplv-k3u1fbpfcp-watermark.image"
+                      alt="image.png"
+                ></p>
 <h3 id="查看状态："><a href="#查看状态：" class="headerlink" title="查看状态："></a>查看状态：</h3><p>这个时候我们可以查看容器是否在运行，当然你也可以使用<code>docker ps</code>来查看</p>
-<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d09b86a5bfa54900af5361ed1c366de2~tplv-k3u1fbpfcp-watermark.image" alt="image.png"><br>同样的，我们在这里把容器ID复制下来之后使用<code>docker logs -f &lt;ID&gt;</code>可以查看容器的日志；</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d09b86a5bfa54900af5361ed1c366de2~tplv-k3u1fbpfcp-watermark.image"
+                      alt="image.png"
+                ><br>同样的，我们在这里把容器ID复制下来之后使用<code>docker logs -f &lt;ID&gt;</code>可以查看容器的日志；</p>
 <p>特别地，容器的ID可以简写，前提是保证前缀不与其他容器的相同。</p>
 <p>就像这样：</p>
-<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/87bba41248a7409992a835504cd6b1cc~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/87bba41248a7409992a835504cd6b1cc~tplv-k3u1fbpfcp-watermark.image"
+                      alt="image.png"
+                ></p>
 <hr>
 <h2 id="1-Web端的简单测试"><a href="#1-Web端的简单测试" class="headerlink" title="1. Web端的简单测试"></a>1. Web端的简单测试</h2><h3 id="进入Web端："><a href="#进入Web端：" class="headerlink" title="进入Web端："></a>进入Web端：</h3><p>首先进入cmd输入<code>ipconfig</code>获取本机IP：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e7380674c5874444bfa3eab1de3de6c3~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e7380674c5874444bfa3eab1de3de6c3~tplv-k3u1fbpfcp-watermark.image"
+                      alt="image.png"
+                ></p>
 <p>随后输入<code>&lt;IP&gt;:15672</code>进入RabbitMQ的Web端，</p>
 <p>例如笔者就是<code>192.168.1.4:15672</code>，随后出现如下界面：</p>
-<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e1dcada7a7e04ee980a0be35a7d2df24~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e1dcada7a7e04ee980a0be35a7d2df24~tplv-k3u1fbpfcp-watermark.image"
+                      alt="image.png"
+                ></p>
 <p>这个时候我们还没有创建任何账户，默认使用<code>guest</code>进行登录（账密都是）：</p>
-<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a42acef3e2544458b6394896a74faef2~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a42acef3e2544458b6394896a74faef2~tplv-k3u1fbpfcp-watermark.image"
+                      alt="image.png"
+                ></p>
 <p>Oh非常好，我们看到了想要的界面！</p>
 <hr>
 <h3 id="创建新的账户："><a href="#创建新的账户：" class="headerlink" title="创建新的账户："></a>创建新的账户：</h3><p>人活一世，总不能连个名字都没有，接下来我们就来创建一个新的账户，</p>
 <p>毕竟guest有各种访问限制；</p>
 <p>我们首先<strong>进入容器</strong>：<code>docker exec -i -t &lt;容器ID&gt; bin/bash</code></p>
 <p>当然你也可以使用点击即送的方法进入，不过这次并不推荐：</p>
-<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4c5f7f91484e429b9c526d4fe7a6de7e~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4c5f7f91484e429b9c526d4fe7a6de7e~tplv-k3u1fbpfcp-watermark.image"
+                      alt="image.png"
+                ></p>
 <p>随后<strong>添加用户</strong>：<code>rabbitmqctl add_user &lt;username&gt; &lt;password&gt;</code></p>
 <p>方便起见，我们就用root了，如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@638f5fe7d784:/# rabbitmqctl add_user root 13243546</span><br><span class="line">Adding user &quot;root&quot; ...</span><br><span class="line">Done. Don&#x27;t forget to grant the user permissions to some virtual hosts! See &#x27;rabbitmqctl help set_permissions&#x27; to learn more.</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@638f5fe7d784:/# rabbitmqctl add_user root 13243546</span><br><span class="line">Adding user &quot;root&quot; ...</span><br><span class="line">Done. Don&#x27;t forget to grant the user permissions to some virtual hosts! See &#x27;rabbitmqctl help set_permissions&#x27; to learn more.</span><br></pre></td></tr></table></figure></div>
 
 <p>这个时候root还不是”root”呀，我们不能袖手旁观，需要<strong>赋予权限</strong>：</p>
 <p><code>rabbitmqctl set_permissions -p / root &quot;.*&quot; &quot;.*&quot; &quot;.*&quot;</code></p>
@@ -375,81 +602,458 @@
 <p><code>rabbitmqctl set_user_tags root administrator</code></p>
 <h3 id="查看所用用户："><a href="#查看所用用户：" class="headerlink" title="查看所用用户："></a>查看所用用户：</h3><p><code>rabbitmqctl list_users</code></p>
 <p>以上的cmd效果：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@638f5fe7d784:/# rabbitmqctl set_permissions -p / root &quot;.*&quot; &quot;.*&quot; &quot;.*&quot;</span><br><span class="line">Setting permissions for user &quot;root&quot; in vhost &quot;/&quot; ...</span><br><span class="line">root@638f5fe7d784:/# rabbitmqctl set_user_tags root administrator</span><br><span class="line">Setting tags for user &quot;root&quot; to [administrator] ...</span><br><span class="line">root@638f5fe7d784:/# rabbitmqctl list_users</span><br><span class="line">Listing users ...</span><br><span class="line">user    tags</span><br><span class="line">guest   [administrator]</span><br><span class="line">root    [administrator]</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@638f5fe7d784:/# rabbitmqctl set_permissions -p / root &quot;.*&quot; &quot;.*&quot; &quot;.*&quot;</span><br><span class="line">Setting permissions for user &quot;root&quot; in vhost &quot;/&quot; ...</span><br><span class="line">root@638f5fe7d784:/# rabbitmqctl set_user_tags root administrator</span><br><span class="line">Setting tags for user &quot;root&quot; to [administrator] ...</span><br><span class="line">root@638f5fe7d784:/# rabbitmqctl list_users</span><br><span class="line">Listing users ...</span><br><span class="line">user    tags</span><br><span class="line">guest   [administrator]</span><br><span class="line">root    [administrator]</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="回到Web端，再次登录："><a href="#回到Web端，再次登录：" class="headerlink" title="回到Web端，再次登录："></a>回到Web端，再次登录：</h3><p>这时可以关闭退出容器了，直接<code>exit + 右上角</code>关闭cmd即可；</p>
 <p>然后Log Out一下guest账户，重新输入刚才的账户：</p>
 <p>可以看到，我们卷土重来了！</p>
-<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/afb205703f6b488780a1ca70283d6e25~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/afb205703f6b488780a1ca70283d6e25~tplv-k3u1fbpfcp-watermark.image"
+                      alt="image.png"
+                ></p>
 <hr>
 <h2 id="2-Go-RabbitMQ实现HelloWorld"><a href="#2-Go-RabbitMQ实现HelloWorld" class="headerlink" title="2. Go + RabbitMQ实现HelloWorld"></a>2. Go + RabbitMQ实现HelloWorld</h2><p>没错，你没有看错，又是<code>HelloWorld</code>，话不多说让我们进入正题：</p>
 <p>打开cmd，进入你想要的项目文件夹，老规矩<code>go mod init &lt;...&gt;</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">go mod init go-rabbitmq-demo</span><br><span class="line">go: creating new go.mod: module go-rabbitmq-demo</span><br><span class="line">code .  // 打开我们亲爱的VSCode</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">go mod init go-rabbitmq-demo</span><br><span class="line">go: creating new go.mod: module go-rabbitmq-demo</span><br><span class="line">code .  // 打开我们亲爱的VSCode</span><br></pre></td></tr></table></figure></div>
 
 <p>随后创建send.go</p>
 <p>引入<code>github.com/streadway/amqp</code>并<code>go mod tidy</code></p>
 <h3 id="辅助函数"><a href="#辅助函数" class="headerlink" title="辅助函数"></a>辅助函数</h3><p>定义一个辅助函数用于检查每个amqp调用的返回值；</p>
 <p>发送方和接收方最好都要有；</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义辅助函数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">failOnError</span><span class="params">(err <span class="type">error</span>, msg <span class="type">string</span>)</span></span> &#123;</span><br><span class="line">   <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">      log.Fatalf(<span class="string">&quot;%s: %s&quot;</span>, msg, err)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-container" data-rel="Go"><figure class="iseeu highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义辅助函数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">failOnError</span><span class="params">(err <span class="type">error</span>, msg <span class="type">string</span>)</span></span> &#123;</span><br><span class="line">   <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">      log.Fatalf(<span class="string">&quot;%s: %s&quot;</span>, msg, err)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="send-go主函数"><a href="#send-go主函数" class="headerlink" title="send.go主函数"></a>send.go主函数</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// 建立与 RabbitMQ 的连接</span></span><br><span class="line">    <span class="comment">// 配置连接套接字，定义连接的协议与身份验证</span></span><br><span class="line">    conn, err := amqp.Dial(<span class="string">&quot;amqp://guest:guest@localhost:5672/&quot;</span>)</span><br><span class="line">    failOnError(err, <span class="string">&quot;Failed to connect to RabbitMQ&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> conn.Close()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建通道来传递消息</span></span><br><span class="line">    ch, err := conn.Channel()</span><br><span class="line">    failOnError(err, <span class="string">&quot;Failed to open a channel&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> ch.Close()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 声明要发送到的队列</span></span><br><span class="line">    q, err := ch.QueueDeclare(</span><br><span class="line">        <span class="string">&quot;hello&quot;</span>,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        <span class="literal">nil</span>,</span><br><span class="line">    )</span><br><span class="line">    failOnError(err, <span class="string">&quot;Failed to declare a queue&quot;</span>)</span><br><span class="line">    <span class="comment">// ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)</span></span><br><span class="line">    <span class="comment">// defer cancel()</span></span><br><span class="line"></span><br><span class="line">    body := <span class="string">&quot;Hello World!&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将消息发布到声明的队列</span></span><br><span class="line">    err = ch.Publish(</span><br><span class="line">        <span class="string">&quot;&quot;</span>,</span><br><span class="line">        q.Name,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        amqp.Publishing&#123;</span><br><span class="line">            ContentType: <span class="string">&quot;text/plain&quot;</span>,</span><br><span class="line">            Body:        []<span class="type">byte</span>(body),</span><br><span class="line">        &#125;)</span><br><span class="line">    failOnError(err, <span class="string">&quot;Failed to publish a message&quot;</span>)</span><br><span class="line">    <span class="comment">// log.Printf(&quot; [x] Sent %s\n&quot;, body)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="send-go主函数"><a href="#send-go主函数" class="headerlink" title="send.go主函数"></a>send.go主函数</h3><div class="highlight-container" data-rel="Go"><figure class="iseeu highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// 建立与 RabbitMQ 的连接</span></span><br><span class="line">    <span class="comment">// 配置连接套接字，定义连接的协议与身份验证</span></span><br><span class="line">    conn, err := amqp.Dial(<span class="string">&quot;amqp://guest:guest@localhost:5672/&quot;</span>)</span><br><span class="line">    failOnError(err, <span class="string">&quot;Failed to connect to RabbitMQ&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> conn.Close()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建通道来传递消息</span></span><br><span class="line">    ch, err := conn.Channel()</span><br><span class="line">    failOnError(err, <span class="string">&quot;Failed to open a channel&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> ch.Close()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 声明要发送到的队列</span></span><br><span class="line">    q, err := ch.QueueDeclare(</span><br><span class="line">        <span class="string">&quot;hello&quot;</span>,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        <span class="literal">nil</span>,</span><br><span class="line">    )</span><br><span class="line">    failOnError(err, <span class="string">&quot;Failed to declare a queue&quot;</span>)</span><br><span class="line">    <span class="comment">// ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)</span></span><br><span class="line">    <span class="comment">// defer cancel()</span></span><br><span class="line"></span><br><span class="line">    body := <span class="string">&quot;Hello World!&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将消息发布到声明的队列</span></span><br><span class="line">    err = ch.Publish(</span><br><span class="line">        <span class="string">&quot;&quot;</span>,</span><br><span class="line">        q.Name,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        amqp.Publishing&#123;</span><br><span class="line">            ContentType: <span class="string">&quot;text/plain&quot;</span>,</span><br><span class="line">            Body:        []<span class="type">byte</span>(body),</span><br><span class="line">        &#125;)</span><br><span class="line">    failOnError(err, <span class="string">&quot;Failed to publish a message&quot;</span>)</span><br><span class="line">    <span class="comment">// log.Printf(&quot; [x] Sent %s\n&quot;, body)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="receive-go主函数"><a href="#receive-go主函数" class="headerlink" title="receive.go主函数"></a>receive.go主函数</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// 建立与 RabbitMQ 的连接</span></span><br><span class="line">    conn, err := amqp.Dial(<span class="string">&quot;amqp://guest:guest@localhost:5672/&quot;</span>)</span><br><span class="line">    failOnError(err, <span class="string">&quot;Failed to connect to RabbitMQ&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> conn.Close()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取通道</span></span><br><span class="line">    ch, err := conn.Channel()</span><br><span class="line">    failOnError(err, <span class="string">&quot;Failed to open a channel&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> ch.Close()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 声明队列</span></span><br><span class="line">    q, err := ch.QueueDeclare(</span><br><span class="line">        <span class="string">&quot;hello&quot;</span>,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        <span class="literal">nil</span>,</span><br><span class="line">    )</span><br><span class="line">    failOnError(err, <span class="string">&quot;Failed to declare a queue&quot;</span>)</span><br><span class="line"></span><br><span class="line">    msgs, err := ch.Consume(</span><br><span class="line">        q.Name, <span class="comment">// queue</span></span><br><span class="line">        <span class="string">&quot;&quot;</span>,     <span class="comment">// consumer</span></span><br><span class="line">        <span class="literal">true</span>,   <span class="comment">// auto-ack</span></span><br><span class="line">        <span class="literal">false</span>,  <span class="comment">// exclusive</span></span><br><span class="line">        <span class="literal">false</span>,  <span class="comment">// no-local</span></span><br><span class="line">        <span class="literal">false</span>,  <span class="comment">// no-wait</span></span><br><span class="line">        <span class="literal">nil</span>,    <span class="comment">// args</span></span><br><span class="line">    )</span><br><span class="line">    failOnError(err, <span class="string">&quot;Failed to register a consumer&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> forever <span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">for</span> d := <span class="keyword">range</span> msgs &#123;</span><br><span class="line">            log.Printf(<span class="string">&quot;Received a message: %s&quot;</span>, d.Body)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;()</span><br><span class="line"></span><br><span class="line">    log.Printf(<span class="string">&quot; [*] Waiting for messages. To exit press CTRL+C&quot;</span>)</span><br><span class="line">    &lt;-forever</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="receive-go主函数"><a href="#receive-go主函数" class="headerlink" title="receive.go主函数"></a>receive.go主函数</h3><div class="highlight-container" data-rel="Go"><figure class="iseeu highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// 建立与 RabbitMQ 的连接</span></span><br><span class="line">    conn, err := amqp.Dial(<span class="string">&quot;amqp://guest:guest@localhost:5672/&quot;</span>)</span><br><span class="line">    failOnError(err, <span class="string">&quot;Failed to connect to RabbitMQ&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> conn.Close()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取通道</span></span><br><span class="line">    ch, err := conn.Channel()</span><br><span class="line">    failOnError(err, <span class="string">&quot;Failed to open a channel&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> ch.Close()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 声明队列</span></span><br><span class="line">    q, err := ch.QueueDeclare(</span><br><span class="line">        <span class="string">&quot;hello&quot;</span>,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        <span class="literal">false</span>,</span><br><span class="line">        <span class="literal">nil</span>,</span><br><span class="line">    )</span><br><span class="line">    failOnError(err, <span class="string">&quot;Failed to declare a queue&quot;</span>)</span><br><span class="line"></span><br><span class="line">    msgs, err := ch.Consume(</span><br><span class="line">        q.Name, <span class="comment">// queue</span></span><br><span class="line">        <span class="string">&quot;&quot;</span>,     <span class="comment">// consumer</span></span><br><span class="line">        <span class="literal">true</span>,   <span class="comment">// auto-ack</span></span><br><span class="line">        <span class="literal">false</span>,  <span class="comment">// exclusive</span></span><br><span class="line">        <span class="literal">false</span>,  <span class="comment">// no-local</span></span><br><span class="line">        <span class="literal">false</span>,  <span class="comment">// no-wait</span></span><br><span class="line">        <span class="literal">nil</span>,    <span class="comment">// args</span></span><br><span class="line">    )</span><br><span class="line">    failOnError(err, <span class="string">&quot;Failed to register a consumer&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> forever <span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">for</span> d := <span class="keyword">range</span> msgs &#123;</span><br><span class="line">            log.Printf(<span class="string">&quot;Received a message: %s&quot;</span>, d.Body)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;()</span><br><span class="line"></span><br><span class="line">    log.Printf(<span class="string">&quot; [*] Waiting for messages. To exit press CTRL+C&quot;</span>)</span><br><span class="line">    &lt;-forever</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
 
 <h3 id="运行！"><a href="#运行！" class="headerlink" title="运行！"></a>运行！</h3><p>分别在两个cmd里面执行<code>go run send.go</code>和<code>go run receive.go</code></p>
 <p>注意，<code>send</code>可以执行多次之后再执行<code>receive</code>，也可以先开启<code>receive</code>，读者不妨自己尝试一下；</p>
 <p>我们可以在Web端看到，Channel中有数据的情况：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d9ecbca20ad34c709f77526162c1d41f~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d9ecbca20ad34c709f77526162c1d41f~tplv-k3u1fbpfcp-watermark.image"
+                      alt="image.png"
+                ></p>
 <p>终端的情况是这样的：</p>
-<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/221f097bdec64106bc3ecc12fe65270a~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/221f097bdec64106bc3ecc12fe65270a~tplv-k3u1fbpfcp-watermark.image"
+                      alt="image.png"
+                ></p>
 <h3 id="文件目录结构"><a href="#文件目录结构" class="headerlink" title="文件目录结构"></a>文件目录结构</h3><p>很简单，就这四个东西：</p>
-<p align=center><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5368c5bc790d41a183dba9283c2b496c~tplv-k3u1fbpfcp-watermark.image?" alt="image.png"  /></p>
+<p align=center><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5368c5bc790d41a183dba9283c2b496c~tplv-k3u1fbpfcp-watermark.image?"
+                      alt="image.png"  
+                ></p>
 
 <hr>
 <p>THE END.</p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://conqueror712.github.io">落雨乄天珀夜</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://conqueror712.github.io/post/RabbitMQ.html">https://conqueror712.github.io/post/RabbitMQ.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://conqueror712.github.io" target="_blank">落雨乄天珀夜</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdnjson.com/images/2023/03/18/1300134.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/Computer-Network.html"><img class="prev-cover" src="https://cdnjson.com/images/2023/03/18/1266437.jpg" onerror="onerror=null;src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">计网- Ep1 - 概述「 万字长文」丨学习记录</div></div></a></div><div class="next-post pull-right"><a href="/post/Docker.html"><img class="next-cover" src="https://cdnjson.com/images/2023/03/18/820043.jpg" onerror="onerror=null;src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Docker + VSCode丨学习记录</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s2.loli.net/2023/02/15/LprEbGXq9xgfdDn.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="avatar"/></div><div class="author-info__name">落雨乄天珀夜</div><div class="author-info__description">「落花人独立丨微雨燕双飞」</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Conqueror712"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%B6%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">零、前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%AE%83%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">什么是中间件？为什么要使用它？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MindMap%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">MindMap：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87%E4%B8%8E%E6%8A%80%E5%B7%A7"><span class="toc-number">1.3.</span> <span class="toc-text">学习目标与技巧</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">一、分布式架构与消息中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84"><span class="toc-number">2.1.</span> <span class="toc-text">0. 分布式架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">2.2.</span> <span class="toc-text">1. 消息中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E4%B8%BB%E8%A6%81%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="toc-number">2.2.1.</span> <span class="toc-text">消息中间件的主要作用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9A"><span class="toc-number">2.2.2.</span> <span class="toc-text">消息中间件的应用场景：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E6%9C%AC%E8%B4%A8%E5%8F%8A%E8%AE%BE%E8%AE%A1%EF%BC%9A"><span class="toc-number">2.2.3.</span> <span class="toc-text">消息中间件的本质及设计：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E6%A0%B8%E5%BF%83%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86%EF%BC%9A"><span class="toc-number">2.2.4.</span> <span class="toc-text">消息中间件的核心组成部分：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B6%88%E6%81%AF%E4%B8%8E%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-number">3.</span> <span class="toc-text">二、消息与消息队列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E7%AE%80%E4%BB%8B"><span class="toc-number">3.1.</span> <span class="toc-text">0. 网络协议简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AMQP%E5%8D%8F%E8%AE%AE"><span class="toc-number">3.1.1.</span> <span class="toc-text">AMQP协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MQTT%E5%8D%8F%E8%AE%AE"><span class="toc-number">3.1.2.</span> <span class="toc-text">MQTT协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenMessage%E5%8D%8F%E8%AE%AE"><span class="toc-number">3.1.3.</span> <span class="toc-text">OpenMessage协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kafka%E5%8D%8F%E8%AE%AE"><span class="toc-number">3.1.4.</span> <span class="toc-text">Kafka协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-MQ%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">3.2.</span> <span class="toc-text">1. MQ持久化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%B6%88%E6%81%AF%E7%9A%84%E5%88%86%E5%8F%91%E7%AD%96%E7%95%A5"><span class="toc-number">3.3.</span> <span class="toc-text">2. 消息的分发策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-MQ%E9%AB%98%E5%8F%AF%E7%94%A8%E5%92%8C%E9%AB%98%E5%8F%AF%E9%9D%A0"><span class="toc-number">3.4.</span> <span class="toc-text">3. MQ高可用和高可靠</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E5%8F%AF%E7%94%A8%EF%BC%9F"><span class="toc-number">3.4.1.</span> <span class="toc-text">高可用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E5%8F%AF%E9%9D%A0%EF%BC%9F"><span class="toc-number">3.4.2.</span> <span class="toc-text">高可靠？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81RabbitMQ%E5%85%A5%E9%97%A8"><span class="toc-number">4.</span> <span class="toc-text">三、RabbitMQ入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-Docker%E4%B8%8B%E5%AE%89%E8%A3%85RabbitMQ"><span class="toc-number">4.1.</span> <span class="toc-text">0. Docker下安装RabbitMQ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F%EF%BC%9A"><span class="toc-number">4.1.1.</span> <span class="toc-text">拉取镜像：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AE%B9%E5%99%A8%EF%BC%9A"><span class="toc-number">4.1.2.</span> <span class="toc-text">创建容器：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%8A%B6%E6%80%81%EF%BC%9A"><span class="toc-number">4.1.3.</span> <span class="toc-text">查看状态：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Web%E7%AB%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%B5%8B%E8%AF%95"><span class="toc-number">4.2.</span> <span class="toc-text">1. Web端的简单测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5Web%E7%AB%AF%EF%BC%9A"><span class="toc-number">4.2.1.</span> <span class="toc-text">进入Web端：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E8%B4%A6%E6%88%B7%EF%BC%9A"><span class="toc-number">4.2.2.</span> <span class="toc-text">创建新的账户：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E7%94%A8%E7%94%A8%E6%88%B7%EF%BC%9A"><span class="toc-number">4.2.3.</span> <span class="toc-text">查看所用用户：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E5%88%B0Web%E7%AB%AF%EF%BC%8C%E5%86%8D%E6%AC%A1%E7%99%BB%E5%BD%95%EF%BC%9A"><span class="toc-number">4.2.4.</span> <span class="toc-text">回到Web端，再次登录：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Go-RabbitMQ%E5%AE%9E%E7%8E%B0HelloWorld"><span class="toc-number">4.3.</span> <span class="toc-text">2. Go + RabbitMQ实现HelloWorld</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.1.</span> <span class="toc-text">辅助函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#send-go%E4%B8%BB%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.2.</span> <span class="toc-text">send.go主函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#receive-go%E4%B8%BB%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.3.</span> <span class="toc-text">receive.go主函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%EF%BC%81"><span class="toc-number">4.3.4.</span> <span class="toc-text">运行！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">4.3.5.</span> <span class="toc-text">文件目录结构</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/CargoBuild2.html" title="移花接木[续]丨从零开始的环境配置流程"><img src="https://cdnjson.com/images/2023/07/23/wallhaven-5gkxz3.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="移花接木[续]丨从零开始的环境配置流程"/></a><div class="content"><a class="title" href="/post/CargoBuild2.html" title="移花接木[续]丨从零开始的环境配置流程">移花接木[续]丨从零开始的环境配置流程</a><time datetime="2023-07-23T13:02:25.000Z" title="发表于 2023-07-23 21:02:25">2023-07-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/CargoBuild.html" title="移花接木丨重定义CUDA函数与Cargo构建"><img src="https://cdnjson.com/images/2023/07/16/wallhaven-2y33xy.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="移花接木丨重定义CUDA函数与Cargo构建"/></a><div class="content"><a class="title" href="/post/CargoBuild.html" title="移花接木丨重定义CUDA函数与Cargo构建">移花接木丨重定义CUDA函数与Cargo构建</a><time datetime="2023-07-16T05:35:38.000Z" title="发表于 2023-07-16 13:35:38">2023-07-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/FastText.html" title="文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录"><img src="https://cdnjson.com/images/2023/07/12/wallhaven-rrjxpw.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录"/></a><div class="content"><a class="title" href="/post/FastText.html" title="文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录">文本提取、文本分类、语言筛选，有什么好用的工具？丨学习记录</a><time datetime="2023-07-11T06:06:45.000Z" title="发表于 2023-07-11 14:06:45">2023-07-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/nvprof.html" title="CUDA性能分析丨ltrace和nvprof工具如何使用？"><img src="https://cdnjson.com/images/2023/07/09/wallhaven-kx2g71.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="CUDA性能分析丨ltrace和nvprof工具如何使用？"/></a><div class="content"><a class="title" href="/post/nvprof.html" title="CUDA性能分析丨ltrace和nvprof工具如何使用？">CUDA性能分析丨ltrace和nvprof工具如何使用？</a><time datetime="2023-07-09T11:15:02.000Z" title="发表于 2023-07-09 19:15:02">2023-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ZLUDA.html" title="ZLUDA丨如何在Intel的GPU上运行CUDA代码？"><img src="https://cdnjson.com/images/2023/07/02/wallhaven-welrv7.jpg" onerror="this.onerror=null;this.src='https://s2.loli.net/2023/02/15/gKRvwPCJqcN8Wiu.jpg'" alt="ZLUDA丨如何在Intel的GPU上运行CUDA代码？"/></a><div class="content"><a class="title" href="/post/ZLUDA.html" title="ZLUDA丨如何在Intel的GPU上运行CUDA代码？">ZLUDA丨如何在Intel的GPU上运行CUDA代码？</a><time datetime="2023-07-02T13:07:09.000Z" title="发表于 2023-07-02 21:07:09">2023-07-02</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdnjson.com/images/2023/03/18/1300134.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 落雨乄天珀夜</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
-  window.MathJax = {
-    tex: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"]],
-      tags: 'ams'
-    },
-    chtml: {
-      scale: 1.2
-    },
-    options: {
-      renderActions: {
-        findScript: [10, doc => {
-          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
-            const display = !!node.type.match(/; *mode=display/)
-            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
-            const text = document.createTextNode('')
-            node.parentNode.replaceChild(text, node)
-            math.start = {node: text, delim: '', n: 0}
-            math.end = {node: text, delim: '', n: 0}
-            doc.math.push(math)
-          }
-        }, ''],
-        insertScript: [200, () => {
-          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
-            const target = node.parentNode
-            if (target.nodeName.toLowerCase() === 'li') {
-              target.parentNode.classList.add('has-jax')
-            } else {
-              target.classList.add('has-jax')
-            }
-          });
-        }, '', false]
-      }
-    }
-  }
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> RabbitMQ丨学习记录</li>
+        <li><strong>作者:</strong> Conqueror712</li>
+        <li><strong>创建于
+                :</strong> 2023-02-01 10:42:42</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2023-03-23 09:23:35
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://redefine.ohevan.com//post/RabbitMQ.html
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+            本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 进行许可。
+            
+
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                        rel="prev"
+                        href="/post/Computer-Network.html"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">计网- Ep1 - 概述「 万字长文」丨学习记录</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                        rel="next"
+                        href="/post/Docker.html"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Docker + VSCode丨学习记录</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container">
+                <div class="comments-container pjax">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;评论
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-swup-reload-script>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">RabbitMQ丨学习记录</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%B6%E3%80%81%E5%89%8D%E8%A8%80"><span class="nav-text">零、前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%AE%83%EF%BC%9F"><span class="nav-text">什么是中间件？为什么要使用它？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MindMap%EF%BC%9A"><span class="nav-text">MindMap：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87%E4%B8%8E%E6%8A%80%E5%B7%A7"><span class="nav-text">学习目标与技巧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="nav-text">一、分布式架构与消息中间件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84"><span class="nav-text">0. 分布式架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="nav-text">1. 消息中间件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E4%B8%BB%E8%A6%81%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="nav-text">消息中间件的主要作用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9A"><span class="nav-text">消息中间件的应用场景：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E6%9C%AC%E8%B4%A8%E5%8F%8A%E8%AE%BE%E8%AE%A1%EF%BC%9A"><span class="nav-text">消息中间件的本质及设计：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E6%A0%B8%E5%BF%83%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86%EF%BC%9A"><span class="nav-text">消息中间件的核心组成部分：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%B6%88%E6%81%AF%E4%B8%8E%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="nav-text">二、消息与消息队列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E7%AE%80%E4%BB%8B"><span class="nav-text">0. 网络协议简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AMQP%E5%8D%8F%E8%AE%AE"><span class="nav-text">AMQP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MQTT%E5%8D%8F%E8%AE%AE"><span class="nav-text">MQTT协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenMessage%E5%8D%8F%E8%AE%AE"><span class="nav-text">OpenMessage协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka%E5%8D%8F%E8%AE%AE"><span class="nav-text">Kafka协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-MQ%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-text">1. MQ持久化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%B6%88%E6%81%AF%E7%9A%84%E5%88%86%E5%8F%91%E7%AD%96%E7%95%A5"><span class="nav-text">2. 消息的分发策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-MQ%E9%AB%98%E5%8F%AF%E7%94%A8%E5%92%8C%E9%AB%98%E5%8F%AF%E9%9D%A0"><span class="nav-text">3. MQ高可用和高可靠</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E5%8F%AF%E7%94%A8%EF%BC%9F"><span class="nav-text">高可用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E5%8F%AF%E9%9D%A0%EF%BC%9F"><span class="nav-text">高可靠？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81RabbitMQ%E5%85%A5%E9%97%A8"><span class="nav-text">三、RabbitMQ入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-Docker%E4%B8%8B%E5%AE%89%E8%A3%85RabbitMQ"><span class="nav-text">0. Docker下安装RabbitMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F%EF%BC%9A"><span class="nav-text">拉取镜像：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%AE%B9%E5%99%A8%EF%BC%9A"><span class="nav-text">创建容器：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%8A%B6%E6%80%81%EF%BC%9A"><span class="nav-text">查看状态：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Web%E7%AB%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%B5%8B%E8%AF%95"><span class="nav-text">1. Web端的简单测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5Web%E7%AB%AF%EF%BC%9A"><span class="nav-text">进入Web端：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E8%B4%A6%E6%88%B7%EF%BC%9A"><span class="nav-text">创建新的账户：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E7%94%A8%E7%94%A8%E6%88%B7%EF%BC%9A"><span class="nav-text">查看所用用户：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E5%88%B0Web%E7%AB%AF%EF%BC%8C%E5%86%8D%E6%AC%A1%E7%99%BB%E5%BD%95%EF%BC%9A"><span class="nav-text">回到Web端，再次登录：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Go-RabbitMQ%E5%AE%9E%E7%8E%B0HelloWorld"><span class="nav-text">2. Go + RabbitMQ实现HelloWorld</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0"><span class="nav-text">辅助函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#send-go%E4%B8%BB%E5%87%BD%E6%95%B0"><span class="nav-text">send.go主函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#receive-go%E4%B8%BB%E5%87%BD%E6%95%B0"><span class="nav-text">receive.go主函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%EF%BC%81"><span class="nav-text">运行！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-text">文件目录结构</span></a></li></ol></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Conqueror712</a>
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.4.4</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex justify-center items-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+        ],
+        containers: ["#swup"],
+    });
+
+    swup.hooks.on("page:view", () => {
+        Global.refresh();
+    });
+
+    // if (document.readyState === "complete") {
+    //
+    // } else {
+    //     document.addEventListener("DOMContentLoaded", () => init());
+    // }
+</script>
+
+
+
+
+
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
   
-  const script = document.createElement('script')
-  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
-  script.id = 'MathJax-script'
-  script.async = true
-  document.head.appendChild(script)
-} else {
-  MathJax.startup.document.state(0)
-  MathJax.texReset()
-  MathJax.typeset()
-}</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>
