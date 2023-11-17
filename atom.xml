@@ -6,7 +6,7 @@
   <link href="https://conqueror712.github.io/atom.xml" rel="self"/>
   
   <link href="https://conqueror712.github.io/"/>
-  <updated>2023-11-17T11:25:22.144Z</updated>
+  <updated>2023-11-17T11:53:20.592Z</updated>
   <id>https://conqueror712.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Welcome丨前言</title>
+    <link href="https://conqueror712.github.io/post/Welcome.html"/>
+    <id>https://conqueror712.github.io/post/Welcome.html</id>
+    <published>2023-11-17T11:48:59.000Z</published>
+    <updated>2023-11-17T11:53:20.592Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>个人博客：<a href="https://conqueror712.github.io/">https://conqueror712.github.io/</a></p><p>Github：<a class="link"   href="https://github.com/Conqueror712" >https://github.com/Conqueror712 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p><p>掘金：<a class="link"   href="https://juejin.cn/user/1297878069809725/posts" >https://juejin.cn/user/1297878069809725/posts <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p></blockquote><p>欢迎！虽然暂时还没想好要怎么欢迎，但是来都来了，不坐下来喝一杯吗🍵？</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;个人博客：&lt;a href=&quot;https://conqueror712.github.io/&quot;&gt;https://conqueror712.github.io/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Github：&lt;a class=&quot;link&quot;   href=&quot;htt</summary>
+      
+    
+    
+    
+    <category term="Articles" scheme="https://conqueror712.github.io/categories/Articles/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>XCPC丨算法竞赛汇总</title>
