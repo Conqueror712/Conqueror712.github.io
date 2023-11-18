@@ -339,7 +339,7 @@
   position: relative;
   box-sizing: border-box;
   width: 80%;
-  max-width: 768px;
+  max-width: 888px;
   height: 100%;
 }
 @media (max-width: 768px) {
@@ -353,7 +353,7 @@
   }
 }
 .page-container .main-content-container .main-content-body .main-content.has-toc {
-  max-width: 921.5999999999999px !important;
+  max-width: 1065.6px !important;
 }
 .page-container .main-content-container .main-content-body .main-content-footer {
   width: 100%;
