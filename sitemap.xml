@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://conqueror712.github.io/post/ICPC.html</loc>
+    <loc>https://conqueror712.github.io/post/Welcome.html</loc>
     
-    <lastmod>2024-12-31</lastmod>
+    <lastmod>2025-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://conqueror712.github.io/post/Welcome.html</loc>
+    <loc>https://conqueror712.github.io/post/ICPC.html</loc>
     
     <lastmod>2024-12-31</lastmod>
     
@@ -40,7 +40,7 @@
 
   <url>
     <loc>https://conqueror712.github.io/</loc>
-    <lastmod>2024-12-31</lastmod>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -50,14 +50,14 @@
   
   <url>
     <loc>https://conqueror712.github.io/categories/XCPC/</loc>
-    <lastmod>2024-12-31</lastmod>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://conqueror712.github.io/categories/Articles/</loc>
-    <lastmod>2024-12-31</lastmod>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
