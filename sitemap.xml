@@ -58,6 +58,13 @@
 
   
   <url>
+    <loc>https://conqueror712.github.io/categories/Interview/</loc>
+    <lastmod>2025-01-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://conqueror712.github.io/categories/XCPC/</loc>
     <lastmod>2025-01-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -66,13 +73,6 @@
   
   <url>
     <loc>https://conqueror712.github.io/categories/Articles/</loc>
-    <lastmod>2025-01-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://conqueror712.github.io/categories/Interview/</loc>
     <lastmod>2025-01-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
