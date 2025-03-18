@@ -18,16 +18,16 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="前言： 题目来源于牛客的题库，因为自己是小白，所以一开始搞的题目都会比较简单，大佬勿喷~  🤗个人主页📦Github主页 💠掘金主页 📚知乎主页    Q1：均值漂移 Mean Shift 的核心思想？  一个词概括：迭代  Mean Shift 算法的核心是通过迭代来寻找数据的聚类中心。对于每个数据点，计算其邻域内点的均值偏移向量，将点沿此向量方向移动，不断重复这">
+        <meta name="description" content="前言： 题目来源于牛客的题库，因为自己是小白，所以一开始搞的题目都会比较简单，大佬勿喷~  🤗个人主页📦Github主页 💠掘金主页 📚知乎主页    Q1：均值漂移 Mean Shift 的核心思想？  一个词概括：迭代  Mean Shift 是一种聚类方法，其核心是通过迭代来寻找数据的聚类中心。对于每个数据点，计算其邻域内点的均值偏移向量，将点沿此向量方向移动">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习丨八股学习分享 EP2">
 <meta property="og:url" content="https://conqueror712.github.io/post/ML-02.html">
 <meta property="og:site_name" content="落雨乄天珀夜">
-<meta property="og:description" content="前言： 题目来源于牛客的题库，因为自己是小白，所以一开始搞的题目都会比较简单，大佬勿喷~  🤗个人主页📦Github主页 💠掘金主页 📚知乎主页    Q1：均值漂移 Mean Shift 的核心思想？  一个词概括：迭代  Mean Shift 算法的核心是通过迭代来寻找数据的聚类中心。对于每个数据点，计算其邻域内点的均值偏移向量，将点沿此向量方向移动，不断重复这">
+<meta property="og:description" content="前言： 题目来源于牛客的题库，因为自己是小白，所以一开始搞的题目都会比较简单，大佬勿喷~  🤗个人主页📦Github主页 💠掘金主页 📚知乎主页    Q1：均值漂移 Mean Shift 的核心思想？  一个词概括：迭代  Mean Shift 是一种聚类方法，其核心是通过迭代来寻找数据的聚类中心。对于每个数据点，计算其邻域内点的均值偏移向量，将点沿此向量方向移动">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://conqueror712.github.io/img/ML/ML-02/mean-shift.png">
 <meta property="article:published_time" content="2025-03-17T13:59:52.000Z">
-<meta property="article:modified_time" content="2025-03-17T14:02:39.764Z">
+<meta property="article:modified_time" content="2025-03-18T16:21:47.020Z">
 <meta property="article:author" content="落雨乄天珀夜">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://conqueror712.github.io/img/ML/ML-02/mean-shift.png">
@@ -356,8 +356,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-03-17 22:02:39</span>
-            <span class="mobile">2025-03-17 22:02:39</span>
+            <span class="desktop">2025-03-19 00:21:47</span>
+            <span class="mobile">2025-03-19 00:21:47</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -412,7 +412,7 @@ mjx-container[display="true"] + br {
 <p>一个词概括：迭代</p>
 </blockquote>
 <p>Mean Shift
-算法的核心是通过迭代来寻找数据的聚类中心。对于每个数据点，计算其邻域内点的均值偏移向量，将点沿此向量方向移动，不断重复这一过程，直到点的移动距离小于设定阈值或达到最大迭代次数，此时收敛的点即为概率密度梯度为零的模式点，对应数据的聚类中心，如下图。</p>
+是一种聚类方法，其核心是通过迭代来寻找数据的聚类中心。对于每个数据点，计算其邻域内点的均值偏移向量，将点沿此向量方向移动，不断重复这一过程，直到点的移动距离小于设定阈值或达到最大迭代次数，此时收敛的点即为概率密度梯度为零的模式点，对应数据的聚类中心，如下图。</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="../img/ML/ML-02/mean-shift.png" alt="img" style="zoom:50%;"></p>
 <hr>
 <h2 id="q2向量相似度有几种计算方式">Q2：向量相似度有几种计算方式？</h2>
@@ -434,6 +434,13 @@ mjx-container[display="true"] + br {
 </ol>
 <hr>
 <h2 id="q4有关决策树">Q4：有关决策树</h2>
+<p>决策树通过一系列的条件判断对样本进行分类或预测。</p>
+<ul>
+<li>内部节点：对数据集中某个属性进行的条件判断（例如判断水果的颜色，这个颜色就是所谓的属性）</li>
+<li>分支：判断输出的结果（一般为 Yes or No）</li>
+<li>叶节点：则代表类别或值</li>
+</ul>
+<p>在分类任务中，从根节点开始，根据样本的属性值沿着相应的分支向下遍历，直到到达叶节点，叶节点所代表的类别就是该样本的预测类别。</p>
 <ol type="1">
 <li><p>ID3 决策树与信息增益</p>
 <ul>
@@ -466,13 +473,23 @@ Tree）即分类与回归树，它是一种非常常用的决策树算法。CART
 </ol>
 <hr>
 <h2 id="q5有关岭回归">Q5：有关岭回归</h2>
+<p>岭回归是一种用于处理线性回归中多重共线性问题的正则化方法，打个比方：</p>
+<p>想象你要走一条路去一个目的地，路有很多条，而且有些路之间还有些相似（这就好比数据中的特征存在多重共线性）。普通的线性回归就像是不管路怎么样，直接找一条看起来能最快到达目的地的路走，但如果这些相似的路太多，它就容易迷路，不知道该选哪条，最后可能选了一条不太好的路，导致结果不准确（过拟合）。</p>
+<p>而岭回归呢，就像是给每条路都设置了一个
+“难度系数”。如果一条路和其他很多路都很相似，那它的 “难度系数”
+就会增加。这样一来，在选择走哪条路的时候，就不会只看哪条路看起来能最快到达目的地，还会考虑这条路的
+“难度”。通过这种方式，岭回归会避开那些和其他路太相似的路，选择一条更稳定、更可靠的路到达目的地，也就让我们得到的结果更准确、更不容易受到数据中一些干扰因素的影响，从而解决了多重共线性带来的问题。</p>
+<p>这里的 “难度系数”
+就是通过在损失函数中添加一个与参数平方和有关的正则化项来实现的，而正则化参数
+λ 就像是控制 “难度系数” 大小的一个旋钮，通过调整它来找到最合适的
+“难度”，让模型达到最好的效果。</p>
 <blockquote>
 <p>假如使用一个较复杂的岭回归模型（Ridge
 Regression），来拟合样本数据时，通过调整正则化参数
 λ，来调整模型复杂度。当 λ
 较大时，关于偏差（bias）和方差（variance）：</p>
 </blockquote>
-<p>结论：当 λ 增大时，偏差增大，方差减小</p>
+<p>结论：当 λ 增大时，偏差增大，方差减小，模型更简单，模型更稳定</p>
 <p>原因：在岭回归中，正则化参数 λ 是用来控制模型复杂度的重要参数。当 λ
 较大时，模型会更加简单（正则化效果更强），从而偏差增大，但方差减小。</p>
 <p>具体来说，当 λ 增大时： - 模型的复杂度降低，趋向于欠拟合 -
@@ -493,7 +510,7 @@ Regression），来拟合样本数据时，通过调整正则化参数
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-03-17 22:02:39
+                    :</strong> 2025-03-19 00:21:47
             </li>
         
         <li>
