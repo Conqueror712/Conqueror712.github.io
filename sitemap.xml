@@ -2,45 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://conqueror712.github.io/post/ML-02.html</loc>
+    <loc>https://conqueror712.github.io/post/HiThere.html</loc>
     
-    <lastmod>2025-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://conqueror712.github.io/post/ML-01.html</loc>
-    
-    <lastmod>2025-03-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://conqueror712.github.io/post/Welcome.html</loc>
-    
-    <lastmod>2025-03-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://conqueror712.github.io/post/ByteDance-Interview.html</loc>
-    
-    <lastmod>2025-03-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://conqueror712.github.io/post/ICPC.html</loc>
-    
-    <lastmod>2025-03-09</lastmod>
+    <lastmod>2025-07-11</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -74,20 +38,6 @@
 
   
 
-  
-  <url>
-    <loc>https://conqueror712.github.io/categories/ML/</loc>
-    <lastmod>2025-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://conqueror712.github.io/categories/Interview/</loc>
-    <lastmod>2025-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
   
   <url>
     <loc>https://conqueror712.github.io/categories/Articles/</loc>
