@@ -6,6 +6,6 @@ https://conqueror712.github.io/post/ICPC.html
 https://conqueror712.github.io/labels/index.html
 https://conqueror712.github.io/categories/index.html
 https://conqueror712.github.io/
-https://conqueror712.github.io/categories/ML/
 https://conqueror712.github.io/categories/Interview/
 https://conqueror712.github.io/categories/Articles/
+https://conqueror712.github.io/categories/ML/
